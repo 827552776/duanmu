@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.louis.kitty.admin.dao.OrderMainMapper">
+  <resultMap id="BaseResultMap" type="com.louis.kitty.admin.model.OrderMain">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="last_update_time" jdbcType="DATE" property="lastUpdateTime" />
+    <result column="last_update_by" jdbcType="VARCHAR" property="lastUpdateBy" />
+    <result column="create_time" jdbcType="DATE" property="createTime" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="lot_no" jdbcType="VARCHAR" property="lotNo" />
+    <result column="cust_nm" jdbcType="VARCHAR" property="custNm" />
+    <result column="mould_nm" jdbcType="VARCHAR" property="mouldNm" />
+    <result column="quantity" jdbcType="VARCHAR" property="quantity" />
+    <result column="company" jdbcType="VARCHAR" property="company" />
+    <result column="dispatch_no" jdbcType="VARCHAR" property="dispatchNo" />
+    <result column="buy_material" jdbcType="VARCHAR" property="buyMaterial" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="flag" jdbcType="VARCHAR" property="flag" />
+    <result column="ord_no" jdbcType="VARCHAR" property="ordNo" />
+    <result column="ord_sts" jdbcType="VARCHAR" property="ordSts" />
+
+  </resultMap>
+
+
+  <insert id="insert" parameterType="com.louis.kitty.admin.model.OrderMain">
+    insert into b_ord_main (id, lot_no,cust_nm,mould_nm,quantity,company,dispatch_no,
+    buy_material,remarks,flag,ord_no,ord_sts,create_by,create_time)
+    values (#{id,jdbcType=BIGINT}, #{lotNo,jdbcType=VARCHAR}, #{custNm,jdbcType=VARCHAR},
+      #{mouldNm,jdbcType=VARCHAR}, #{quantity,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR},
+      #{dispatchNo,jdbcType=VARCHAR}, #{buyMaterial,jdbcType=VARCHAR},#{remarks,jdbcType=VARCHAR},
+      #{flag,jdbcType=VARCHAR},#{ordNo,jdbcType=VARCHAR},#{ordSts,jdbcType=VARCHAR},
+      #{createBy,jdbcType=VARCHAR},#{createTime,jdbcType=DATE})
+  </insert>
+  <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select * from b_ord_main
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <update id="update" parameterType="com.louis.kitty.admin.model.OrderMain">
+    update b_ord_main
+    set lot_no = #{lotNo,jdbcType=VARCHAR},cust_nm = #{custNm,jdbcType=VARCHAR},mould_nm = #{mouldNm,jdbcType=VARCHAR},
+    quantity = #{quantity,jdbcType=VARCHAR},dispatch_no = {dispatchNo,jdbcType=VARCHAR},buy_material = {buyMaterial,jdbcType=VARCHAR},
+    remarks = #{remarks,jdbcType=VARCHAR},flag = #{flag,jdbcType=VARCHAR},ord_no = #{ordNo,jdbcType=VARCHAR},ord_sts = #{ordSts,jdbcType=VARCHAR},
+    last_by = #{lastBy,jdbcType=VARCHAR},last_update_time = #{lastUpdateTime,jdbcType=DATE}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+</mapper>
