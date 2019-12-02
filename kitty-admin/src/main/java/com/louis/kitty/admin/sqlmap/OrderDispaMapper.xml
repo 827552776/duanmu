@@ -12,7 +12,7 @@
         <result column="category" jdbcType="VARCHAR" property="category" />
         <result column="supplier" jdbcType="VARCHAR" property="supplier" />
         <result column="contract_no" jdbcType="VARCHAR" property="contractNo" />
-        <result column="dispa_mark_time" jdbcType="DATE" property="dispaMarkTime" />
+        <result column="dispa_make_time" jdbcType="DATE" property="dispaMakeTime" />
         <result column="use_unit" jdbcType="VARCHAR" property="useUnit" />
         <result column="product_no" jdbcType="VARCHAR" property="productNo" />
         <result column="flag" jdbcType="VARCHAR" property="flag" />
@@ -21,7 +21,7 @@
         <result column="frock_nm" jdbcType="VARCHAR" property="frockNm" />
         <result column="units" jdbcType="VARCHAR" property="units" />
         <result column="dispa_quantity" jdbcType="VARCHAR" property="dispaQuantity" />
-        <result column="dispa_content" jdbcType="VARCHAR" property="dispaComtenr" />
+        <result column="dispa_content" jdbcType="VARCHAR" property="dispaContent" />
         <result column="dispa_basis" jdbcType="VARCHAR" property="dispaBasis" />
         <result column="delv_date" jdbcType="DATE" property="delvDate" />
         <result column="tech_con" jdbcType="VARCHAR" property="techCon" />
@@ -35,27 +35,27 @@
 
     <insert id="insert" parameterType="com.louis.kitty.admin.model.OrderDispa">
         insert into b_ord_dispa (id,create_time,create_by,dispatch_no,dispa_no,category,supplier,contract_no,
-        dispa_mark_time,use_unit,product_no,flag,mark_no,frock_no,frock_nm,units,dispa_quantity,dispa_content,
+        dispa_make_time,use_unit,product_no,flag,mark_no,frock_no,frock_nm,units,dispa_quantity,dispa_content,
         dispa_basis,delv_date,tech_con,quality,price,mould_quota,complete_quan,dispa_remarks)
 
         values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=DATE}, #{createBy,jdbcType=VARCHAR},
         #{dispatchNo,jdbcType=VARCHAR}, #{dispaNo,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR},
-        #{supplier,jdbcType=VARCHAR}, #{contractNo,jdbcType=VARCHAR},#{dispaMarkTime,jdbcType=DATE},
+        #{supplier,jdbcType=VARCHAR}, #{contractNo,jdbcType=VARCHAR},#{dispaMakeTime,jdbcType=DATE},
         #{useUnit,jdbcType=VARCHAR},#{productNo,jdbcType=VARCHAR},#{flag,jdbcType=VARCHAR},#{markNo,jdbcType=VARCHAR},
         #{frockNo,jdbcType=VARCHAR},#{frockNm,jdbcType=VARCHAR},#{units,jdbcType=VARCHAR},#{dispaQuantity,jdbcType=VARCHAR},
-        #{dispaComtent,jdbcType=VARCHAR},#{dispaBasis,jdbcType=VARCHAR},#{delvDate,jdbcType=DATE},#{techCon,jdbcType=VARCHAR},
-        #{quality,jdbcType=VARCHAR},#{price,jdbcType=DECIMAL},#{mouldQuota,jdbcType=DECIMAL},#{complete,jdbcType=VARCHAR},
+        #{dispaContent,jdbcType=VARCHAR},#{dispaBasis,jdbcType=VARCHAR},#{delvDate,jdbcType=DATE},#{techCon,jdbcType=VARCHAR},
+        #{quality,jdbcType=VARCHAR},#{price,jdbcType=DECIMAL},#{mouldQuota,jdbcType=DECIMAL},#{completeQuan,jdbcType=VARCHAR},
         #{dispaRemarks,jdbcType=VARCHAR})
     </insert>
     <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
-        select * from b_ord_main
+        select * from b_ord_dispa
         where id = #{id,jdbcType=VARCHAR}
     </select>
     <update id="update" parameterType="com.louis.kitty.admin.model.OrderDispa">
         update b_ord_dispa
         set last_update_time = #{lastUpdateTime,jdbcType=DATE},last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},dispatchNo = #{dispatchNo,jdbcType=VARCHAR},
-        dispa_no = #{dispaNo,jdbcType=VARCHAR},category = {category,jdbcType=VARCHAR},supplier = {supplier,jdbcType=VARCHAR},contract_no = #{contractNo,jdbcType=VARCHAR},
-        dispa_mark_time = #{dispaMarkTime,jdbcType=VARCHAR},use_unit = #{usrUnit,jdbcType=VARCHAR},product_no = #{productNo,jdbcType=VARCHAR},flag = #{flag,jdbcType=VARCHAR},
+        dispa_no = #{dispaNo,jdbcType=VARCHAR},category = #{category,jdbcType=VARCHAR},supplier = #{supplier,jdbcType=VARCHAR},contract_no = #{contractNo,jdbcType=VARCHAR},
+        dispa_make_time = #{dispaMakeTime,jdbcType=VARCHAR},use_unit = #{usrUnit,jdbcType=VARCHAR},product_no = #{productNo,jdbcType=VARCHAR},flag = #{flag,jdbcType=VARCHAR},
         mark_no = #{markNo,jdbcType=VARCHAR},frock_no = #{frockNo,jdbcType=VARCHAR},units = #{units,jdbcType=VARCHAR},dispa_quantity = #{dispaQuantity,jdbcType=VARCHAR},
         dispa_content = #{dispaContent,jdbcType=VARCHAR},dispa_basis = #{dispaBasis,jdbcType=VARCHAR},delv_date = #{delvDate,jdbcType=VARCHAR},
         tech_con = #{techCon,jdbcType=VARCHAR},quality = #{quality,jdbcType=VARCHAR},price = #{price,jdbcType=DECIMAL},mould_quota = #{mouldQuota,jdbcType=DECIMAL},

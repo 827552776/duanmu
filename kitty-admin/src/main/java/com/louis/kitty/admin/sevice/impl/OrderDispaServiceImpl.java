@@ -17,12 +17,9 @@ public class OrderDispaServiceImpl implements OrderDispaService{
     int num = 0;
     @Override
     public int save(OrderDispa orderDispa) {
-        Long id = orderDispa.getId();
-        if(id == null){
-            num = orderDispaMapper.insert(orderDispa);
-        }else{
-            num = orderDispaMapper.update(orderDispa);
-        }
+
+        num = orderDispaMapper.insert(orderDispa);
+
         return num;
     }
 
