@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.louis.kitty.admin.dao.BCustomerMapper">
+  <resultMap id="BaseResultMap" type="com.louis.kitty.admin.model.BCustomer">
+     <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="cm_name" jdbcType="VARCHAR" property="cmName" />
+    <result column="cm_address" jdbcType="VARCHAR" property="cmAddress" />
+    <result column="cm_contacts" jdbcType="VARCHAR" property="cmContacts" />
+    <result column="cm_phone" jdbcType="VARCHAR" property="cmPhone" />
+    <result column="cm_remarks" jdbcType="VARCHAR" property="cmRemarks" />
+    <result column="create_by" jdbcType="BIGINT" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="last_update_by" jdbcType="BIGINT" property="lastUpdateBy" />
+    <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id,cm_name,cm_address,cm_contacts,cm_phone,cm_remarks, create_by, create_time, last_update_by,
+    last_update_time
+  </sql>
+
+  <select id="findPage" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from b_customer
+  </select>
+
+</mapper>

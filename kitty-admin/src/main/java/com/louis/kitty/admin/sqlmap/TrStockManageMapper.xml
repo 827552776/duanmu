@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.louis.kitty.admin.dao.TrStockManageMapper">
+    <resultMap id="BaseResultMap" type="com.louis.kitty.admin.model.TrStockManage">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="tr_name" jdbcType="VARCHAR" property="trName" />
+        <result column="tr_type" jdbcType="VARCHAR" property="trType" />
+        <result column="tr_subdivide" jdbcType="VARCHAR" property="trSubdivide" />
+        <result column="tr_number" jdbcType="BIGINT" property="trNumber" />
+        <result column="tr_price" jdbcType="DECIMAL" property="trPrice" />
+        <result column="tr_remarks" jdbcType="VARCHAR" property="trRemarks" />
+        <result column="create_by" jdbcType="BIGINT" property="createBy" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="last_update_by" jdbcType="BIGINT" property="lastUpdateBy" />
+        <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
+    </resultMap>
+    <sql id="Base_Column_List">
+    id,tr_name,tr_type,tr_subdivide,tr_number,tr_price,tr_remarks ,create_by, create_time, last_update_by,
+    last_update_time
+  </sql>
+
+    <select id="findPage" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tr_stock_manage
+    </select>
+    <insert id="insertSelective" parameterType="com.louis.kitty.admin.model.TrStockManage">
+        insert into tr_stock_manage
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="trName != null">
+                tr_name,
+            </if>
+            <if test="trType != null">
+                tr_type,
+            </if>
+            <if test="trSubdivide != null">
+                tr_subdivide,
+            </if>
+            <if test="trNumber != null">
+                tr_number,
+            </if>
+            <if test="trPrice != null">
+                tr_price,
+            </if>
+            <if test="trRemarks != null">
+                tr_remarks,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="lastUpdateBy != null">
+                last_update_by,
+            </if>
+            <if test="lastUpdateTime != null">
+                last_update_time,
+            </if>
+
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="trName != null">
+                #{trName,jdbcType=VARCHAR},
+            </if>
+            <if test="trType != null">
+                #{trType,jdbcType=VARCHAR},
+            </if>
+            <if test="trSubdivide != null">
+                #{trSubdivide,jdbcType=VARCHAR},
+            </if>
+            <if test="trNumber != null">
+                #{trNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="trPrice != null">
+                #{trPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="trRemarks != null">
+                #{trRemarks,jdbcType=VARCHAR},
+            </if>
+            <if test="createBy != null">
+                #{createBy,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastUpdateBy != null">
+                #{lastUpdateBy,jdbcType=BIGINT},
+            </if>
+            <if test="lastUpdateTime != null">
+                #{lastUpdateTime,jdbcType=TIMESTAMP},
+            </if>
+
+
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.louis.kitty.admin.model.TrStockManage">
+        update tr_stock_manage
+        <set>
+            <if test="trName != null">
+                tr_name = #{trName,jdbcType=VARCHAR},
+            </if>
+            <if test="trType != null">
+                tr_type = #{trType,jdbcType=VARCHAR},
+            </if>
+            <if test="trSubdivide != null">
+                tr_subdivide = #{trSubdivide,jdbcType=VARCHAR},
+            </if>
+            <if test="trNumber != null">
+                tr_number = #{trNumber,jdbcType=DECIMAL},
+            </if>
+            <if test="trPrice != null">
+                tr_price = #{trPrice,jdbcType=VARCHAR},
+            </if>
+            <if test="trRemarks != null">
+                tr_remarks = #{trRemarks,jdbcType=TINYINT},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastUpdateBy != null">
+                last_update_by = #{lastUpdateBy,jdbcType=BIGINT},
+            </if>
+            <if test="lastUpdateTime != null">
+                last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+            </if>
+
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+</mapper>
