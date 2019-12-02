@@ -12,36 +12,78 @@
     <result column="mould_nm" jdbcType="VARCHAR" property="mouldNm" />
     <result column="quantity" jdbcType="VARCHAR" property="quantity" />
     <result column="company" jdbcType="VARCHAR" property="company" />
-    <result column="dispatch_no" jdbcType="VARCHAR" property="dispatchNo" />
+    <result column="dispatch_no" jdbcType="VARCHAR" property="dispatchNo"/>
     <result column="buy_material" jdbcType="VARCHAR" property="buyMaterial" />
     <result column="remarks" jdbcType="VARCHAR" property="remarks" />
     <result column="flag" jdbcType="VARCHAR" property="flag" />
     <result column="ord_no" jdbcType="VARCHAR" property="ordNo" />
     <result column="ord_sts" jdbcType="VARCHAR" property="ordSts" />
-
   </resultMap>
-
 
   <insert id="insert" parameterType="com.louis.kitty.admin.model.OrderMain">
     insert into b_ord_main (id, lot_no,cust_nm,mould_nm,quantity,company,dispatch_no,
-    buy_material,remarks,flag,ord_no,ord_sts,create_by,create_time)
+    buy_material,remarks,flag,ord_sts,create_by,create_time)
     values (#{id,jdbcType=BIGINT}, #{lotNo,jdbcType=VARCHAR}, #{custNm,jdbcType=VARCHAR},
       #{mouldNm,jdbcType=VARCHAR}, #{quantity,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR},
       #{dispatchNo,jdbcType=VARCHAR}, #{buyMaterial,jdbcType=VARCHAR},#{remarks,jdbcType=VARCHAR},
-      #{flag,jdbcType=VARCHAR},#{ordNo,jdbcType=VARCHAR},#{ordSts,jdbcType=VARCHAR},
+      #{flag,jdbcType=VARCHAR},'A',
       #{createBy,jdbcType=VARCHAR},#{createTime,jdbcType=DATE})
   </insert>
   <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
     select * from b_ord_main
     where id = #{id,jdbcType=VARCHAR}
+
   </select>
   <update id="update" parameterType="com.louis.kitty.admin.model.OrderMain">
     update b_ord_main
     set lot_no = #{lotNo,jdbcType=VARCHAR},cust_nm = #{custNm,jdbcType=VARCHAR},mould_nm = #{mouldNm,jdbcType=VARCHAR},
-    quantity = #{quantity,jdbcType=VARCHAR},dispatch_no = {dispatchNo,jdbcType=VARCHAR},buy_material = {buyMaterial,jdbcType=VARCHAR},
-    remarks = #{remarks,jdbcType=VARCHAR},flag = #{flag,jdbcType=VARCHAR},ord_no = #{ordNo,jdbcType=VARCHAR},ord_sts = #{ordSts,jdbcType=VARCHAR},
-    last_by = #{lastBy,jdbcType=VARCHAR},last_update_time = #{lastUpdateTime,jdbcType=DATE}
+    quantity = #{quantity,jdbcType=VARCHAR},dispatch_no = #{dispatchNo,jdbcType=VARCHAR},buy_material = #{buyMaterial,jdbcType=VARCHAR},
+    remarks = #{remarks,jdbcType=VARCHAR},flag = #{flag,jdbcType=VARCHAR},
+    last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},last_update_time = #{lastUpdateTime,jdbcType=DATE}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <update id="updateStsB" parameterType="java.lang.Long">
+    update b_ord_main
+    set ord_sts = 'B'
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateStsC" parameterType="java.lang.Long">
+    update b_ord_main
+    set ord_sts = 'C'
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <delete id="delete" parameterType="java.lang.Long">
+    delete from b_ord_main
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <select id="findPage" resultMap="BaseResultMap">
+    select
+    *
+    from b_ord_main
+  </select>
+  <select id="findPageAb" resultMap="BaseResultMap">
+    select
+    *
+    from b_ord_main where ord_sts = 'A'or ord_sts ='B'
+  </select>
+  <select id="findPageAboo" resultMap="BaseResultMap" parameterType="java.lang.String">
+  select
+  *
+  from b_ord_main where ord_sts = 'A'or ord_sts ='B'
+  and dispatchNo = #{dispatchNo,jdbcType=VARCHAR}
+</select>
+  <select id="findPageByLabe" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    *
+    from b_ord_main where
+    dispatchNo = #{dispatchNo,jdbcType=VARCHAR}v
+  </select>
+  <select id="query" resultMap="BaseResultMap">
+    select
+    *
+    from b_ord_main where ifnull(lot_no,'') like concat ('%',#{param1,jdbcType=VARCHAR},'%')
+    and ifnull(custNm,'') like concat ('%',#{param2,jdbcType=VARCHAR},'%')
+    and ifnull(dispatchNo,'') like concat ('%',#{param3,jdbcType=VARCHAR},'%')
+  </select>
 
 </mapper>

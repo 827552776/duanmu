@@ -1,10 +1,12 @@
 package com.louis.kitty.admin.sevice.impl;
 
-import com.louis.kitty.core.page.PageRequest;
-import com.louis.kitty.core.page.PageResult;
 import com.louis.kitty.admin.dao.OrderMainMapper;
 import com.louis.kitty.admin.model.OrderMain;
 import com.louis.kitty.admin.sevice.OrderMainService;
+import com.louis.kitty.core.page.ColumnFilter;
+import com.louis.kitty.core.page.MybatisPageHelper;
+import com.louis.kitty.core.page.PageRequest;
+import com.louis.kitty.core.page.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,12 +32,16 @@ public class OrderMainServiceImpl implements OrderMainService {
 
     @Override
     public int delete(OrderMain record) {
-        return 0;
+
+        return orderMainMapper.delete(record.getId());
     }
 
     @Override
     public int delete(List<OrderMain> records) {
-        return 0;
+        for(OrderMain record:records){
+        delete(record);
+        }
+        return 1;
     }
 
     @Override
@@ -45,6 +51,36 @@ public class OrderMainServiceImpl implements OrderMainService {
 
     @Override
     public PageResult findPage(PageRequest pageRequest) {
-        return null;
+        ColumnFilter columnFilter = pageRequest.getColumnFilter("dispatchNo");
+        if(columnFilter.getValue() != "") {
+            return MybatisPageHelper.findPage(pageRequest, orderMainMapper, "findPageByLabel", columnFilter.getValue());
+        }
+        return MybatisPageHelper.findPage(pageRequest, orderMainMapper);
     }
+
+
+    @Override
+    public int updateSts(OrderMain main) {
+      Long id = main.getId();
+        return orderMainMapper.updateStsB(id);
+    }
+
+    @Override
+    public int updateStsC(OrderMain main) {
+        Long id =main.getId();
+        return orderMainMapper.updateStsC(id);
+    }
+
+    @Override
+    public PageResult findPageAb(PageRequest pageRequest) {
+        ColumnFilter columnFilter = pageRequest.getColumnFilter("dispatchNo");
+
+        if(columnFilter.getValue() != "") {
+            return MybatisPageHelper.findPage(pageRequest, orderMainMapper, "findPageAboo", columnFilter.getValue());
+        }
+        return MybatisPageHelper.findPageAb(pageRequest, orderMainMapper);
+    }
+
+
+
 }

@@ -14,6 +14,8 @@ import com.louis.kitty.common.utils.ReflectionUtils;
 public class MybatisPageHelper {
 
 	public static final String findPage = "findPage";
+
+	public static final String findPageAb = "findPageAb";
 	
 	/**
 	 * 分页查询, 约定查询方法名为 “findPage” 
@@ -25,6 +27,10 @@ public class MybatisPageHelper {
 	public static PageResult findPage(PageRequest pageRequest, Object mapper) {
 		return findPage(pageRequest, mapper, findPage);
 	}
+	public static PageResult findPageAb(PageRequest pageRequest, Object mapper) {
+		return findPage(pageRequest, mapper, findPageAb);
+	}
+
 	
 	/**
 	 * 调用分页插件进行分页查询
