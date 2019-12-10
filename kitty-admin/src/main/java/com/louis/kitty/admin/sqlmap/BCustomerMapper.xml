@@ -23,5 +23,10 @@
     <include refid="Base_Column_List" />
     from b_customer
   </select>
+  <select id="query" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from b_customer
+  </select>
 
 </mapper>

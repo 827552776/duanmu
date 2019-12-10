@@ -51,7 +51,7 @@ public class OrderMainServiceImpl implements OrderMainService {
 
     @Override
     public PageResult findPage(PageRequest pageRequest) {
-        ColumnFilter columnFilter = pageRequest.getColumnFilter("dispatchNo");
+        ColumnFilter columnFilter = pageRequest.getColumnFilter("cust");
         if(columnFilter.getValue() != "") {
             return MybatisPageHelper.findPage(pageRequest, orderMainMapper, "findPageByLabel", columnFilter.getValue());
         }

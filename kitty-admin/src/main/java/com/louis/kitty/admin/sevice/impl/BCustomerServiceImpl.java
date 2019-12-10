@@ -48,4 +48,9 @@ public class BCustomerServiceImpl implements BCustomerService {
     public List<BCustomer> findByLable(String lable) {
         return null;
     }
+
+    @Override
+    public List<BCustomer> query() {
+        return bCustomerMapper.query();
+    }
 }

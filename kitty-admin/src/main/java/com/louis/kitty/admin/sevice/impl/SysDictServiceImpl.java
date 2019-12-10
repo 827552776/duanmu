@@ -51,6 +51,7 @@ public class SysDictServiceImpl  implements SysDictService {
 
 		if(columnFilter != null) {
 			return MybatisPageHelper.findPage(pageRequest, sysDictMapper, "findPageByLabel", columnFilter.getValue());
+
 		}
 		return MybatisPageHelper.findPage(pageRequest, sysDictMapper);
 	}

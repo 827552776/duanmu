@@ -17,5 +17,5 @@ public interface OrderMainMapper {
     List<OrderMain> query(String lotNo,String custNm,String dispatchNo);
     int updateStsB(Long id);
     int updateStsC(Long id);
-    List<OrderMain> findPageByLabel(@Param(value="dispatchNo") String dispatchNo);
+    List<OrderMain> findPageByLabel(@Param(value="cust") String cust);
 }

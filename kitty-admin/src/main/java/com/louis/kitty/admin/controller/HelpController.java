@@ -1,8 +1,9 @@
 package com.louis.kitty.admin.controller;
 
-import com.louis.kitty.admin.model.OrderDispa;
-import com.louis.kitty.admin.model.OrderMain;
-import com.louis.kitty.admin.sevice.OrderDispaService;
+import com.louis.kitty.admin.model.Check;
+import com.louis.kitty.admin.model.Help;
+import com.louis.kitty.admin.model.Parts;
+import com.louis.kitty.admin.sevice.HelpService;
 import com.louis.kitty.core.http.HttpResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,20 +12,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("dispa")
-public class OrderDispaController {
+@RequestMapping("help")
+public class HelpController {
     @Autowired
-    private OrderDispaService orderDispaService;
+    private HelpService helpService;
     @PostMapping(value="/save")
-    public HttpResult save(@RequestBody OrderDispa dispa){
+    public HttpResult save(@RequestBody Help help){
         int result = 0;
-        result = orderDispaService.save(dispa);
+        result = helpService.save(help);
         return HttpResult.ok(result);
     }
     @PostMapping(value="/query")
-    public HttpResult query(@RequestBody OrderMain orderMain){
-
-
-        return HttpResult.ok(orderDispaService.query(orderMain));
+    public HttpResult query(@RequestBody Parts parts){
+        return HttpResult.ok(helpService.query(parts));
     }
 }

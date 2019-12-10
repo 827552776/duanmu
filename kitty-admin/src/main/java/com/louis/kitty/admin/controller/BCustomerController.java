@@ -4,10 +4,7 @@ import com.louis.kitty.core.http.HttpResult;
 import com.louis.kitty.core.page.PageRequest;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 客户信息模块
@@ -23,5 +20,9 @@ public class BCustomerController {
     @PostMapping(value="/findPage")
     public HttpResult findPage(@RequestBody PageRequest pageRequest) {
         return HttpResult.ok(bCustomerService.findPage(pageRequest));
+    }
+    @GetMapping(value="/query")
+    public HttpResult query() {
+        return HttpResult.ok(bCustomerService.query());
     }
 }

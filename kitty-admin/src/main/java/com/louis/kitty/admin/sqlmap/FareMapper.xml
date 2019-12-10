@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.louis.kitty.admin.dao.FareMapper">
+    <resultMap id="BaseResultMap" type="com.louis.kitty.admin.model.Fare">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="f_id" jdbcType="BIGINT" property="fId" />
+        <result column="last_update_time" jdbcType="DATE" property="lastUpdateTime" />
+        <result column="last_update_by" jdbcType="VARCHAR" property="lastUpdateBy" />
+        <result column="create_time" jdbcType="DATE" property="createTime" />
+        <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+        <result column="fare_type" jdbcType="VARCHAR" property="fareType" />
+        <result column="descri" jdbcType="VARCHAR" property="descri" />
+        <result column="price" jdbcType="DECIMAL" property="price" />
+        <result column="delv_date" jdbcType="DATE" property="delvDate" />
+    </resultMap>
+    <insert id="save" parameterType="com.louis.kitty.admin.model.Fare">
+        insert into b_fare (id,f_id,create_time,create_by,fare_type,descri,price,delv_date)
+        values (#{id,jdbcType=BIGINT},#{fId,jdbcType=BIGINT}, #{createTime,jdbcType=DATE}, #{createBy,jdbcType=VARCHAR},
+        #{fareType,jdbcType=VARCHAR}, #{descri,jdbcType=VARCHAR},
+        #{price,jdbcType=DECIMAL},#{delvDate,jdbcType=DATE})
+    </insert>
+    <select id="query" resultMap="BaseResultMap">
+        select
+        *
+        from b_fare
+        where f_id = #{param1,jdbcType=BIGINT}
+    </select>
+</mapper>

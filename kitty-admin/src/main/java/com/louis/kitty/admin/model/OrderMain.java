@@ -7,7 +7,7 @@ public class OrderMain extends BaseModel{
 
     private String lotNo;
 
-    private String custNm;
+    private String cust;
 
     private String mouldNm;
 
@@ -23,12 +23,12 @@ public class OrderMain extends BaseModel{
         this.lotNo = lotNo;
     }
 
-    public String getCustNm() {
-        return custNm;
+    public String getCust() {
+        return cust;
     }
 
-    public void setCustNm(String custNm) {
-        this.custNm = custNm;
+    public void setCust(String cust) {
+        this.cust = cust;
     }
 
     public String getMouldNm() {

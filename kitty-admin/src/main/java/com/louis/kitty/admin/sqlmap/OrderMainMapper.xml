@@ -8,7 +8,7 @@
     <result column="create_time" jdbcType="DATE" property="createTime" />
     <result column="create_by" jdbcType="VARCHAR" property="createBy" />
     <result column="lot_no" jdbcType="VARCHAR" property="lotNo" />
-    <result column="cust_nm" jdbcType="VARCHAR" property="custNm" />
+    <result column="cust" jdbcType="VARCHAR" property="cust" />
     <result column="mould_nm" jdbcType="VARCHAR" property="mouldNm" />
     <result column="quantity" jdbcType="VARCHAR" property="quantity" />
     <result column="company" jdbcType="VARCHAR" property="company" />
@@ -21,9 +21,9 @@
   </resultMap>
 
   <insert id="insert" parameterType="com.louis.kitty.admin.model.OrderMain">
-    insert into b_ord_main (id, lot_no,cust_nm,mould_nm,quantity,company,dispatch_no,
+    insert into b_ord_main (id, lot_no,cust,mould_nm,quantity,company,dispatch_no,
     buy_material,remarks,flag,ord_sts,create_by,create_time)
-    values (#{id,jdbcType=BIGINT}, #{lotNo,jdbcType=VARCHAR}, #{custNm,jdbcType=VARCHAR},
+    values (#{id,jdbcType=BIGINT}, #{lotNo,jdbcType=VARCHAR}, #{cust,jdbcType=VARCHAR},
       #{mouldNm,jdbcType=VARCHAR}, #{quantity,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR},
       #{dispatchNo,jdbcType=VARCHAR}, #{buyMaterial,jdbcType=VARCHAR},#{remarks,jdbcType=VARCHAR},
       #{flag,jdbcType=VARCHAR},'A',
@@ -31,12 +31,12 @@
   </insert>
   <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
     select * from b_ord_main
-    where id = #{id,jdbcType=VARCHAR}
-
+    where id = #{id,jdbcType=BIGINT}
+    and  ifnull(flag,'') != 'N'
   </select>
   <update id="update" parameterType="com.louis.kitty.admin.model.OrderMain">
     update b_ord_main
-    set lot_no = #{lotNo,jdbcType=VARCHAR},cust_nm = #{custNm,jdbcType=VARCHAR},mould_nm = #{mouldNm,jdbcType=VARCHAR},
+    set lot_no = #{lotNo,jdbcType=VARCHAR},cust = #{cust,jdbcType=VARCHAR},mould_nm = #{mouldNm,jdbcType=VARCHAR},
     quantity = #{quantity,jdbcType=VARCHAR},dispatch_no = #{dispatchNo,jdbcType=VARCHAR},buy_material = #{buyMaterial,jdbcType=VARCHAR},
     remarks = #{remarks,jdbcType=VARCHAR},flag = #{flag,jdbcType=VARCHAR},
     last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},last_update_time = #{lastUpdateTime,jdbcType=DATE}
@@ -53,37 +53,45 @@
     where id = #{id,jdbcType=BIGINT}
   </update>
   <delete id="delete" parameterType="java.lang.Long">
-    delete from b_ord_main
-    where id = #{id,jdbcType=VARCHAR}
+    update  b_ord_main
+    set flag = 'N'
+    where id = #{id,jdbcType=BIGINT}
+    and (ord_sts = 'A' or ord_sts = 'B')
   </delete>
   <select id="findPage" resultMap="BaseResultMap">
     select
     *
     from b_ord_main
+    where ifnull(flag,'') != 'N'
   </select>
   <select id="findPageAb" resultMap="BaseResultMap">
     select
     *
     from b_ord_main where ord_sts = 'A'or ord_sts ='B'
+    and  ifnull(flag,'') != 'N'
   </select>
   <select id="findPageAboo" resultMap="BaseResultMap" parameterType="java.lang.String">
   select
   *
   from b_ord_main where ord_sts = 'A'or ord_sts ='B'
   and dispatchNo = #{dispatchNo,jdbcType=VARCHAR}
+  and  ifnull(flag,'') != 'N'
 </select>
   <select id="findPageByLabe" resultMap="BaseResultMap" parameterType="java.lang.String">
+    <bind name="pattern" value="'%' + _parameter.cust+ '%'" />
     select
     *
     from b_ord_main where
-    dispatchNo = #{dispatchNo,jdbcType=VARCHAR}v
+    cust like #{pattern}
+    and  ifnull(flag,'') != 'N'
   </select>
   <select id="query" resultMap="BaseResultMap">
     select
     *
     from b_ord_main where ifnull(lot_no,'') like concat ('%',#{param1,jdbcType=VARCHAR},'%')
-    and ifnull(custNm,'') like concat ('%',#{param2,jdbcType=VARCHAR},'%')
+    and ifnull(cust,'') like concat ('%',#{param2,jdbcType=VARCHAR},'%')
     and ifnull(dispatchNo,'') like concat ('%',#{param3,jdbcType=VARCHAR},'%')
+    and  ifnull(flag,'') != 'N'
   </select>
 
 </mapper>

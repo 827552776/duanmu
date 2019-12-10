@@ -7,6 +7,10 @@ public class Parts extends BaseModel{
 
     private String name;
 
+    private String attribute;
+
+    private Integer quantity;
+
     private String specs;
 
     private String modle;
@@ -15,7 +19,11 @@ public class Parts extends BaseModel{
 
     private String inputValue;
 
+    private String sts;
 
+    private String isBuy;
+
+    private String supplier;
 
     public Integer getfId() {
         return fId;
@@ -63,5 +71,43 @@ public class Parts extends BaseModel{
 
     public void setInputValue(String inputValue) {
         this.inputValue = inputValue;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) { this.quantity = quantity; }
+
+    public String getAttribute() {
+        return attribute;
+    }
+
+    public void setAttribute(String attribute) {
+        this.attribute = attribute;
+    }
+
+    public String getSts() {
+        return sts;
+    }
+
+    public void setSts(String sts) {
+        this.sts = sts;
+    }
+
+    public String getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(String supplier) {
+        this.supplier = supplier;
+    }
+
+    public String getIsBuy() {
+        return isBuy;
+    }
+
+    public void setIsBuy(String isBuy) {
+        this.isBuy = isBuy;
     }
 }

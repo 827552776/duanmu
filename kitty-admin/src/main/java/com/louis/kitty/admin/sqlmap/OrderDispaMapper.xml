@@ -25,7 +25,7 @@
         <result column="dispa_basis" jdbcType="VARCHAR" property="dispaBasis" />
         <result column="delv_date" jdbcType="DATE" property="delvDate" />
         <result column="tech_con" jdbcType="VARCHAR" property="techCon" />
-        <result column="quality" jdbcType="VARCHAR" property="quanlity" />
+        <result column="quality" jdbcType="VARCHAR" property="quality" />
         <result column="price" jdbcType="DECIMAL" property="price" />
         <result column="mould_quota" jdbcType="DECIMAL" property="mouldQuota" />
         <result column="complete_quan" jdbcType="VARCHAR" property="completeQuan" />
@@ -51,11 +51,15 @@
         select * from b_ord_dispa
         where id = #{id,jdbcType=VARCHAR}
     </select>
+    <select id="query" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select * from b_ord_dispa
+        where dispa_no = #{dispachNo,jdbcType=VARCHAR}
+    </select>
     <update id="update" parameterType="com.louis.kitty.admin.model.OrderDispa">
         update b_ord_dispa
-        set last_update_time = #{lastUpdateTime,jdbcType=DATE},last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},dispatchNo = #{dispatchNo,jdbcType=VARCHAR},
+        set last_update_time = #{lastUpdateTime,jdbcType=DATE},last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},dispatch_no = #{dispatchNo,jdbcType=VARCHAR},
         dispa_no = #{dispaNo,jdbcType=VARCHAR},category = #{category,jdbcType=VARCHAR},supplier = #{supplier,jdbcType=VARCHAR},contract_no = #{contractNo,jdbcType=VARCHAR},
-        dispa_make_time = #{dispaMakeTime,jdbcType=VARCHAR},use_unit = #{usrUnit,jdbcType=VARCHAR},product_no = #{productNo,jdbcType=VARCHAR},flag = #{flag,jdbcType=VARCHAR},
+        dispa_make_time = #{dispaMakeTime,jdbcType=VARCHAR},use_unit = #{useUnit,jdbcType=VARCHAR},product_no = #{productNo,jdbcType=VARCHAR},flag = #{flag,jdbcType=VARCHAR},
         mark_no = #{markNo,jdbcType=VARCHAR},frock_no = #{frockNo,jdbcType=VARCHAR},units = #{units,jdbcType=VARCHAR},dispa_quantity = #{dispaQuantity,jdbcType=VARCHAR},
         dispa_content = #{dispaContent,jdbcType=VARCHAR},dispa_basis = #{dispaBasis,jdbcType=VARCHAR},delv_date = #{delvDate,jdbcType=VARCHAR},
         tech_con = #{techCon,jdbcType=VARCHAR},quality = #{quality,jdbcType=VARCHAR},price = #{price,jdbcType=DECIMAL},mould_quota = #{mouldQuota,jdbcType=DECIMAL},

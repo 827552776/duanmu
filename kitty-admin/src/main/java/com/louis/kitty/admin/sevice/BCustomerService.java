@@ -13,4 +13,5 @@ import java.util.List;
 @Service
 public interface BCustomerService extends CurdService<BCustomer> {
     List<BCustomer> findByLable(String lable);
+    List<BCustomer> query();
 }
