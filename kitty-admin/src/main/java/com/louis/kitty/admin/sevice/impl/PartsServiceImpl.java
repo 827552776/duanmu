@@ -96,6 +96,13 @@ public class PartsServiceImpl implements PartsService{
     }
 
     @Override
+    public List<Parts> findPageD(Filter filter) {
+        String name = filter.getName();
+        String mouldNm = filter.getMouldNm();
+        return partsMapper.findPageD(name,mouldNm);
+    }
+
+    @Override
     public int updateStsC(Parts parts) {
         Long id = parts.getId();
         return partsMapper.updateStsC(id);

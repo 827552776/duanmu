@@ -14,6 +14,7 @@ public interface PartsMapper {
     List<Parts> findPageQc();
     List<Parts> findPagePr();
     List<Parts> findPagePp(String name,String mouldNm);
+    List<Parts> findPageD(String name,String mouldNm);
     List<Parts> findPageBy(@Param(value="name") String name);
     List<Parts> findPageByQc(@Param(value="name") String name);
     List<Parts> findPageByPr(@Param(value="name") String name);
