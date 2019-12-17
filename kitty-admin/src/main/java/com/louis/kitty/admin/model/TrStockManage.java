@@ -4,9 +4,12 @@ public class TrStockManage extends BaseModel {
     private String trName;
     private String trType;
     private String trSubdivide;
-    private String trNumber;
+    private int trNumber;
     private String trPrice;
     private String trRemarks;
+    private int inNumber;
+    private int outNumber;
+    private String typeN;
 
     @Override
     public String toString() {
@@ -14,9 +17,12 @@ public class TrStockManage extends BaseModel {
                 "trName='" + trName + '\'' +
                 ", trType='" + trType + '\'' +
                 ", trSubdivide='" + trSubdivide + '\'' +
-                ", trNumber='" + trNumber + '\'' +
+                ", trNumber=" + trNumber +
                 ", trPrice='" + trPrice + '\'' +
                 ", trRemarks='" + trRemarks + '\'' +
+                ", inNumber=" + inNumber +
+                ", outNumber=" + outNumber +
+                ", typeN='" + typeN + '\'' +
                 '}';
     }
 
@@ -44,11 +50,11 @@ public class TrStockManage extends BaseModel {
         this.trSubdivide = trSubdivide;
     }
 
-    public String getTrNumber() {
+    public int getTrNumber() {
         return trNumber;
     }
 
-    public void setTrNumber(String trNumber) {
+    public void setTrNumber(int trNumber) {
         this.trNumber = trNumber;
     }
 
@@ -66,5 +72,29 @@ public class TrStockManage extends BaseModel {
 
     public void setTrRemarks(String trRemarks) {
         this.trRemarks = trRemarks;
+    }
+
+    public int getInNumber() {
+        return inNumber;
+    }
+
+    public void setInNumber(int inNumber) {
+        this.inNumber = inNumber;
+    }
+
+    public int getOutNumber() {
+        return outNumber;
+    }
+
+    public void setOutNumber(int outNumber) {
+        this.outNumber = outNumber;
+    }
+
+    public String getTypeN() {
+        return typeN;
+    }
+
+    public void setTypeN(String typeN) {
+        this.typeN = typeN;
     }
 }

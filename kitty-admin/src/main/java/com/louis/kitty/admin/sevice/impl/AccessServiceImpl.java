@@ -1,7 +1,9 @@
 package com.louis.kitty.admin.sevice.impl;
 
+import com.louis.kitty.admin.dao.AccessMapper;
 import com.louis.kitty.admin.dao.AccessStockMapper;
 import com.louis.kitty.admin.model.AccessStock;
+import com.louis.kitty.admin.sevice.AccessService;
 import com.louis.kitty.admin.sevice.AccessStockService;
 import com.louis.kitty.core.page.ColumnFilter;
 import com.louis.kitty.core.page.MybatisPageHelper;
@@ -13,15 +15,15 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class AccessStockServiceImpl implements AccessStockService {
+public class AccessServiceImpl implements AccessService {
     @Autowired
-    private AccessStockMapper accessStockMapper;
+    private AccessMapper accessMapper;
     @Override
     public int save(AccessStock record) {
         if(record.getId() == null || record.getId() == 0) {
-            return accessStockMapper.insertSelective(record);
+            return accessMapper.insertSelective(record);
         }
-        return accessStockMapper.updateByPrimaryKeySelective(record);
+        return accessMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
@@ -43,9 +45,9 @@ public class AccessStockServiceImpl implements AccessStockService {
     public PageResult findPage(PageRequest pageRequest) {
         ColumnFilter columnFilter = pageRequest.getColumnFilter("label");
         if(columnFilter != null) {
-            return MybatisPageHelper.findPage(pageRequest, accessStockMapper, "findPageByLabel", columnFilter.getValue());
+            return MybatisPageHelper.findPage(pageRequest, accessMapper, "findPageByLabel", columnFilter.getValue());
         }
-        return MybatisPageHelper.findPage(pageRequest, accessStockMapper);
+        return MybatisPageHelper.findPage(pageRequest, accessMapper);
     }
 
 }
