@@ -1,11 +1,17 @@
 package com.louis.kitty.admin.model;
 
+import java.util.List;
+
 public class Parts extends BaseModel{
 
 
-    private Integer fId;
+    private String fId;
 
     private String name;
+
+    private String attribute;
+
+    private Integer quantity;
 
     private String specs;
 
@@ -15,13 +21,101 @@ public class Parts extends BaseModel{
 
     private String inputValue;
 
+    private String sts;
 
+    private String st;
 
-    public Integer getfId() {
+    private String isBuy;
+
+    private String supplier;
+
+    private String mouldNm;
+
+    private String flow;
+
+    private String applicant;
+
+    private String dept;
+
+    public String getApplicant() {
+        return applicant;
+    }
+
+    public void setApplicant(String applicant) {
+        this.applicant = applicant;
+    }
+
+    public String getDept() {
+        return dept;
+    }
+
+    public void setDept(String dept) {
+        this.dept = dept;
+    }
+
+    public String getBudget() {
+        return budget;
+    }
+
+    public void setBudget(String budget) {
+        this.budget = budget;
+    }
+
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
+    }
+
+    public String getTemPurch() {
+        return temPurch;
+    }
+
+    public void setTemPurch(String temPurch) {
+        this.temPurch = temPurch;
+    }
+
+    private String budget;
+
+    private String remarks;
+
+    private String temPurch;
+
+    public String getMouldNm() {
+        return mouldNm;
+    }
+
+    public void setMouldNm(String mouldNm) {
+        this.mouldNm = mouldNm;
+    }
+
+    public String getDispatchNo() {
+        return dispatchNo;
+    }
+
+    public void setDispatchNo(String dispatchNo) {
+        this.dispatchNo = dispatchNo;
+    }
+
+    public String getBuyMaterial() {
+        return buyMaterial;
+    }
+
+    public void setBuyMaterial(String buyMaterial) {
+        this.buyMaterial = buyMaterial;
+    }
+
+    private String dispatchNo;
+
+    private String buyMaterial;
+
+    public String getfId() {
         return fId;
     }
 
-    public void setfId(Integer fId) {
+    public void setfId(String fId) {
         this.fId = fId;
     }
 
@@ -63,5 +157,60 @@ public class Parts extends BaseModel{
 
     public void setInputValue(String inputValue) {
         this.inputValue = inputValue;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) { this.quantity = quantity; }
+
+    public String getAttribute() {
+        return attribute;
+    }
+
+    public void setAttribute(String attribute) {
+        this.attribute = attribute;
+    }
+
+    public String getSts() {
+        return sts;
+    }
+
+    public void setSts(String sts) {
+        this.sts = sts;
+    }
+
+    public String getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(String supplier) {
+        this.supplier = supplier;
+    }
+
+    public String getIsBuy() {
+        return isBuy;
+    }
+
+    public void setIsBuy(String isBuy) {
+        this.isBuy = isBuy;
+    }
+
+
+    public String getSt() {
+        return st;
+    }
+
+    public void setSt(String st) {
+        this.st = st;
+    }
+
+    public String getFlow() {
+        return flow;
+    }
+
+    public void setFlow(String flow) {
+        this.flow = flow;
     }
 }

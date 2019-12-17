@@ -3,7 +3,7 @@
 <mapper namespace="com.louis.kitty.admin.dao.CheckMapper">
     <resultMap id="BaseResultMap" type="com.louis.kitty.admin.model.Check">
         <id column="id" jdbcType="BIGINT" property="id" />
-        <result column="f_id" jdbcType="BIGINT" property="fId" />
+        <result column="f_id" jdbcType="VARCHAR" property="fId" />
         <result column="last_update_time" jdbcType="DATE" property="lastUpdateTime" />
         <result column="last_update_by" jdbcType="VARCHAR" property="lastUpdateBy" />
         <result column="create_time" jdbcType="DATE" property="createTime" />
@@ -19,7 +19,7 @@
     </resultMap>
     <insert id="save" parameterType="com.louis.kitty.admin.model.Check">
         insert into b_check (id,f_id,create_time,create_by,han_cai,cai,re_ch,wai_wei,wai_gou,yun_fei,gong_shi,others)
-        values (#{id,jdbcType=BIGINT},#{fId,jdbcType=BIGINT}, #{createTime,jdbcType=DATE}, #{createBy,jdbcType=VARCHAR},
+        values (#{id,jdbcType=BIGINT},#{fId,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, #{createBy,jdbcType=VARCHAR},
         #{hanCai,jdbcType=DECIMAL},
         #{cai,jdbcType=DECIMAL},#{reCh,jdbcType=DECIMAL},#{waiWei,jdbcType=DECIMAL},#{waiGou,jdbcType=DECIMAL},
         #{yunFei,jdbcType=DECIMAL},#{gongShi,jdbcType=DECIMAL},#{others,jdbcType=DECIMAL})

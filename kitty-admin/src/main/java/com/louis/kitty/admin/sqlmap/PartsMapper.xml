@@ -3,28 +3,117 @@
 <mapper namespace="com.louis.kitty.admin.dao.PartsMapper">
     <resultMap id="BaseResultMap" type="com.louis.kitty.admin.model.Parts">
         <id column="id" jdbcType="BIGINT" property="id" />
-        <result column="f_id" jdbcType="BIGINT" property="fId" />
+        <result column="f_id" jdbcType="VARCHAR" property="fId" />
         <result column="last_update_time" jdbcType="DATE" property="lastUpdateTime" />
         <result column="last_update_by" jdbcType="VARCHAR" property="lastUpdateBy" />
         <result column="create_time" jdbcType="DATE" property="createTime" />
         <result column="create_by" jdbcType="VARCHAR" property="createBy" />
         <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="quantity" jdbcType="BIGINT" property="quantity" />
+        <result column="attribute" jdbcType="VARCHAR" property="attribute" />
         <result column="specs" jdbcType="VARCHAR" property="specs" />
         <result column="modle" jdbcType="VARCHAR" property="modle" />
         <result column="ask" jdbcType="VARCHAR" property="ask"/>
         <result column="input_value" jdbcType="VARCHAR" property="inputValue"/>
+        <result column="sts" jdbcType="VARCHAR" property="sts"/>
+        <result column="st" jdbcType="VARCHAR" property="st"/>
+        <result column="is_buy" jdbcType="VARCHAR" property="isBuy"/>
+        <result column="supplier" jdbcType="VARCHAR" property="supplier"/>
+        <result column="mould_nm" jdbcType="VARCHAR" property="mouldNm" />
+        <result column="dispatch_no" jdbcType="VARCHAR" property="dispatchNo"/>
+        <result column="buy_material" jdbcType="VARCHAR" property="buyMaterial" />
+        <result column="flow" jdbcType="VARCHAR" property="flow" />
+        <result column="applicant" jdbcType="VARCHAR" property="applicant" />
+        <result column="dept" jdbcType="VARCHAR" property="dept" />
+        <result column="budget" jdbcType="VARCHAR" property="budget" />
+        <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+        <result column="tem_purch" jdbcType="VARCHAR" property="temPurch" />
     </resultMap>
     <insert id="insert" parameterType="com.louis.kitty.admin.model.Parts">
-        insert into b_parts (id,f_id,create_time,create_by,name,specs,modle,ask,input_value)
-        values (#{id,jdbcType=BIGINT},#{fId,jdbcType=BIGINT}, #{createTime,jdbcType=DATE}, #{createBy,jdbcType=VARCHAR},
-        #{name,jdbcType=DECIMAL},
-        #{specs,jdbcType=DECIMAL},#{modle,jdbcType=DECIMAL},#{ask,jdbcType=DECIMAL},#{inputValue,jdbcType=DECIMAL})
+        insert into b_parts (id,f_id,create_time,create_by,name,specs,modle,ask,input_value,attribute,quantity,sts,is_buy,supplier)
+        values (#{id,jdbcType=BIGINT},#{fId,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, #{createBy,jdbcType=VARCHAR},
+        #{name,jdbcType=VARCHAR}, #{specs,jdbcType=VARCHAR},#{modle,jdbcType=VARCHAR},#{ask,jdbcType=VARCHAR},
+        #{inputValue,jdbcType=VARCHAR},#{attribute,jdbcType=VARCHAR},#{quantity,jdbcType=BIGINT},'A',#{isBuy,jdbcType=VARCHAR},
+        #{supplier,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertPurch" parameterType="com.louis.kitty.admin.model.Parts">
+        insert into b_parts (id,create_time,create_by,name,specs,modle,ask,attribute,quantity,sts,is_buy,supplier,applicant,dept,budget,remarks,tem_purch)
+        values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=DATE}, #{createBy,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+        #{specs,jdbcType=VARCHAR},#{modle,jdbcType=VARCHAR},#{ask,jdbcType=VARCHAR},'标准件',
+        #{quantity,jdbcType=BIGINT},'A','是',#{supplier,jdbcType=VARCHAR},#{applicant,jdbcType=VARCHAR},#{dept,jdbcType=VARCHAR},
+        #{budget,jdbcType=VARCHAR},#{remarks,jdbcType=VARCHAR},'是')
+    </insert>
+    <insert id="insertStsD" parameterType="com.louis.kitty.admin.model.Parts">
+        insert into b_parts (id,f_id,create_time,create_by,name,specs,modle,ask,input_value,attribute,quantity,sts,is_buy,supplier,
+        applicant,dept,budget,remarks,tem_purch)
+        values (#{id,jdbcType=BIGINT},#{fId,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, #{createBy,jdbcType=VARCHAR},
+        #{name,jdbcType=VARCHAR}, #{specs,jdbcType=VARCHAR},#{modle,jdbcType=VARCHAR},#{ask,jdbcType=VARCHAR},
+        #{inputValue,jdbcType=VARCHAR},#{attribute,jdbcType=VARCHAR},#{quantity,jdbcType=BIGINT},'D',#{isBuy,jdbcType=VARCHAR},
+        #{supplier,jdbcType=VARCHAR},#{applicant,jdbcType=VARCHAR},#{dept,jdbcType=VARCHAR},
+        #{budget,jdbcType=VARCHAR},#{remarks,jdbcType=VARCHAR},#{temPurch,jdbcType=VARCHAR})
     </insert>
     <select id="findPage" resultMap="BaseResultMap">
         select
         p.*
         from b_parts p,b_ord_main o where p.f_id = o.id
         and o.ord_sts = 'C'
+        and p.sts = 'A'
+        and p.attribute = '通用件'
+    </select>
+    <select id="findPage1" resultMap="BaseResultMap">
+        select
+        p.*
+        from b_parts p,b_ord_main o where p.f_id = o.id
+        and o.ord_sts = 'C'
+        and p.sts = 'B'
+        and p.attribute = '通用件'
+    </select>
+    <select id="findPageQc" resultMap="BaseResultMap">
+                   SELECT DISTINCT
+            p.*
+        FROM
+            b_parts p,
+            b_ord_main o
+        WHERE
+            p.f_id = o.id
+        AND (
+            (p.attribute = '标准件'OR p.attribute = '整体定制')
+            AND p.sts = 'C'
+            AND p.is_buy = '是'
+            AND o.ord_sts = 'C'
+        )
+        OR (
+            p.attribute = '通用件'
+            AND p.sts = 'C'
+            AND o.ord_sts = 'C'
+        ) OR (tem_purch = '是' AND sts = 'C')
+    </select>
+    <select id="findPagePr" resultMap="BaseResultMap">
+        SELECT DISTINCT
+        p.*
+        FROM
+        b_parts p,b_ord_main o
+        WHERE
+        (p.f_id = o.id
+        AND (p.attribute = '标准件' OR p.attribute = '整体定制')
+        AND (p.sts = 'A'OR p.sts = 'B')
+        AND p.is_buy = '是'
+        AND o.ord_sts = 'C')
+        OR (p.tem_purch = '是' AND p.sts = 'A')
+    </select>
+    <select id="findPagePp" resultMap="BaseResultMap">
+        SELECT
+        p.*,o.mould_nm,o.buy_material,o.dispatch_no,
+        (case when sts='A' then '工艺编制' when sts='B' then '正在投产' when sts='C' then '生产结束待质检'
+         when sts='D' then '质检合格待入库' end) st
+        FROM
+        b_parts p,b_ord_main o
+        WHERE
+        p.f_id = o.id
+        AND p.attribute = '通用件'
+        AND o.ord_sts = 'C'
+        AND ifnull(p.name,'') like concat ('%',#{param1,jdbcType=VARCHAR},'%')
+        AND ifnull(o.mould_nm,'') like concat ('%',#{param2,jdbcType=VARCHAR},'%')
     </select>
     <select id="queryCraft" resultType="java.lang.String">
         select
@@ -32,12 +121,127 @@
         from b_parts
         where id = #{param1,jdbcType=BIGINT}
     </select>
+    <select id="queryParts" resultMap="BaseResultMap">
+        select
+        *
+        from b_parts
+        where f_id = #{param1,jdbcType=VARCHAR}
+    </select>
     <update id="saveCraft" parameterType="com.louis.kitty.admin.model.Parts">
+    update b_parts
+    set input_value = #{inputValue,jdbcType=VARCHAR},
+    last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+    last_update_time = #{lastUpdateTime,jdbcType=DATE}
+    where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="saveCraftbefor" parameterType="com.louis.kitty.admin.model.Parts">
         update b_parts
-        set input_value = #{inputValue,jdbcType=VARCHAR},
+        set
+        flow = #{flow,jdbcType=VARCHAR},
+        sts = 'B',
+        input_value = #{inputValue,jdbcType=VARCHAR},
         last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
         last_update_time = #{lastUpdateTime,jdbcType=DATE}
         where id = #{id,jdbcType=BIGINT}
     </update>
+    <update id="updateStsC" parameterType="java.lang.Long">
+        update b_parts
+        set sts = 'C',
+        last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+        last_update_time = now()
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateStsB" parameterType="java.lang.Long">
+        update b_parts
+        set sts = 'B',
+        last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+        last_update_time = now()
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateStsA" parameterType="java.lang.Long">
+        update b_parts
+        set sts = 'A',
+        last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+        last_update_time = now()
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateStsAA" parameterType="com.louis.kitty.admin.model.Parts">
+        update b_parts
+        set sts = 'A',
+        quantity = #{quantity,jdbcType=BIGINT},
+        last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+        last_update_time = now()
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateStsD" parameterType="java.lang.Long">
+        update b_parts
+        set sts = 'D',
+        last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+        last_update_time = now()
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <delete id="deleteParts" parameterType="java.lang.Long">
+        delete from b_parts
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <select id="findPageByLabel" resultMap="BaseResultMap" parameterType="java.lang.String">
+        <bind name="pattern" value="'%' + _parameter.name+ '%'" />
+        select
+        p.*
+        from b_parts p,b_ord_main o where p.f_id = o.id
+        and o.ord_sts = 'C'
+        and p.sts = 'B'
+        and p.attribute = '通用件'
+        and  name like #{pattern}
+    </select>
+    <select id="findPageBy" resultMap="BaseResultMap" parameterType="java.lang.String">
+    <bind name="pattern" value="'%' + _parameter.name+ '%'" />
+    select
+    p.*
+    from b_parts p,b_ord_main o where p.f_id = o.id
+    and o.ord_sts = 'C'
+    and p.sts = 'A'
+    and p.attribute = '通用件'
+    and  name like #{pattern}
+</select>
+    <select id="findPageByQc" resultMap="BaseResultMap" parameterType="java.lang.String">
+        <bind name="pattern" value="'%' + _parameter.name+ '%'" />
+        SELECT DISTINCT
+        p.*
+        FROM
+        b_parts p,
+        b_ord_main o
+        WHERE
+        p.f_id = o.id
+        AND (
+        (p.attribute = '标准件'OR p.attribute = '整体定制')
+        AND p.sts = 'C'
+        AND p.is_buy = '是'
+        AND o.ord_sts = 'C'
+        AND  name like #{pattern}
+        )
+        OR (
+        p.attribute = '通用件'
+        AND p.sts = 'C'
+        AND o.ord_sts = 'C'
+        AND  name like #{pattern}
+        )
+    </select>
+    <select id="findPageByPr" resultMap="BaseResultMap" parameterType="java.lang.String">
+        <bind name="pattern" value="'%' + _parameter.name+ '%'" />
+        SELECT DISTINCT
+        p.*
+        FROM
+        b_parts p,b_ord_main o
+        WHERE
+        (p.f_id = o.id
+        AND (p.attribute = '标准件' OR p.attribute = '整体定制')
+        AND (p.sts = 'A'OR p.sts = 'B')
+        AND p.is_buy = '是'
+        AND o.ord_sts = 'C'
+        AND  name like #{pattern})
+        OR (p.tem_purch = '是'
+        AND p.sts = 'A' AND  name like #{pattern})
 
+    </select>
 </mapper>

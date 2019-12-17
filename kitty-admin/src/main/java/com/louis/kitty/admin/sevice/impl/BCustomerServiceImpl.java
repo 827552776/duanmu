@@ -2,6 +2,7 @@ package com.louis.kitty.admin.sevice.impl;
 
 import com.louis.kitty.admin.dao.BCustomerMapper;
 import com.louis.kitty.admin.model.BCustomer;
+import com.louis.kitty.admin.model.CustomerParam;
 import com.louis.kitty.admin.sevice.BCustomerService;
 import com.louis.kitty.core.page.ColumnFilter;
 import com.louis.kitty.core.page.MybatisPageHelper;
@@ -16,18 +17,26 @@ public class BCustomerServiceImpl implements BCustomerService {
     @Autowired
     private BCustomerMapper bCustomerMapper;
     @Override
-    public int save(BCustomer record) {
-        return 0;
+    public int save(BCustomer bCustomer){
+        Long id = bCustomer.getId();
+        if(id == null||id == 0){
+            return bCustomerMapper.insert(bCustomer);
+        }else{
+            return bCustomerMapper.update(bCustomer);
+        }
     }
 
     @Override
     public int delete(BCustomer record) {
-        return 0;
+        return bCustomerMapper.delete(record.getId());
     }
 
     @Override
     public int delete(List<BCustomer> records) {
-        return 0;
+        for(BCustomer record:records){
+            delete(record);
+        }
+        return 1;
     }
 
     @Override
@@ -47,5 +56,11 @@ public class BCustomerServiceImpl implements BCustomerService {
     @Override
     public List<BCustomer> findByLable(String lable) {
         return null;
+    }
+
+    @Override
+    public List<BCustomer> query(CustomerParam customerParam) {
+        String attribute = customerParam.getAttribute();
+        return bCustomerMapper.query(attribute);
     }
 }

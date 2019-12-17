@@ -2,12 +2,53 @@ package com.louis.kitty.admin.model;
 
 import java.util.Date;
 
-public class OrderMain extends BaseModel{
+public class OrderMain {
 
+    private String id;
+
+    private String createBy;
+
+    public String getCreateBy() {
+        return createBy;
+    }
+
+    public void setCreateBy(String createBy) {
+        this.createBy = createBy;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getLastUpdateBy() {
+        return lastUpdateBy;
+    }
+
+    public void setLastUpdateBy(String lastUpdateBy) {
+        this.lastUpdateBy = lastUpdateBy;
+    }
+
+    public Date getLastUpdateTime() {
+        return lastUpdateTime;
+    }
+
+    public void setLastUpdateTime(Date lastUpdateTime) {
+        this.lastUpdateTime = lastUpdateTime;
+    }
+
+    private Date createTime;
+
+    private String lastUpdateBy;
+
+    private Date lastUpdateTime;
 
     private String lotNo;
 
-    private String custNm;
+    private String cust;
 
     private String mouldNm;
 
@@ -23,12 +64,12 @@ public class OrderMain extends BaseModel{
         this.lotNo = lotNo;
     }
 
-    public String getCustNm() {
-        return custNm;
+    public String getCust() {
+        return cust;
     }
 
-    public void setCustNm(String custNm) {
-        this.custNm = custNm;
+    public void setCust(String cust) {
+        this.cust = cust;
     }
 
     public String getMouldNm() {
@@ -118,4 +159,22 @@ public class OrderMain extends BaseModel{
 
     private String ordSts;
 
+    private String sts;
+
+    public String getSts() {
+        return sts;
+    }
+
+    public void setSts(String sts) {
+        this.sts = sts;
+    }
+
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 }

@@ -10,6 +10,8 @@ import org.springframework.context.annotation.ImportResource;
 
 import javax.servlet.Servlet;
 
+import java.util.TimeZone;
+
 /**
  * 启动器
  * @author Louis
@@ -22,6 +24,7 @@ import javax.servlet.Servlet;
 public class KittyAdminApplication {
 
 	public static void main(String[] args) {
+		TimeZone.setDefault(TimeZone.getTimeZone("Asia/Shanghai"));
 		SpringApplication.run(KittyAdminApplication.class, args);
 	}
 	@Bean

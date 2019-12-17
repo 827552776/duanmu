@@ -20,9 +20,10 @@ public class OrderMainServiceImpl implements OrderMainService {
     @Override
     public int save(OrderMain orderMain) {
         //获取id
-        Long id = orderMain.getId();
-        //判断id是否为空
-        if(id == null){
+        String id = orderMain.getId();
+        String temp = orderMainMapper.select(id);
+
+        if(temp == null){
             num = orderMainMapper.insert(orderMain);
         }else{
             num = orderMainMapper.update(orderMain);
@@ -51,29 +52,28 @@ public class OrderMainServiceImpl implements OrderMainService {
 
     @Override
     public PageResult findPage(PageRequest pageRequest) {
-        ColumnFilter columnFilter = pageRequest.getColumnFilter("dispatchNo");
-        if(columnFilter.getValue() != "") {
-            return MybatisPageHelper.findPage(pageRequest, orderMainMapper, "findPageByLabel", columnFilter.getValue());
+        ColumnFilter columnFilter = pageRequest.getColumnFilter("cust");
+        ColumnFilter columnFilter1 = pageRequest.getColumnFilter("mouldNm");
+        if(columnFilter != null&&columnFilter1 != null) {
+            return MybatisPageHelper.findPage(pageRequest,orderMainMapper,"findPageByLabel",columnFilter.getValue(),columnFilter1.getValue());
         }
-        return MybatisPageHelper.findPage(pageRequest, orderMainMapper);
+        return MybatisPageHelper.findPage(pageRequest,orderMainMapper);
     }
-
-
     @Override
     public int updateSts(OrderMain main) {
-      Long id = main.getId();
+      String id = main.getId();
         return orderMainMapper.updateStsB(id);
     }
 
     @Override
     public int updateStsC(OrderMain main) {
-        Long id =main.getId();
+        String id =main.getId();
         return orderMainMapper.updateStsC(id);
     }
 
     @Override
     public PageResult findPageAb(PageRequest pageRequest) {
-        ColumnFilter columnFilter = pageRequest.getColumnFilter("dispatchNo");
+        ColumnFilter columnFilter = pageRequest.getColumnFilter("mouldNm");
 
         if(columnFilter.getValue() != "") {
             return MybatisPageHelper.findPage(pageRequest, orderMainMapper, "findPageAboo", columnFilter.getValue());
@@ -81,6 +81,10 @@ public class OrderMainServiceImpl implements OrderMainService {
         return MybatisPageHelper.findPageAb(pageRequest, orderMainMapper);
     }
 
+    @Override
+    public String queryPrimaryKey() {
+        return orderMainMapper.selectPrimaryKey();
+    }
 
 
 }

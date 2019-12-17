@@ -7,6 +7,7 @@ public class BCustomer extends BaseModel {
     private String cmContacts;
     private String cmPhone;
     private String cmRemarks;
+    private String attribute;
 
     public String getCmName() {
         return cmName;
@@ -46,5 +47,13 @@ public class BCustomer extends BaseModel {
 
     public void setCmRemarks(String cmRemarks) {
         this.cmRemarks = cmRemarks;
+    }
+
+    public String getAttribute() {
+        return attribute;
+    }
+
+    public void setAttribute(String attribute) {
+        this.attribute = attribute;
     }
 }

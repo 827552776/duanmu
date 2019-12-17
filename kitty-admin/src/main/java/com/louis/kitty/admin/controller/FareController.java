@@ -1,8 +1,8 @@
 package com.louis.kitty.admin.controller;
 
-import com.louis.kitty.admin.model.OrderDispa;
-import com.louis.kitty.admin.model.OrderMain;
-import com.louis.kitty.admin.sevice.OrderDispaService;
+import com.louis.kitty.admin.model.Fare;
+import com.louis.kitty.admin.model.Help;
+import com.louis.kitty.admin.sevice.FareService;
 import com.louis.kitty.core.http.HttpResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,20 +11,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("dispa")
-public class OrderDispaController {
+@RequestMapping("fare")
+public class FareController {
     @Autowired
-    private OrderDispaService orderDispaService;
+    private FareService fareService;
     @PostMapping(value="/save")
-    public HttpResult save(@RequestBody OrderDispa dispa){
+    public HttpResult save(@RequestBody Fare fare){
         int result = 0;
-        result = orderDispaService.save(dispa);
+        result = fareService.save(fare);
         return HttpResult.ok(result);
     }
     @PostMapping(value="/query")
-    public HttpResult query(@RequestBody OrderMain orderMain){
-
-
-        return HttpResult.ok(orderDispaService.query(orderMain));
+    public HttpResult query(@RequestBody Fare fare){
+        return HttpResult.ok(fareService.query(fare));
     }
 }

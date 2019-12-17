@@ -2,6 +2,7 @@ package com.louis.kitty.admin.sevice.impl;
 
 import com.louis.kitty.admin.dao.OrderDispaMapper;
 import com.louis.kitty.admin.model.OrderDispa;
+import com.louis.kitty.admin.model.OrderMain;
 import com.louis.kitty.admin.sevice.OrderDispaService;
 import com.louis.kitty.core.page.PageRequest;
 import com.louis.kitty.core.page.PageResult;
@@ -17,8 +18,14 @@ public class OrderDispaServiceImpl implements OrderDispaService{
     int num = 0;
     @Override
     public int save(OrderDispa orderDispa) {
-
-        num = orderDispaMapper.insert(orderDispa);
+        //获取ID
+        Long id = orderDispa.getId();
+        //判断ID
+        if(id ==  null) {
+            num = orderDispaMapper.insert(orderDispa);
+        }else{
+            num = orderDispaMapper.update(orderDispa);
+        }
 
         return num;
     }
@@ -41,5 +48,11 @@ public class OrderDispaServiceImpl implements OrderDispaService{
     @Override
     public PageResult findPage(PageRequest pageRequest) {
         return null;
+    }
+
+    @Override
+    public OrderDispa query(OrderMain orderMain) {
+        String fId = orderMain.getId();
+        return orderDispaMapper.query(fId);
     }
 }
