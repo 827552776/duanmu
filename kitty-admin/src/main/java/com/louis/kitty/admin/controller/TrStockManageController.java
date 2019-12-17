@@ -27,6 +27,15 @@ public class TrStockManageController {
      */
     @PostMapping(value="/save")
     public HttpResult save(@RequestBody TrStockManage record) {
+        int a = record.getInNumber();
+        int b = record.getOutNumber();
+        int c= record.getTrNumber();
+        int d = a-b+c;
+        System.out.println(a);
+        System.out.println(d);
+        record.setTrNumber(d);
+        record.setInNumber(0);
+        record.setOutNumber(0);
         return HttpResult.ok(trSrockManageService.save(record));
     }
 }

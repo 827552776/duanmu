@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.louis.kitty.admin.dao.WeldingManageMapper">
+    <resultMap id="BaseResultMap" type="com.louis.kitty.admin.model.WeldingManage">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="number" jdbcType="BIGINT" property="number" />
+        <result column="company" jdbcType="VARCHAR" property="company" />
+        <result column="price" jdbcType="DECIMAL" property="price" />
+        <result column="int_number" jdbcType="BIGINT" property="intNumber" />
+        <result column="out_number" jdbcType="BIGINT" property="outNumber" />
+        <result column="type" jdbcType="BIGINT" property="type" />
+        <result column="type_number" jdbcType="BIGINT" property="typeNumber" />
+        <result column="sure_number" jdbcType="BIGINT" property="sureNumber" />
+        <result column="difference" jdbcType="BIGINT" property="difference" />
+        <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+        <result column="create_by" jdbcType="BIGINT" property="createBy" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="last_update_by" jdbcType="BIGINT" property="lastUpdateBy" />
+        <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
+    </resultMap>
+    <sql id="Base_Column_List">
+    id,name,number,company,price,int_number,out_number,type,type_number,sure_number,difference,remarks ,create_by, create_time, last_update_by,
+    last_update_time
+  </sql>
+
+    <select id="findPage" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tr_welding_manage
+    </select>
+    <select id="findPageAb" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tr_welding_manage
+        where type ='1'
+    </select>
+    <insert id="insertSelective" parameterType="com.louis.kitty.admin.model.WeldingManage">
+        insert into tr_welding_manage
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="number != null">
+                number,
+            </if>
+            <if test="company != null">
+                company,
+            </if>
+            <if test="price != null">
+                price,
+            </if>
+            <if test="difference != null">
+                difference,
+            </if>
+            <if test="intNumber != null">
+                int_number,
+            </if>
+            <if test="outNumber != null">
+                out_number,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="typeNumber != null">
+                type_number,
+            </if>
+            <if test="sureNumber != null">
+                sure_number,
+            </if>
+            <if test="remarks != null">
+                remarks,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="lastUpdateBy != null">
+                last_update_by,
+            </if>
+            <if test="lastUpdateTime != null">
+                last_update_time,
+            </if>
+
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="number != null">
+                #{number,jdbcType=BIGINT},
+            </if>
+            <if test="company != null">
+                #{company,jdbcType=VARCHAR},
+            </if>
+            <if test="price != null">
+                #{price,jdbcType=DECIMAL},
+            </if>
+            <if test="difference != null">
+                #{difference,jdbcType=BIGINT},
+            </if>
+            <if test="intNumber != null">
+                #{intNumber,jdbcType=BIGINT},
+            </if>
+            <if test="outNumber != null">
+                #{outNumber,jdbcType=BIGINT},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=BIGINT},
+            </if>
+            <if test="typeNumber != null">
+                #{typeNumber,jdbcType=BIGINT},
+            </if>
+            <if test="sureNumber != null">
+                #{sureNumber,jdbcType=BIGINT},
+            </if>
+            <if test="remarks != null">
+                #{remarks,jdbcType=VARCHAR},
+            </if>
+            <if test="createBy != null">
+                #{createBy,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastUpdateBy != null">
+                #{lastUpdateBy,jdbcType=BIGINT},
+            </if>
+            <if test="lastUpdateTime != null">
+                #{lastUpdateTime,jdbcType=TIMESTAMP},
+            </if>
+
+
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.louis.kitty.admin.model.WeldingManage">
+        update tr_welding_manage
+        <set>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="number != null">
+                number = #{number,jdbcType=BIGINT},
+            </if>
+            <if test="company != null">
+                company =  #{company,jdbcType=VARCHAR},
+            </if>
+            <if test="price != null">
+                price = #{price,jdbcType=DECIMAL},
+            </if>
+            <if test="difference != null">
+                difference =#{difference,jdbcType=BIGINT},
+            </if>
+            <if test="intNumber != null">
+                int_number = #{intNumber,jdbcType=BIGINT},
+            </if>
+            <if test="outNumber != null">
+                out_number = #{outNumber,jdbcType=BIGINT},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=BIGINT},
+            </if>
+            <if test="typeNumber != null">
+                type_number = #{typeNumber,jdbcType=BIGINT},
+            </if>
+            <if test="sureNumber != null">
+                sure_number =  #{sureNumber,jdbcType=BIGINT},
+            </if>
+            <if test="remarks != null">
+                remarks = #{remarks,jdbcType=TINYINT},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastUpdateBy != null">
+                last_update_by = #{lastUpdateBy,jdbcType=BIGINT},
+            </if>
+            <if test="lastUpdateTime != null">
+                last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+            </if>
+
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+</mapper>

@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.louis.kitty.admin.dao.AccessStockMapper">
-  <resultMap id="BaseResultMap" type="com.louis.kitty.admin.model.AccessStock">
+<mapper namespace="com.louis.kitty.admin.dao.AccessMaterialMapper">
+  <resultMap id="BaseResultMap" type="com.louis.kitty.admin.model.AccessMaterial">
      <id column="id" jdbcType="BIGINT" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="type" jdbcType="VARCHAR" property="type" />
-    <result column="mode_by" jdbcType="VARCHAR" property="modeBy" />
-    <result column="mode" jdbcType="VARCHAR" property="mode" />
-    <result column="out_time" jdbcType="TIMESTAMP" property="outTime" />
     <result column="int_time" jdbcType="TIMESTAMP" property="intTime" />
-    <result column="out_number" jdbcType="VARCHAR" property="outNumber" />
-    <result column="number" jdbcType="VARCHAR" property="number" />
-    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="int_number" jdbcType="BIGINT" property="intNumber" />
+    <result column="tr_time" jdbcType="TIMESTAMP" property="trTime" />
+    <result column="number" jdbcType="BIGINT" property="number" />
+    <result column="waixie" jdbcType="VARCHAR" property="waixie" />
+    <result column="wx_time" jdbcType="TIMESTAMP" property="wxTime" />
+    <result column="wx_int" jdbcType="TIMESTAMP" property="wxInt" />
+    <result column="wx_number" jdbcType="BIGINT" property="wxNumber" />
+    <result column="wx_price" jdbcType="DECIMAL" property="wxPrice" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
     <result column="remarks" jdbcType="VARCHAR" property="remarks" />
     <result column="create_by" jdbcType="BIGINT" property="createBy" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
@@ -19,18 +21,18 @@
     <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id,name,type,mode_by,mode,out_time,int_time,out_number,remarks,number,state, create_by, create_time, last_update_by,
+    id,name,int_time,int_number,tr_time,number,waixie,wx_time,wx_int,wx_number,wx_price,type,remarks, create_by, create_time, last_update_by,
     last_update_time
   </sql>
 
   <select id="findPage" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from tr_access__stock
-    where state = '0'
+    from tr_material_access
+    where type = '0'
   </select>
   <insert id="insertSelective" parameterType="com.louis.kitty.admin.model.AccessStock">
-    insert into tr_access__stock
+    insert into tr_material_access
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
@@ -38,29 +40,35 @@
       <if test="name != null">
         name,
       </if>
-      <if test="type != null">
-        type,
-      </if>
-      <if test="modeBy != null">
-        mode_by,
-      </if>
-      <if test="mode != null">
-        mode,
-      </if>
-      <if test="outTime != null">
-        out_time,
-      </if>
       <if test="intTime != null">
         int_time,
       </if>
-      <if test="outNumber != null">
-        out_number,
+      <if test="intNumber != null">
+        int_number,
       </if>
-      <if test="state != null">
-        state,
+      <if test="trTime != null">
+        tr_time,
       </if>
       <if test="number != null">
         number,
+      </if>
+      <if test="waixie != null">
+        waixie,
+      </if>
+      <if test="wxTime != null">
+        wx_time,
+      </if>
+      <if test="wxInt != null">
+        wx_int,
+      </if>
+      <if test="wxNumber != null">
+        wx_number,
+      </if>
+      <if test="wxPrice != null">
+        wx_price,
+      </if>
+      <if test="type != null">
+        type,
       </if>
       <if test="remarks != null">
         remarks,
@@ -87,29 +95,35 @@
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="type != null">
-        #{type,jdbcType=VARCHAR},
-      </if>
-      <if test="modeBy != null">
-        #{modeBy,jdbcType=VARCHAR},
-      </if>
-      <if test="mode != null">
-        #{mode,jdbcType=VARCHAR},
-      </if>
-      <if test="outTime != null">
-        #{outTime,jdbcType=TIMESTAMP},
-      </if>
       <if test="intTime != null">
         #{intTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="outNumber != null">
-        #{outNumber,jdbcType=BIGINT},
+      <if test="intNumber != null">
+        #{intNumber,jdbcType=BIGINT},
+      </if>
+      <if test="trTime != null">
+        #{trTime,jdbcType=TIMESTAMP},
       </if>
       <if test="number != null">
         #{number,jdbcType=BIGINT},
       </if>
-      <if test="state != null">
-        #{state,jdbcType=BIGINT},
+      <if test="waixie != null">
+        #{waixie,jdbcType=VARCHAR},
+      </if>
+      <if test="wxTime != null">
+        #{wxTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wxInt != null">
+        #{wxInt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wxNumber != null">
+        #{wxNumber,jdbcType=BIGINT},
+      </if>
+      <if test="wxPrice!= null">
+        #{wxPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="type!= null">
+        #{type,jdbcType=VARCHAR},
       </if>
       <if test="remarks!= null">
         #{remarks,jdbcType=VARCHAR},
@@ -131,37 +145,43 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.louis.kitty.admin.model.AccessStock">
-    update tr_access__stock
+    update tr_material_access
     <set>
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="type != null">
-        type = #{type,jdbcType=VARCHAR},
-      </if>
-      <if test="modeBy != null">
-        mode_by = #{modeBy,jdbcType=VARCHAR},
-      </if>
-      <if test="mode != null">
-        mode = #{mode,jdbcType=DECIMAL},
-      </if>
-      <if test="outTime != null">
-        out_time = #{outTime,jdbcType=TIMESTAMP},
-      </if>
       <if test="intTime != null">
         int_time = #{intTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="outNumber != null">
-        out_number = #{outNumber,jdbcType=BIGINT},
+      <if test="intNumber != null">
+        int_number = #{intNumber,jdbcType=BIGINT},
       </if>
-      <if test="state != null">
-        state = #{state,jdbcType=BIGINT},
+      <if test="trTime != null">
+        tr_time = #{trTime,jdbcType=TIMESTAMP},
       </if>
       <if test="number != null">
         number = #{number,jdbcType=BIGINT},
       </if>
+      <if test="waixie != null">
+        waixie = #{waixie,jdbcType=VARCHAR},
+      </if>
+      <if test="wxTime != null">
+        wx_time =  #{wxTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wxInt != null">
+        wx_int = #{wxInt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wxNumber != null">
+        wx_number = #{wxNumber,jdbcType=BIGINT},
+      </if>
+      <if test="wxPrice != null">
+        wx_price = #{wxPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
       <if test="remarks != null">
-        remarks = #{remarks,jdbcType=TINYINT},
+        remarks = #{remarks,jdbcType=VARCHAR},
       </if>
       <if test="createBy != null">
         create_by = #{createBy,jdbcType=BIGINT},

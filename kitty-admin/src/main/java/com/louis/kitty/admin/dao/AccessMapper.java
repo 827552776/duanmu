@@ -4,7 +4,7 @@ import com.louis.kitty.admin.model.AccessStock;
 
 import java.util.List;
 
-public interface AccessStockMapper {
+public interface AccessMapper {
     List<AccessStock> findPage();
     int insertSelective(AccessStock record);
 
