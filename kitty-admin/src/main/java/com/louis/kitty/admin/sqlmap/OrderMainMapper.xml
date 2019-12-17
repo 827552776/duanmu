@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.louis.kitty.admin.dao.OrderMainMapper">
   <resultMap id="BaseResultMap" type="com.louis.kitty.admin.model.OrderMain">
-    <id column="id" jdbcType="BIGINT" property="id" />
+    <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="last_update_time" jdbcType="DATE" property="lastUpdateTime" />
     <result column="last_update_by" jdbcType="VARCHAR" property="lastUpdateBy" />
     <result column="create_time" jdbcType="DATE" property="createTime" />
@@ -18,21 +18,22 @@
     <result column="flag" jdbcType="VARCHAR" property="flag" />
     <result column="ord_no" jdbcType="VARCHAR" property="ordNo" />
     <result column="ord_sts" jdbcType="VARCHAR" property="ordSts" />
+    <result column="sts" jdbcType="VARCHAR" property="sts" />
   </resultMap>
 
   <insert id="insert" parameterType="com.louis.kitty.admin.model.OrderMain">
     insert into b_ord_main (id, lot_no,cust,mould_nm,quantity,company,dispatch_no,
     buy_material,remarks,flag,ord_sts,create_by,create_time)
-    values (#{id,jdbcType=BIGINT}, #{lotNo,jdbcType=VARCHAR}, #{cust,jdbcType=VARCHAR},
+    values (#{id,jdbcType=VARCHAR}, #{lotNo,jdbcType=VARCHAR}, #{cust,jdbcType=VARCHAR},
       #{mouldNm,jdbcType=VARCHAR}, #{quantity,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR},
       #{dispatchNo,jdbcType=VARCHAR}, #{buyMaterial,jdbcType=VARCHAR},#{remarks,jdbcType=VARCHAR},
       #{flag,jdbcType=VARCHAR},'A',
       #{createBy,jdbcType=VARCHAR},#{createTime,jdbcType=DATE})
   </insert>
-  <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select * from b_ord_main
-    where id = #{id,jdbcType=BIGINT}
-    and  ifnull(flag,'') != 'N'
+  <select id="select" parameterType="java.lang.String" resultType="java.lang.String">
+    select id from b_ord_main
+    where id = #{id,jdbcType=VARCHAR}
+
   </select>
   <update id="update" parameterType="com.louis.kitty.admin.model.OrderMain">
     update b_ord_main
@@ -40,27 +41,27 @@
     quantity = #{quantity,jdbcType=VARCHAR},dispatch_no = #{dispatchNo,jdbcType=VARCHAR},buy_material = #{buyMaterial,jdbcType=VARCHAR},
     remarks = #{remarks,jdbcType=VARCHAR},flag = #{flag,jdbcType=VARCHAR},
     last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},last_update_time = #{lastUpdateTime,jdbcType=DATE}
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateStsB" parameterType="java.lang.Long">
+  <update id="updateStsB" parameterType="java.lang.String">
     update b_ord_main
     set ord_sts = 'B'
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateStsC" parameterType="java.lang.Long">
+  <update id="updateStsC" parameterType="java.lang.String">
     update b_ord_main
     set ord_sts = 'C'
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=VARCHAR}
   </update>
-  <delete id="delete" parameterType="java.lang.Long">
+  <delete id="delete" parameterType="java.lang.String">
     update  b_ord_main
     set flag = 'N'
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=VARCHAR}
     and (ord_sts = 'A' or ord_sts = 'B')
   </delete>
   <select id="findPage" resultMap="BaseResultMap">
     select
-    *
+    *,(case when ord_sts='A' then '已录入' when ord_sts='B' then '已预估成本' when ord_sts='C' then '已拆单' end) sts
     from b_ord_main
     where ifnull(flag,'') != 'N'
   </select>
@@ -71,20 +72,24 @@
     and  ifnull(flag,'') != 'N'
   </select>
   <select id="findPageAboo" resultMap="BaseResultMap" parameterType="java.lang.String">
+    <bind name="pattern1" value="'%' + _parameter.mouldNm+ '%'" />
   select
   *
   from b_ord_main where ord_sts = 'A'or ord_sts ='B'
-  and dispatchNo = #{dispatchNo,jdbcType=VARCHAR}
+  and mould_nm like #{pattern1}
   and  ifnull(flag,'') != 'N'
 </select>
-  <select id="findPageByLabe" resultMap="BaseResultMap" parameterType="java.lang.String">
+  <select id="findPageByLabel" resultMap="BaseResultMap" parameterType="java.lang.String">
     <bind name="pattern" value="'%' + _parameter.cust+ '%'" />
+    <bind name="pattern1" value="'%' + _parameter.mouldNm+ '%'" />
     select
     *
     from b_ord_main where
     cust like #{pattern}
+    and mould_nm like #{pattern1}
     and  ifnull(flag,'') != 'N'
   </select>
+
   <select id="query" resultMap="BaseResultMap">
     select
     *
@@ -92,6 +97,9 @@
     and ifnull(cust,'') like concat ('%',#{param2,jdbcType=VARCHAR},'%')
     and ifnull(dispatchNo,'') like concat ('%',#{param3,jdbcType=VARCHAR},'%')
     and  ifnull(flag,'') != 'N'
+  </select>
+  <select id="selectPrimaryKey" resultType="java.lang.String">
+    SELECT  REPLACE(UUID(),'-','') from dual
   </select>
 
 </mapper>

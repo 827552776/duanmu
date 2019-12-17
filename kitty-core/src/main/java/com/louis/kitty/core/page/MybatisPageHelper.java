@@ -15,7 +15,13 @@ public class MybatisPageHelper {
 
 	public static final String findPage = "findPage";
 
+	public static final String findPage1 = "findPage1";
+
 	public static final String findPageAb = "findPageAb";
+
+	public static final String findPageQc = "findPageQc";
+
+	public static final String findPagePr = "findPagePr";
 	
 	/**
 	 * 分页查询, 约定查询方法名为 “findPage” 
@@ -27,8 +33,17 @@ public class MybatisPageHelper {
 	public static PageResult findPage(PageRequest pageRequest, Object mapper) {
 		return findPage(pageRequest, mapper, findPage);
 	}
+	public static PageResult findPage1(PageRequest pageRequest, Object mapper) {
+		return findPage(pageRequest, mapper, findPage1);
+	}
 	public static PageResult findPageAb(PageRequest pageRequest, Object mapper) {
 		return findPage(pageRequest, mapper, findPageAb);
+	}
+	public static PageResult findPageQc(PageRequest pageRequest, Object mapper) {
+		return findPage(pageRequest, mapper, findPageQc);
+	}
+	public static PageResult findPagePr(PageRequest pageRequest, Object mapper) {
+		return findPage(pageRequest, mapper, findPagePr);
 	}
 
 	

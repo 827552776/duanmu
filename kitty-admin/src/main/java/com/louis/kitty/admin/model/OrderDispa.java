@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class OrderDispa extends BaseModel {
-
+    private String fId;
     private String dispatchNo;
     private String dispaNo;
     private String category;
@@ -215,4 +215,11 @@ public class OrderDispa extends BaseModel {
     private String dispaRemarks;
 
 
+    public String getfId() {
+        return fId;
+    }
+
+    public void setfId(String fId) {
+        this.fId = fId;
+    }
 }

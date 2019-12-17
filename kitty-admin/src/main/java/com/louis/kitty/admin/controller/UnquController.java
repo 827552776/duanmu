@@ -1,8 +1,8 @@
 package com.louis.kitty.admin.controller;
 
-import com.louis.kitty.admin.model.Fare;
 import com.louis.kitty.admin.model.Help;
-import com.louis.kitty.admin.sevice.FareService;
+import com.louis.kitty.admin.model.Unqu;
+import com.louis.kitty.admin.sevice.UnquService;
 import com.louis.kitty.core.http.HttpResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,18 +11,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("fare")
-public class FareController {
+@RequestMapping("unqu")
+public class UnquController {
     @Autowired
-    private FareService fareService;
+    private UnquService unquService;
     @PostMapping(value="/save")
-    public HttpResult save(@RequestBody Fare fare){
+    public HttpResult save(@RequestBody Unqu unqu){
         int result = 0;
-        result = fareService.save(fare);
+        result = unquService.save(unqu);
         return HttpResult.ok(result);
     }
-    @PostMapping(value="/query")
-    public HttpResult query(@RequestBody Fare fare){
-        return HttpResult.ok(fareService.query(fare));
-    }
+
 }

@@ -1,6 +1,7 @@
 package com.louis.kitty.admin.sevice.impl;
 
 import com.louis.kitty.admin.dao.PartsMapper;
+import com.louis.kitty.admin.model.Filter;
 import com.louis.kitty.admin.model.OrderMain;
 import com.louis.kitty.admin.model.Parts;
 import com.louis.kitty.admin.sevice.PartsService;
@@ -45,15 +46,34 @@ public class PartsServiceImpl implements PartsService{
 
         ColumnFilter columnFilter = pageRequest.getColumnFilter("name");
         if(columnFilter.getValue() != "") {
-            return MybatisPageHelper.findPage(pageRequest, partsMapper, "findPageByLabel", columnFilter.getValue());
+            return MybatisPageHelper.findPage(pageRequest, partsMapper, "findPageBy", columnFilter.getValue());
         }
         return MybatisPageHelper.findPage(pageRequest, partsMapper);
+    }
+    @Override
+    public PageResult findPage1(PageRequest pageRequest) {
+
+        ColumnFilter columnFilter = pageRequest.getColumnFilter("name");
+        if(columnFilter.getValue() != "") {
+            return MybatisPageHelper.findPage(pageRequest, partsMapper, "findPageByLabel", columnFilter.getValue());
+        }
+        return MybatisPageHelper.findPage1(pageRequest, partsMapper);
     }
 
     @Override
     public int saveCraft(Parts parts) {
 
         return partsMapper.saveCraft(parts);
+    }
+    @Override
+    public int saveCraftbefor(Parts parts) {
+        parts.setFlow(parts.getInputValue());
+        return partsMapper.saveCraftbefor(parts);
+    }
+
+    @Override
+    public int savePurch(Parts parts) {
+        return partsMapper.insertPurch(parts);
     }
 
     @Override
@@ -64,8 +84,21 @@ public class PartsServiceImpl implements PartsService{
 
     @Override
     public List<Parts> queryParts(OrderMain orderMain) {
-       Long fid = orderMain.getId();
+       String fid = orderMain.getId();
         return partsMapper.queryParts(fid);
+    }
+
+    @Override
+    public List<Parts> findPagePp(Filter filter) {
+        String name = filter.getName();
+        String mouldNm = filter.getMouldNm();
+        return partsMapper.findPagePp(name,mouldNm);
+    }
+
+    @Override
+    public int updateStsC(Parts parts) {
+        Long id = parts.getId();
+        return partsMapper.updateStsC(id);
     }
 
     @Override
@@ -81,9 +114,9 @@ public class PartsServiceImpl implements PartsService{
     }
 
     @Override
-    public int updateStsC(Parts parts) {
+    public int updateStsD(Parts parts) {
         Long id = parts.getId();
-        return partsMapper.updateStsC(id);
+        return partsMapper.updateStsD(id);
     }
 
     @Override
@@ -96,7 +129,7 @@ public class PartsServiceImpl implements PartsService{
     public PageResult findPageQc(PageRequest pageRequest) {
         ColumnFilter columnFilter = pageRequest.getColumnFilter("name");
         if(columnFilter.getValue() != "") {
-            return MybatisPageHelper.findPage(pageRequest, partsMapper, "findPageByLabel", columnFilter.getValue());
+            return MybatisPageHelper.findPage(pageRequest, partsMapper, "findPageByQc", columnFilter.getValue());
         }
         return MybatisPageHelper.findPageQc(pageRequest, partsMapper);
     }
@@ -105,7 +138,7 @@ public class PartsServiceImpl implements PartsService{
     public PageResult findPagePr(PageRequest pageRequest) {
         ColumnFilter columnFilter = pageRequest.getColumnFilter("name");
         if(columnFilter.getValue() != "") {
-            return MybatisPageHelper.findPage(pageRequest, partsMapper, "findPageByLabel", columnFilter.getValue());
+            return MybatisPageHelper.findPage(pageRequest, partsMapper, "findPageByPr", columnFilter.getValue());
         }
         return MybatisPageHelper.findPagePr(pageRequest, partsMapper);
     }
@@ -119,6 +152,6 @@ public class PartsServiceImpl implements PartsService{
     @Override
     public int fix(Parts parts) {
         parts.setId(null);
-        return partsMapper.insertStsC(parts);
+        return partsMapper.insertStsD(parts);
     }
 }

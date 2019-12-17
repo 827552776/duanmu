@@ -49,5 +49,9 @@ public class OrderMainController {
         result = orderMainService.updateStsC(main);
         return HttpResult.ok(result);
     }
+    @GetMapping(value="/queryPrimaryKey")
+    public HttpResult queryPrimaryKey(){
+        return HttpResult.ok(orderMainService.queryPrimaryKey());
+    }
 
 }

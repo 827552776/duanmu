@@ -52,7 +52,7 @@ public class OrderDispaServiceImpl implements OrderDispaService{
 
     @Override
     public OrderDispa query(OrderMain orderMain) {
-        String dispatchNo = orderMain.getDispatchNo();
-        return orderDispaMapper.query(dispatchNo);
+        String fId = orderMain.getId();
+        return orderDispaMapper.query(fId);
     }
 }

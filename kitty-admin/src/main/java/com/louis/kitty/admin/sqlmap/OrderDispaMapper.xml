@@ -3,6 +3,7 @@
 <mapper namespace="com.louis.kitty.admin.dao.OrderDispaMapper">
     <resultMap id="BaseResultMap" type="com.louis.kitty.admin.model.OrderDispa">
         <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="f_id" jdbcType="VARCHAR" property="fId" />
         <result column="last_update_time" jdbcType="DATE" property="lastUpdateTime" />
         <result column="last_update_by" jdbcType="VARCHAR" property="lastUpdateBy" />
         <result column="create_time" jdbcType="DATE" property="createTime" />
@@ -34,11 +35,11 @@
 
 
     <insert id="insert" parameterType="com.louis.kitty.admin.model.OrderDispa">
-        insert into b_ord_dispa (id,create_time,create_by,dispatch_no,dispa_no,category,supplier,contract_no,
+        insert into b_ord_dispa (id,f_id,create_time,create_by,dispatch_no,dispa_no,category,supplier,contract_no,
         dispa_make_time,use_unit,product_no,flag,mark_no,frock_no,frock_nm,units,dispa_quantity,dispa_content,
         dispa_basis,delv_date,tech_con,quality,price,mould_quota,complete_quan,dispa_remarks)
 
-        values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=DATE}, #{createBy,jdbcType=VARCHAR},
+        values (#{id,jdbcType=BIGINT},#{fId,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, #{createBy,jdbcType=VARCHAR},
         #{dispatchNo,jdbcType=VARCHAR}, #{dispaNo,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR},
         #{supplier,jdbcType=VARCHAR}, #{contractNo,jdbcType=VARCHAR},#{dispaMakeTime,jdbcType=DATE},
         #{useUnit,jdbcType=VARCHAR},#{productNo,jdbcType=VARCHAR},#{flag,jdbcType=VARCHAR},#{markNo,jdbcType=VARCHAR},
@@ -49,11 +50,11 @@
     </insert>
     <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
         select * from b_ord_dispa
-        where id = #{id,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=BIGINT}
     </select>
     <select id="query" parameterType="java.lang.String" resultMap="BaseResultMap">
         select * from b_ord_dispa
-        where dispa_no = #{dispachNo,jdbcType=VARCHAR}
+        where f_id = #{fIda,jdbcType=VARCHAR}
     </select>
     <update id="update" parameterType="com.louis.kitty.admin.model.OrderDispa">
         update b_ord_dispa

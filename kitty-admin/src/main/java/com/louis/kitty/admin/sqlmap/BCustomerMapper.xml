@@ -2,8 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.louis.kitty.admin.dao.BCustomerMapper">
   <resultMap id="BaseResultMap" type="com.louis.kitty.admin.model.BCustomer">
-     <id column="id" jdbcType="BIGINT" property="id" />
+     <id column="id" jdbcType="BIGINT" property="id"/>
     <result column="cm_name" jdbcType="VARCHAR" property="cmName" />
+    <result column="attribute" jdbcType="VARCHAR" property="attribute" />
     <result column="cm_address" jdbcType="VARCHAR" property="cmAddress" />
     <result column="cm_contacts" jdbcType="VARCHAR" property="cmContacts" />
     <result column="cm_phone" jdbcType="VARCHAR" property="cmPhone" />
@@ -11,10 +12,10 @@
     <result column="create_by" jdbcType="BIGINT" property="createBy" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="last_update_by" jdbcType="BIGINT" property="lastUpdateBy" />
-    <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
+    <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime"/>
   </resultMap>
   <sql id="Base_Column_List">
-    id,cm_name,cm_address,cm_contacts,cm_phone,cm_remarks, create_by, create_time, last_update_by,
+    id,cm_name,cm_address,cm_contacts,attribute,cm_phone,cm_remarks, create_by, create_time, last_update_by,
     last_update_time
   </sql>
 
@@ -26,7 +27,24 @@
   <select id="query" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
-    from b_customer
+    from b_customer where attribute = #{attribute,jdbcType=VARCHAR}
   </select>
-
+  <insert id="insert" parameterType="com.louis.kitty.admin.model.BCustomer">
+    insert into b_customer (id,cm_name,create_time,create_by,cm_address,cm_contacts,cm_phone,cm_remarks,attribute)
+    values (#{id,jdbcType=BIGINT},#{cmName,jdbcType=VARCHAR},#{createTime,jdbcType=DATE},#{createBy,jdbcType=BIGINT},
+    #{cmAddress,jdbcType=VARCHAR},#{cmContacts,jdbcType=VARCHAR},#{cmPhone,jdbcType=VARCHAR},
+    #{cmRemarks,jdbcType=VARCHAR},#{attribute,jdbcType=VARCHAR})
+  </insert>
+  <update id="update" parameterType="com.louis.kitty.admin.model.BCustomer">
+    update b_customer set
+    last_update_by = #{lastUpdateBy,jdbcType=BIGINT},
+    last_update_time = #{lastUpdateTime,jdbcType=DATE},
+    cm_name = #{cmName,jdbcType=VARCHAR},cm_address = #{cmAddress,jdbcType=VARCHAR},cm_contacts = #{cmContacts,jdbcType=VARCHAR},
+    cm_phone = #{cmPhone,jdbcType=VARCHAR},cm_remarks = #{cmRemarks,jdbcType=VARCHAR},attribute = #{attribute,jdbcType=VARCHAR}
+    where id = #{id,jdbcType = BIGINT}
+  </update>
+  <delete id="delete" parameterType="java.lang.Long">
+    delete from b_customer
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
 </mapper>

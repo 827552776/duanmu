@@ -3,10 +3,9 @@ package com.louis.kitty.admin.model;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class Check {
-    private Integer id;
+public class Check extends BaseModel{
 
-    private Integer fId;
+    private String fId;
 
     private BigDecimal hanCai;
 
@@ -58,19 +57,11 @@ public class Check {
 
     private String lastUpdateBy;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getfId() {
+    public String getfId() {
         return fId;
     }
 
-    public void setfId(Integer fId) {
+    public void setfId(String fId) {
         this.fId = fId;
     }
 

@@ -8,14 +8,15 @@ import java.util.List;
 
 public interface OrderMainMapper {
     int insert(OrderMain record);
-    List<OrderMain> select(Long id);
+    String select(String id);
     int update(OrderMain record);
-    int delete(Long id);
+    int delete(String id);
     List<OrderMain> findPage();
     List<OrderMain> findPageAb();
-    List<OrderMain> findPageAboo(@Param(value="dispatchNo") String dispatchNo);
+    List<OrderMain> findPageAboo(@Param(value="mouldNm") String mouldNm);
     List<OrderMain> query(String lotNo,String custNm,String dispatchNo);
-    int updateStsB(Long id);
-    int updateStsC(Long id);
-    List<OrderMain> findPageByLabel(@Param(value="cust") String cust);
+    int updateStsB(String id);
+    int updateStsC(String id);
+    List<OrderMain> findPageByLabel(@Param(value="cust") String cust,@Param(value = "mouldNm") String mouldNm);
+    String selectPrimaryKey();
 }

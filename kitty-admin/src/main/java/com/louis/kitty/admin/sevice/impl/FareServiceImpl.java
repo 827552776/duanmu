@@ -37,4 +37,11 @@ public class FareServiceImpl implements FareService{
     public PageResult findPage(PageRequest pageRequest) {
         return null;
     }
+
+    @Override
+    public List<Fare> query(Fare fare) {
+        String fId = fare.getfId();
+
+        return fareMapper.query(fId);
+    }
 }

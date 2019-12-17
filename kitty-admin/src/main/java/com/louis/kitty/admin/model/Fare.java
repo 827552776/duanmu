@@ -4,17 +4,19 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class Fare extends BaseModel{
-    private Integer fId;
+    private String fId;
 
     private String fareType;
 
     private String descri;
 
-    public Integer getfId() {
+    private String logis;
+
+    public String getfId() {
         return fId;
     }
 
-    public void setfId(Integer fId) {
+    public void setfId(String fId) {
         this.fId = fId;
     }
 
@@ -53,4 +55,12 @@ public class Fare extends BaseModel{
     private BigDecimal price;
 
     private Date delvDate;
+
+    public String getLogis() {
+        return logis;
+    }
+
+    public void setLogis(String logis) {
+        this.logis = logis;
+    }
 }
