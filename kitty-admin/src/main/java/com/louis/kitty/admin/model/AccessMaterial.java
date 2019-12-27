@@ -9,6 +9,10 @@ public class AccessMaterial extends BaseModel{
      */
     private String name;
     /**
+     * 磨具名称
+     */
+    private String mName;
+    /**
      * 入库数量
      */
     private Long intNumber;
@@ -57,6 +61,7 @@ public class AccessMaterial extends BaseModel{
     public String toString() {
         return "AccessMaterial{" +
                 "name='" + name + '\'' +
+                ", mName='" + mName + '\'' +
                 ", intNumber=" + intNumber +
                 ", intTime=" + intTime +
                 ", number=" + number +
@@ -69,6 +74,14 @@ public class AccessMaterial extends BaseModel{
                 ", type='" + type + '\'' +
                 ", remarks='" + remarks + '\'' +
                 '}';
+    }
+
+    public String getmName() {
+        return mName;
+    }
+
+    public void setmName(String mName) {
+        this.mName = mName;
     }
 
     public String getName() {

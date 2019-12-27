@@ -31,6 +31,11 @@ public class TrStockManageController {
         int b = record.getOutNumber();
         int c= record.getTrNumber();
         int d = a-b+c;
+        if(d>record.getTypeNumber()){
+            record.setType(0);
+        }else{
+            record.setType(1);
+        }
         System.out.println(a);
         System.out.println(d);
         record.setTrNumber(d);

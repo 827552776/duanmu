@@ -10,7 +10,8 @@
         <result column="tr_price" jdbcType="DECIMAL" property="trPrice" />
         <result column="in_number" jdbcType="BIGINT" property="inNumber" />
         <result column="out_number" jdbcType="BIGINT" property="outNumber" />
-        <result column="type_n" jdbcType="VARCHAR" property="typeN" />
+        <result column="type" jdbcType="BIGINT" property="type" />
+        <result column="type_number" jdbcType="BIGINT" property="typeNumber" />
         <result column="tr_remarks" jdbcType="VARCHAR" property="trRemarks" />
         <result column="create_by" jdbcType="BIGINT" property="createBy" />
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
@@ -18,7 +19,7 @@
         <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
     </resultMap>
     <sql id="Base_Column_List">
-    id,tr_name,tr_type,tr_subdivide,tr_number,tr_price,in_number,out_number,type_n,tr_remarks ,create_by, create_time, last_update_by,
+    id,tr_name,tr_type,tr_subdivide,tr_number,tr_price,in_number,out_number,type,type_number,tr_remarks ,create_by, create_time, last_update_by,
     last_update_time
   </sql>
 
@@ -54,8 +55,11 @@
             <if test="outNumber != null">
                 out_number,
             </if>
-            <if test="typeN != null">
-                type_n,
+            <if test="type != null">
+                type,
+            </if>
+            <if test="typeNumber != null">
+                type_number,
             </if>
             <if test="trRemarks != null">
                 tr_remarks,
@@ -100,8 +104,11 @@
             <if test="outNumber != null">
                 #{outNumber,jdbcType=BIGINT},
             </if>
-            <if test="typeN != null">
-                #{typeN,jdbcType=VARCHAR},
+            <if test="type != null">
+                #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="typeNumber != null">
+                #{typeNumber,jdbcType=VARCHAR},
             </if>
             <if test="trRemarks != null">
                 #{trRemarks,jdbcType=VARCHAR},
@@ -146,8 +153,11 @@
             <if test="outNumber != null">
                 out_number = #{outNumber,jdbcType=BIGINT},
             </if>
-            <if test="typeN != null">
-                type_n = #{typeN,jdbcType=VARCHAR},
+            <if test="type != null">
+                type = #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="typeNumber != null">
+                type_number = #{typeNumber,jdbcType=VARCHAR},
             </if>
             <if test="trRemarks != null">
                 tr_remarks = #{trRemarks,jdbcType=TINYINT},

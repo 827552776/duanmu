@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface MaterialManageMapper {
+    int deleteByPrimaryKey(Long id);
     List<MaterialManage> findPage();
     List<MaterialManage> findPageAb();
     int insertSelective(MaterialManage record);

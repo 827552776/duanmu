@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.louis.kitty.admin.dao.WeldingManageMapper">
-    <resultMap id="BaseResultMap" type="com.louis.kitty.admin.model.WeldingManage">
+<mapper namespace="com.louis.kitty.admin.dao.WeldingIntOutMapper">
+    <resultMap id="BaseResultMap" type="com.louis.kitty.admin.model.Welding">
         <id column="id" jdbcType="BIGINT" property="id" />
         <result column="name" jdbcType="VARCHAR" property="name" />
-        <result column="source" jdbcType="VARCHAR" property="source" />
-        <result column="model" jdbcType="VARCHAR" property="model" />
-        <result column="number" jdbcType="BIGINT" property="number" />
+        <result column="de_time" jdbcType="TIMESTAMP" property="deTime" />
+        <result column="de_company" jdbcType="VARCHAR" property="deCompany" />
+        <result column="de_number" jdbcType="BIGINT" property="deNumber" />
         <result column="company" jdbcType="VARCHAR" property="company" />
         <result column="price" jdbcType="DECIMAL" property="price" />
-        <result column="int_number" jdbcType="BIGINT" property="intNumber" />
-        <result column="out_number" jdbcType="BIGINT" property="outNumber" />
+        <result column="out_time" jdbcType="TIMESTAMP" property="outTime" />
+        <result column="int_time" jdbcType="TIMESTAMP" property="intTime" />
+        <result column="re_number" jdbcType="BIGINT" property="reNumber" />
+        <result column="number" jdbcType="BIGINT" property="number" />
+        <result column="s_number" jdbcType="BIGINT" property="sNumber" />
         <result column="type" jdbcType="BIGINT" property="type" />
-        <result column="type_number" jdbcType="BIGINT" property="typeNumber" />
-        <result column="sure_number" jdbcType="BIGINT" property="sureNumber" />
-        <result column="difference" jdbcType="BIGINT" property="difference" />
+        <result column="mould_name" jdbcType="VARCHAR" property="mouldName" />
+        <result column="zu" jdbcType="VARCHAR" property="zu" />
         <result column="remarks" jdbcType="VARCHAR" property="remarks" />
         <result column="create_by" jdbcType="BIGINT" property="createBy" />
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
@@ -22,23 +24,23 @@
         <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
     </resultMap>
     <sql id="Base_Column_List">
-    id,name,number,model,source,company,price,int_number,out_number,type,type_number,sure_number,difference,remarks ,create_by, create_time, last_update_by,
+    id,name,de_time,de_company,de_number,company,price,out_time,int_time,re_number,number,s_number,type,mould_name,zu,remarks ,create_by, create_time, last_update_by,
     last_update_time
   </sql>
 
     <select id="findPage" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
-        from tr_welding_manage
+        from tr_welding_int_out
     </select>
     <select id="findPageAb" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
-        from tr_welding_manage
+        from tr_welding_int_out
         where type ='1'
     </select>
     <insert id="insertSelective" parameterType="com.louis.kitty.admin.model.WeldingManage">
-        insert into tr_welding_manage
+        insert into tr_welding_int_out
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,
@@ -157,7 +159,7 @@
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.louis.kitty.admin.model.WeldingManage">
-        update tr_welding_manage
+        update tr_welding_int_out
         <set>
             <if test="name != null">
                 name = #{name,jdbcType=VARCHAR},

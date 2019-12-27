@@ -36,7 +36,6 @@ public interface CurdService<T> {
 	 * @return
 	 */
 	T findById(Long id);
-	
     /**
      * 分页查询
 	 * 这里统一封装了分页请求和结果，避免直接引入具体框架的分页对象, 如MyBatis或JPA的分页对象

@@ -3,6 +3,7 @@
 <mapper namespace="com.louis.kitty.admin.dao.AccessMaterialMapper">
   <resultMap id="BaseResultMap" type="com.louis.kitty.admin.model.AccessMaterial">
      <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="m_name" jdbcType="VARCHAR" property="mName" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="int_time" jdbcType="TIMESTAMP" property="intTime" />
     <result column="int_number" jdbcType="BIGINT" property="intNumber" />
@@ -21,7 +22,7 @@
     <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id,name,int_time,int_number,tr_time,number,waixie,wx_time,wx_int,wx_number,wx_price,type,remarks, create_by, create_time, last_update_by,
+    id,name,m_name,int_time,int_number,tr_time,number,waixie,wx_time,wx_int,wx_number,wx_price,type,remarks, create_by, create_time, last_update_by,
     last_update_time
   </sql>
 
@@ -36,6 +37,9 @@
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
+      </if>
+      <if test="mName != null">
+        m_name,
       </if>
       <if test="name != null">
         name,
@@ -92,6 +96,9 @@
       <if test="id != null">
         #{id,jdbcType=BIGINT},
       </if>
+      <if test="mName != null">
+        #{mName,jdbcType=VARCHAR},
+      </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
@@ -147,6 +154,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.louis.kitty.admin.model.AccessStock">
     update tr_material_access
     <set>
+      <if test="mName != null">
+        m_name = #{mName,jdbcType=VARCHAR},
+      </if>
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
       </if>

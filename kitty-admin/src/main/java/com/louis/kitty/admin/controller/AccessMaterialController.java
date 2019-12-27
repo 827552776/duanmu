@@ -37,6 +37,10 @@ public class AccessMaterialController {
     public HttpResult findPageA(@RequestBody PageRequest pageRequest) {
         return HttpResult.ok(accessMaterialIntService.findPage(pageRequest));
     }
+    @PostMapping(value = "/findR")
+    public HttpResult findPage1(@RequestBody PageRequest pageRequest){
+        return HttpResult.ok(accessMaterialIntService.findPage1(pageRequest));
+    }
     /**
      * 出库（新增/修改）
      */
