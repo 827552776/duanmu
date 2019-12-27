@@ -115,6 +115,18 @@
         AND ifnull(p.name,'') like concat ('%',#{param1,jdbcType=VARCHAR},'%')
         AND ifnull(o.mould_nm,'') like concat ('%',#{param2,jdbcType=VARCHAR},'%')
     </select>
+    <select id="findPageD" resultMap="BaseResultMap">
+        SELECT
+        p.*,o.mould_nm,o.buy_material,o.dispatch_no
+
+        FROM
+        b_parts p,b_ord_main o
+        WHERE
+        p.f_id = o.id
+        AND p.sts = 'D'
+        AND ifnull(p.name,'') like concat ('%',#{param1,jdbcType=VARCHAR},'%')
+        AND ifnull(o.mould_nm,'') like concat ('%',#{param2,jdbcType=VARCHAR},'%')
+    </select>
     <select id="queryCraft" resultType="java.lang.String">
         select
         input_value
@@ -176,7 +188,6 @@
     <update id="updateStsD" parameterType="java.lang.Long">
         update b_parts
         set sts = 'D',
-        last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
         last_update_time = now()
         where id = #{id,jdbcType=BIGINT}
     </update>
