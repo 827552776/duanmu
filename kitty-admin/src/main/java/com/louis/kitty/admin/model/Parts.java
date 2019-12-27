@@ -37,6 +37,18 @@ public class Parts extends BaseModel{
 
     private String dept;
 
+    private String temPurch;
+
+    public String getIsPick() {
+        return isPick;
+    }
+
+    public void setIsPick(String isPick) {
+        this.isPick = isPick;
+    }
+
+    private String isPick;
+
     public String getApplicant() {
         return applicant;
     }
@@ -81,7 +93,7 @@ public class Parts extends BaseModel{
 
     private String remarks;
 
-    private String temPurch;
+
 
     public String getMouldNm() {
         return mouldNm;

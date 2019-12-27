@@ -52,25 +52,21 @@ public class PartsServiceImpl implements PartsService{
     }
     @Override
     public PageResult findPage1(PageRequest pageRequest) {
-
         ColumnFilter columnFilter = pageRequest.getColumnFilter("name");
         if(columnFilter.getValue() != "") {
             return MybatisPageHelper.findPage(pageRequest, partsMapper, "findPageByLabel", columnFilter.getValue());
         }
         return MybatisPageHelper.findPage1(pageRequest, partsMapper);
     }
-
     @Override
     public int saveCraft(Parts parts) {
-
-        return partsMapper.saveCraft(parts);
+        return partsMapper.updateCraft(parts);
     }
     @Override
     public int saveCraftbefor(Parts parts) {
         parts.setFlow(parts.getInputValue());
-        return partsMapper.saveCraftbefor(parts);
+        return partsMapper.updateCraftbefor(parts);
     }
-
     @Override
     public int savePurch(Parts parts) {
         return partsMapper.insertPurch(parts);
@@ -81,20 +77,17 @@ public class PartsServiceImpl implements PartsService{
          Long id=  parts.getId();
          return partsMapper.queryCraft(id);
     }
-
     @Override
     public List<Parts> queryParts(OrderMain orderMain) {
        String fid = orderMain.getId();
         return partsMapper.queryParts(fid);
     }
-
     @Override
     public List<Parts> findPagePp(Filter filter) {
         String name = filter.getName();
         String mouldNm = filter.getMouldNm();
         return partsMapper.findPagePp(name,mouldNm);
     }
-
     @Override
     public List<Parts> findPageD(Filter filter) {
         String name = filter.getName();
@@ -103,29 +96,31 @@ public class PartsServiceImpl implements PartsService{
     }
 
     @Override
+    public int updatePick(Parts parts) {
+        Long id = parts.getId();
+        return partsMapper.updatePick(id);
+    }
+
+    @Override
     public int updateStsC(Parts parts) {
         Long id = parts.getId();
         return partsMapper.updateStsC(id);
     }
-
     @Override
     public int updateStsB(Parts parts) {
         Long id = parts.getId();
         return partsMapper.updateStsB(id);
     }
-
     @Override
     public int updateStsA(Parts parts) {
         Long id = parts.getId();
         return partsMapper.updateStsA(id);
     }
-
     @Override
     public int updateStsD(Parts parts) {
         Long id = parts.getId();
         return partsMapper.updateStsD(id);
     }
-
     @Override
     public int deleteParts(Parts parts) {
        Long id = parts.getId();
@@ -148,6 +143,15 @@ public class PartsServiceImpl implements PartsService{
             return MybatisPageHelper.findPage(pageRequest, partsMapper, "findPageByPr", columnFilter.getValue());
         }
         return MybatisPageHelper.findPagePr(pageRequest, partsMapper);
+    }
+
+    @Override
+    public PageResult findPagePi(PageRequest pageRequest) {
+        ColumnFilter columnFilter = pageRequest.getColumnFilter("name");
+        if(columnFilter.getValue() != "") {
+            return MybatisPageHelper.findPage(pageRequest, partsMapper, "findPageByPi", columnFilter.getValue());
+        }
+        return MybatisPageHelper.findPagePi(pageRequest, partsMapper);
     }
 
     @Override

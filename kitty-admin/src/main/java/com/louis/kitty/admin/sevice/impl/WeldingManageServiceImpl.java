@@ -52,7 +52,7 @@ public class WeldingManageServiceImpl implements WeldingManageService {
     public PageResult findPageAb(PageRequest pageRequest) {
         ColumnFilter columnFilter = pageRequest.getColumnFilter("label");
         if(columnFilter != null) {
-            return MybatisPageHelper.findPageAb(pageRequest, weldingManageMapper, "findPageByLabel", columnFilter.getValue());
+            return MybatisPageHelper.findPageAb(pageRequest,weldingManageMapper, "", columnFilter.getValue());
         }
         return MybatisPageHelper.findPageAb(pageRequest, weldingManageMapper);
     }

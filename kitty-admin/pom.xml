@@ -12,7 +12,7 @@
 
 	<groupId>com.louis</groupId>
 	<artifactId>kitty-admin</artifactId>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	<version>1.0.0</version>
 	<name>kitty-admin</name>
 	<description>kitty-admin</description>
@@ -130,6 +130,7 @@
 			<artifactId>kitty-core</artifactId>
 			<version>1.0.0</version>
 		</dependency>
+
 	</dependencies>
 	
 	<!--srping cloud-->

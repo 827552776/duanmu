@@ -28,6 +28,7 @@
         <result column="budget" jdbcType="VARCHAR" property="budget" />
         <result column="remarks" jdbcType="VARCHAR" property="remarks" />
         <result column="tem_purch" jdbcType="VARCHAR" property="temPurch" />
+        <result column="is_pick" jdbcType="VARCHAR" property="isPick" />
     </resultMap>
     <insert id="insert" parameterType="com.louis.kitty.admin.model.Parts">
         insert into b_parts (id,f_id,create_time,create_by,name,specs,modle,ask,input_value,attribute,quantity,sts,is_buy,supplier)
@@ -101,6 +102,19 @@
         AND o.ord_sts = 'C')
         OR (p.tem_purch = '是' AND p.sts = 'A')
     </select>
+    <select id="findPagePi" resultMap="BaseResultMap">
+       SELECT DISTINCT
+        p.*
+        FROM
+        b_parts p,b_ord_main o
+        WHERE
+        p.f_id = o.id
+        AND (p.attribute = '标准件' OR p.attribute = '通用件')
+        AND p.sts = 'A'
+        AND p.is_buy = '否'
+        AND o.ord_sts = 'C'
+        AND ifnull(p.is_pick,'')!= '是'
+    </select>
     <select id="findPagePp" resultMap="BaseResultMap">
         SELECT
         p.*,o.mould_nm,o.buy_material,o.dispatch_no,
@@ -120,10 +134,10 @@
         p.*,o.mould_nm,o.buy_material,o.dispatch_no
 
         FROM
-        b_parts p,b_ord_main o
-        WHERE
+        b_parts p LEFT JOIN b_ord_main o
+        ON
         p.f_id = o.id
-        AND p.sts = 'D'
+        WHERE p.sts = 'D'
         AND ifnull(p.name,'') like concat ('%',#{param1,jdbcType=VARCHAR},'%')
         AND ifnull(o.mould_nm,'') like concat ('%',#{param2,jdbcType=VARCHAR},'%')
     </select>
@@ -139,14 +153,14 @@
         from b_parts
         where f_id = #{param1,jdbcType=VARCHAR}
     </select>
-    <update id="saveCraft" parameterType="com.louis.kitty.admin.model.Parts">
+    <update id="updateCraft" parameterType="com.louis.kitty.admin.model.Parts">
     update b_parts
     set input_value = #{inputValue,jdbcType=VARCHAR},
     last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
     last_update_time = #{lastUpdateTime,jdbcType=DATE}
     where id = #{id,jdbcType=BIGINT}
     </update>
-    <update id="saveCraftbefor" parameterType="com.louis.kitty.admin.model.Parts">
+    <update id="updateCraftbefor" parameterType="com.louis.kitty.admin.model.Parts">
         update b_parts
         set
         flow = #{flow,jdbcType=VARCHAR},
@@ -159,6 +173,13 @@
     <update id="updateStsC" parameterType="java.lang.Long">
         update b_parts
         set sts = 'C',
+        last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+        last_update_time = now()
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updatePick" parameterType="java.lang.Long">
+        update b_parts
+        set is_pick = '是'
         last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
         last_update_time = now()
         where id = #{id,jdbcType=BIGINT}

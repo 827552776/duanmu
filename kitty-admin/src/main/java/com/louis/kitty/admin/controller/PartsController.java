@@ -38,6 +38,11 @@ public class PartsController {
     public HttpResult findPagePr(@RequestBody PageRequest pageRequest) {
         return HttpResult.ok(partsService.findPagePr(pageRequest));
     }
+    //查询车间领料
+    @PostMapping(value="/findPagePi")
+    public HttpResult findPagePi(@RequestBody PageRequest pageRequest) {
+        return HttpResult.ok(partsService.findPagePi(pageRequest));
+    }
     //查询生产进程
     @PostMapping(value="/findPagePp")
     public HttpResult findPagePp(@RequestBody Filter filter) {
@@ -71,6 +76,11 @@ public class PartsController {
     @PostMapping(value="/queryParts")
     public HttpResult queryParts(@RequestBody OrderMain orderMain){
         return HttpResult.ok(partsService.queryParts(orderMain));
+    }
+    //已领料
+    @PostMapping(value="/updatePick")
+    public HttpResult updatePick(@RequestBody Parts parts){
+        return HttpResult.ok(partsService.updateStsC(parts));
     }
     //更改部件生产状态
     @PostMapping(value="/updateStsC")
