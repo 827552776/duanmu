@@ -11,6 +11,14 @@ public class WeldingManage extends BaseModel {
      */
     private String name;
     /**
+     * 来源
+     */
+    private String source;
+    /**
+     * 型号
+     */
+    private String model;
+    /**
      * 数量
      */
     private Long number;
@@ -57,6 +65,8 @@ public class WeldingManage extends BaseModel {
     public String toString() {
         return "WeldingManage{" +
                 "name='" + name + '\'' +
+                ", source='" + source + '\'' +
+                ", model='" + model + '\'' +
                 ", number=" + number +
                 ", company='" + company + '\'' +
                 ", intNumber=" + intNumber +
@@ -68,6 +78,22 @@ public class WeldingManage extends BaseModel {
                 ", remarks='" + remarks + '\'' +
                 ", price=" + price +
                 '}';
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
     }
 
     public BigDecimal getPrice() {

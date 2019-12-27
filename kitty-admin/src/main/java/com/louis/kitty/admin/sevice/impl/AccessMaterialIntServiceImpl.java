@@ -47,5 +47,13 @@ public class AccessMaterialIntServiceImpl implements AccessMaterialIntService {
         }
         return MybatisPageHelper.findPage(pageRequest, accessMaterialIntMapper);
     }
+    @Override
+    public PageResult findPage1(PageRequest pageRequest){
+        ColumnFilter columnFilter = pageRequest.getColumnFilter("type");
+        if(columnFilter != null) {
+            return MybatisPageHelper.findPage1(pageRequest, accessMaterialIntMapper, "findPageByType", columnFilter.getValue());
+        }
+        return MybatisPageHelper.findPage1(pageRequest, accessMaterialIntMapper);
+    }
 
 }

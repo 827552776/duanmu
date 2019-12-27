@@ -1,5 +1,6 @@
 package com.louis.kitty.admin.controller;
 
+import com.louis.kitty.admin.constants.SysConstants;
 import com.louis.kitty.admin.model.MaterialManage;
 import com.louis.kitty.admin.model.TrStockManage;
 import com.louis.kitty.admin.sevice.MaterialManageService;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
+import java.util.List;
 
 /**
  * 库存管理模块
@@ -33,6 +35,10 @@ public class MaterialManageController {
     @PostMapping(value = "/findAb")
     public HttpResult findPageAb(@RequestBody PageRequest pageRequest) {
         return HttpResult.ok(materialManageService.findPageAb(pageRequest));
+    }
+    @PostMapping(value="/delete")
+    public HttpResult delete(@RequestBody List<MaterialManage> record) {
+        return HttpResult.ok(materialManageService.delete(record));
     }
     /**
      * 新增

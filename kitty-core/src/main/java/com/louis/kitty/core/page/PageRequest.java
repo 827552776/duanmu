@@ -16,9 +16,9 @@ public class PageRequest {
 	/**
 	 * 每页数量
 	 */
-	private int pageSize = 10;
+	private int pageSize = 50;
 	/**
-	 * 每页数量
+	 * 条件查询的值
 	 */
 	private Map<String, ColumnFilter> columnFilters = new HashMap<String, ColumnFilter>();
 	

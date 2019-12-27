@@ -24,7 +24,10 @@
     id,name,m_name,number,size,price,state,int_number,out_number,type,type_number,invoice,remarks ,create_by, create_time, last_update_by,
     last_update_time
   </sql>
-
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tr_material_manage
+    where id = #{id,jdbcType=BIGINT}
+     </delete>
     <select id="findPage" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />

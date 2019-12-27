@@ -9,7 +9,8 @@ public class TrStockManage extends BaseModel {
     private String trRemarks;
     private int inNumber;
     private int outNumber;
-    private String typeN;
+    private int type;
+    private int typeNumber;
 
     @Override
     public String toString() {
@@ -22,8 +23,25 @@ public class TrStockManage extends BaseModel {
                 ", trRemarks='" + trRemarks + '\'' +
                 ", inNumber=" + inNumber +
                 ", outNumber=" + outNumber +
-                ", typeN='" + typeN + '\'' +
+                ", type=" + type +
+                ", typeNumber=" + typeNumber +
                 '}';
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public int getTypeNumber() {
+        return typeNumber;
+    }
+
+    public void setTypeNumber(int typeNumber) {
+        this.typeNumber = typeNumber;
     }
 
     public String getTrName() {
@@ -88,13 +106,5 @@ public class TrStockManage extends BaseModel {
 
     public void setOutNumber(int outNumber) {
         this.outNumber = outNumber;
-    }
-
-    public String getTypeN() {
-        return typeN;
-    }
-
-    public void setTypeN(String typeN) {
-        this.typeN = typeN;
     }
 }

@@ -14,7 +14,6 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,12 +32,15 @@ public class MaterialManageServiceImpl implements MaterialManageService {
 
     @Override
     public int delete(MaterialManage record) {
-        return 0;
+        return materialManageMapper.deleteByPrimaryKey(record.getId());
     }
 
     @Override
     public int delete(List<MaterialManage> records) {
-        return 0;
+        for(MaterialManage record:records){
+            delete(record);
+        }
+        return 1;
     }
 
     @Override
