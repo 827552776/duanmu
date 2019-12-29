@@ -151,7 +151,7 @@ public class PartsServiceImpl implements PartsService{
         if(columnFilter.getValue() != "") {
             return MybatisPageHelper.findPage(pageRequest, partsMapper, "findPageByPi", columnFilter.getValue());
         }
-        return MybatisPageHelper.findPagePi(pageRequest, partsMapper);
+        return MybatisPageHelper.findPagePr(pageRequest, partsMapper);
     }
 
     @Override

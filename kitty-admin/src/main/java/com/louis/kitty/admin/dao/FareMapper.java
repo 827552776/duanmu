@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface FareMapper {
     int save(Fare fare);
+    int update(Fare fare);
     List<Fare> query(String fId);
 }

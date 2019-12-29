@@ -9,11 +9,15 @@
         <result column="create_time" jdbcType="DATE" property="createTime" />
         <result column="create_by" jdbcType="VARCHAR" property="createBy" />
         <result column="unqu_cause" jdbcType="VARCHAR" property="unquCause" />
+        <result column="craft" jdbcType="VARCHAR" property="craft" />
+        <result column="liable" jdbcType="VARCHAR" property="liable" />
+        <result column="price" jdbcType="DECIMAL" property="price" />
     </resultMap>
     <insert id="insert" parameterType="com.louis.kitty.admin.model.Unqu">
-        insert into b_unqu (id,f_id,create_time,create_by,unqu_cause)
+        insert into b_unqu (id,f_id,create_time,create_by,unqu_cause,craft,liable,price)
         values (#{id,jdbcType=BIGINT},#{fId,jdbcType=BIGINT}, #{createTime,jdbcType=DATE},
-         #{createBy,jdbcType=VARCHAR},#{unquCause,jdbcType=VARCHAR})
+         #{createBy,jdbcType=VARCHAR},#{unquCause,jdbcType=VARCHAR},#{craft,jdbcType=VARCHAR},
+         #{liable,jdbcType=VARCHAR},#{price,jdbcType=DECIMAL})
     </insert>
     <select id="query" resultMap="BaseResultMap">
         select

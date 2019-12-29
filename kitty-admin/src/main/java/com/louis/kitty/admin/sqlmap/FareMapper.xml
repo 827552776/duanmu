@@ -20,6 +20,13 @@
         #{fareType,jdbcType=VARCHAR}, #{descri,jdbcType=VARCHAR},
         #{price,jdbcType=DECIMAL},#{delvDate,jdbcType=DATE},#{logis,jdbcType=VARCHAR})
     </insert>
+    <update id="update" parameterType="com.louis.kitty.admin.model.Fare">
+        update b_fare set
+        last_update_time = #{lastUpdateTime,jdbcType=DATE},
+        last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+        price = #{price,jdbcType=DECIMAL}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
     <select id="query" resultMap="BaseResultMap">
         select
         *

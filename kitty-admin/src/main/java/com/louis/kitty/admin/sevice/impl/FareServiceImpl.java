@@ -15,7 +15,12 @@ public class FareServiceImpl implements FareService{
     private FareMapper fareMapper;
     @Override
     public int save(Fare fare) {
-        return fareMapper.save(fare);
+        Long id = fare.getId();
+        if(id == null) {
+            return fareMapper.save(fare);
+        }else{
+            return fareMapper.update(fare);
+        }
     }
 
     @Override

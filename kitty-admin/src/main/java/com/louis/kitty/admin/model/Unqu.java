@@ -1,7 +1,39 @@
 package com.louis.kitty.admin.model;
 
+import java.math.BigDecimal;
+
 public class Unqu extends BaseModel {
     private Integer fId;
+
+    private String craft;
+
+    private String liable;
+
+    public String getCraft() {
+        return craft;
+    }
+
+    public void setCraft(String craft) {
+        this.craft = craft;
+    }
+
+    public String getLiable() {
+        return liable;
+    }
+
+    public void setLiable(String liable) {
+        this.liable = liable;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    private BigDecimal price;
 
     public Integer getfId() {
         return fId;
