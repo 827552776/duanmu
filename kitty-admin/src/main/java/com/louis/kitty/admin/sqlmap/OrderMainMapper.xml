@@ -19,16 +19,17 @@
     <result column="ord_no" jdbcType="VARCHAR" property="ordNo" />
     <result column="ord_sts" jdbcType="VARCHAR" property="ordSts" />
     <result column="sts" jdbcType="VARCHAR" property="sts" />
+    <result column="shuxing" jdbcType="VARCHAR" property="shuxing" />
   </resultMap>
 
   <insert id="insert" parameterType="com.louis.kitty.admin.model.OrderMain">
     insert into b_ord_main (id, lot_no,cust,mould_nm,quantity,company,dispatch_no,
-    buy_material,remarks,flag,ord_sts,create_by,create_time)
+    buy_material,remarks,flag,ord_sts,create_by,create_time,shuxing)
     values (#{id,jdbcType=VARCHAR}, #{lotNo,jdbcType=VARCHAR}, #{cust,jdbcType=VARCHAR},
       #{mouldNm,jdbcType=VARCHAR}, #{quantity,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR},
       #{dispatchNo,jdbcType=VARCHAR}, #{buyMaterial,jdbcType=VARCHAR},#{remarks,jdbcType=VARCHAR},
       #{flag,jdbcType=VARCHAR},'A',
-      #{createBy,jdbcType=VARCHAR},#{createTime,jdbcType=DATE})
+      #{createBy,jdbcType=VARCHAR},#{createTime,jdbcType=DATE},#{shuxing,jdbcType=VARCHAR})
   </insert>
   <select id="select" parameterType="java.lang.String" resultType="java.lang.String">
     select id from b_ord_main
@@ -64,6 +65,14 @@
     *,(case when ord_sts='A' then '已录入' when ord_sts='B' then '已预估成本' when ord_sts='C' then '已拆单' end) sts
     from b_ord_main
     where ifnull(flag,'') != 'N'
+    and shuxing = '锻造'
+  </select>
+  <select id="findPageZhu" resultMap="BaseResultMap">
+    select
+    *,(case when ord_sts='A' then '已录入' when ord_sts='B' then '已预估成本' when ord_sts='C' then '已拆单' end) sts
+    from b_ord_main
+    where ifnull(flag,'') != 'N'
+    and shuxing = '铸造'
   </select>
   <select id="findPageAb" resultMap="BaseResultMap">
     select
@@ -88,7 +97,20 @@
     cust like #{pattern}
     and mould_nm like #{pattern1}
     and  ifnull(flag,'') != 'N'
+    and ifnull(shuxing,'') = '锻造'
   </select>
+  <select id="findPageZhuoo" resultMap="BaseResultMap" parameterType="java.lang.String">
+    <bind name="pattern" value="'%' + _parameter.cust+ '%'" />
+    <bind name="pattern1" value="'%' + _parameter.mouldNm+ '%'" />
+    select
+    *
+    from b_ord_main where
+    cust like #{pattern}
+    and mould_nm like #{pattern1}
+    and  ifnull(flag,'') != 'N'
+    and ifnull(shuxing,'') = '铸造'
+  </select>
+
 
   <select id="query" resultMap="BaseResultMap">
     select

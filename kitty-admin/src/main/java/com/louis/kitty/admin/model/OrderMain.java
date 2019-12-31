@@ -6,6 +6,8 @@ public class OrderMain {
 
     private String id;
 
+    private String shuxing;
+
     private String createBy;
 
     public String getCreateBy() {
@@ -176,5 +178,13 @@ public class OrderMain {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getShuxing() {
+        return shuxing;
+    }
+
+    public void setShuxing(String shuxing) {
+        this.shuxing = shuxing;
     }
 }

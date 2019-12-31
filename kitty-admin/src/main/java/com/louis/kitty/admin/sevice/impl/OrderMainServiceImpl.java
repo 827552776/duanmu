@@ -82,6 +82,16 @@ public class OrderMainServiceImpl implements OrderMainService {
     }
 
     @Override
+    public PageResult findPageZhu(PageRequest pageRequest) {
+        ColumnFilter columnFilter = pageRequest.getColumnFilter("mouldNm");
+
+        if(columnFilter.getValue() != "") {
+            return MybatisPageHelper.findPage(pageRequest, orderMainMapper, "findPageZhuoo", columnFilter.getValue());
+        }
+        return MybatisPageHelper.findPageZhu(pageRequest, orderMainMapper);
+    }
+
+    @Override
     public String queryPrimaryKey() {
         return orderMainMapper.selectPrimaryKey();
     }

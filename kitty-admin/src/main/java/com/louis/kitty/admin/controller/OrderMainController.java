@@ -26,11 +26,17 @@ public class OrderMainController {
     public HttpResult delete(@RequestBody List<OrderMain> record) {
         return HttpResult.ok(orderMainService.delete(record));
     }
-    //查询
+    //查询(锻造)
     @PostMapping(value="/findPage")
     public HttpResult findPage(@RequestBody PageRequest pageRequest) {
         return HttpResult.ok(orderMainService.findPage(pageRequest));
     }
+    //查询(铸造）
+    @PostMapping(value="/findPageZhu")
+    public HttpResult findPageZhu(@RequestBody PageRequest pageRequest) {
+        return HttpResult.ok(orderMainService.findPageZhu(pageRequest));
+    }
+
     //查询状态A和B
     @PostMapping(value="/findPageAb")
     public HttpResult findPageAb(@RequestBody PageRequest pageRequest) {
