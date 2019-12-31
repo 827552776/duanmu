@@ -13,6 +13,7 @@ public interface OrderMainService extends CurdService<OrderMain> {
         int updateStsC(OrderMain main);
         PageResult findPageAb(PageRequest pageRequest);
         PageResult findPageZhu(PageRequest pageRequest);
+        PageResult findPageQuery(PageRequest pageRequest);
         String queryPrimaryKey();
 
 
