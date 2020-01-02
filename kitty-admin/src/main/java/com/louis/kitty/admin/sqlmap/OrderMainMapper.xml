@@ -65,7 +65,7 @@
     *,(case when ord_sts='A' then '已录入' when ord_sts='B' then '已预估成本' when ord_sts='C' then '已拆单' end) sts
     from b_ord_main
     where ifnull(flag,'') != 'N'
-    and shuxing = '锻造'
+
   </select>
   <select id="findPageZhu" resultMap="BaseResultMap">
     select
@@ -104,7 +104,7 @@
     cust like #{pattern}
     and mould_nm like #{pattern1}
     and  ifnull(flag,'') != 'N'
-    and ifnull(shuxing,'') = '锻造'
+
   </select>
   <select id="findPageZhuoo" resultMap="BaseResultMap" parameterType="java.lang.String">
     <bind name="pattern" value="'%' + _parameter.cust+ '%'" />
