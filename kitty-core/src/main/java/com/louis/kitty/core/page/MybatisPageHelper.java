@@ -15,6 +15,10 @@ public class MybatisPageHelper {
 
 	public static final String findPage = "findPage";
 
+	public static final String findPageZhu = "findPageZhu";
+
+	public static final String findPageQuery = "findPageQuery";
+
 	public static final String findPage1 = "findPage1";
 
 	public static final String findPageAb = "findPageAb";
@@ -22,6 +26,8 @@ public class MybatisPageHelper {
 	public static final String findPageQc = "findPageQc";
 
 	public static final String findPagePr = "findPagePr";
+
+	public static final String findPagePi = "findPagePi";
 //	public static final String findPageOut = "findPage";
 
 	/**
@@ -33,6 +39,12 @@ public class MybatisPageHelper {
 	 */
 	public static PageResult findPage(PageRequest pageRequest, Object mapper) {
 		return findPage(pageRequest, mapper, findPage);
+	}
+	public static PageResult findPageZhu(PageRequest pageRequest, Object mapper) {
+		return findPage(pageRequest, mapper, findPageZhu);
+	}
+	public static PageResult findPageQuery(PageRequest pageRequest, Object mapper) {
+		return findPage(pageRequest, mapper, findPageQuery);
 	}
 	public static PageResult findPage1(PageRequest pageRequest, Object mapper) {
 		return findPage(pageRequest, mapper, findPage1);
@@ -49,7 +61,9 @@ public class MybatisPageHelper {
 	public static PageResult findPagePr(PageRequest pageRequest, Object mapper) {
 		return findPage(pageRequest, mapper, findPagePr);
 	}
-
+	public static PageResult findPagePi(PageRequest pageRequest, Object mapper) {
+		return findPage(pageRequest, mapper, findPagePi);
+	}
 	
 	/**
 	 * 调用分页插件进行分页查询

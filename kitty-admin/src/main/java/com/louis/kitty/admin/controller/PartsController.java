@@ -80,7 +80,7 @@ public class PartsController {
     //已领料
     @PostMapping(value="/updatePick")
     public HttpResult updatePick(@RequestBody Parts parts){
-        return HttpResult.ok(partsService.updateStsC(parts));
+        return HttpResult.ok(partsService.updatePick(parts));
     }
     //更改部件生产状态
     @PostMapping(value="/updateStsC")

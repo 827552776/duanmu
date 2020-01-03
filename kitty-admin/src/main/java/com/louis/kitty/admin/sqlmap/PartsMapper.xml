@@ -110,7 +110,7 @@
         WHERE
         p.f_id = o.id
         AND (p.attribute = '标准件' OR p.attribute = '通用件')
-        AND p.sts = 'A'
+        AND (p.sts = 'A' OR p.sts = 'B')
         AND p.is_buy = '否'
         AND o.ord_sts = 'C'
         AND ifnull(p.is_pick,'')!= '是'
@@ -179,7 +179,7 @@
     </update>
     <update id="updatePick" parameterType="java.lang.Long">
         update b_parts
-        set is_pick = '是'
+        set is_pick = '是',
         last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
         last_update_time = now()
         where id = #{id,jdbcType=BIGINT}
@@ -258,6 +258,21 @@
         AND o.ord_sts = 'C'
         AND  name like #{pattern}
         )
+    </select>
+    <select id="findPageByPi" resultMap="BaseResultMap" parameterType="java.lang.String">
+        <bind name="pattern" value="'%' + _parameter.name+ '%'" />
+        SELECT DISTINCT
+        p.*
+        FROM
+        b_parts p,b_ord_main o
+        WHERE
+        p.f_id = o.id
+        AND (p.attribute = '标准件' OR p.attribute = '通用件')
+        AND (p.sts = 'A' OR p.sts = 'B')
+        AND p.is_buy = '否'
+        AND o.ord_sts = 'C'
+        AND ifnull(p.is_pick,'')!= '是'
+        AND  name like #{pattern}
     </select>
     <select id="findPageByPr" resultMap="BaseResultMap" parameterType="java.lang.String">
         <bind name="pattern" value="'%' + _parameter.name+ '%'" />

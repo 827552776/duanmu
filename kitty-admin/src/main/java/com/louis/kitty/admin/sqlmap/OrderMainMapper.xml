@@ -62,7 +62,7 @@
   </delete>
   <select id="findPage" resultMap="BaseResultMap">
     select
-    *,(case when ord_sts='A' then '已录入' when ord_sts='B' then '已预估成本' when ord_sts='C' then '已拆单' end) sts
+    *,(case when ord_sts='A' then '已录入' when ord_sts='B' then '已预估成本' when ord_sts='C' then '已拆单' end)  sts
     from b_ord_main
     where ifnull(flag,'') != 'N'
 
