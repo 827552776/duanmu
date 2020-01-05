@@ -13,6 +13,22 @@ public class AccessMaterial extends BaseModel{
      */
     private String mName;
     /**
+     * 批号
+     */
+    private String batch;
+    /**
+     * 派工号
+     */
+    private String dispatch;
+    /**
+     * 材质
+     */
+    private String texture;
+    /**
+     * 单位
+     */
+    private String company;
+    /**
      * 入库数量
      */
     private Long intNumber;
@@ -62,6 +78,10 @@ public class AccessMaterial extends BaseModel{
         return "AccessMaterial{" +
                 "name='" + name + '\'' +
                 ", mName='" + mName + '\'' +
+                ", batch='" + batch + '\'' +
+                ", dispatch='" + dispatch + '\'' +
+                ", texture='" + texture + '\'' +
+                ", company='" + company + '\'' +
                 ", intNumber=" + intNumber +
                 ", intTime=" + intTime +
                 ", number=" + number +
@@ -74,6 +94,38 @@ public class AccessMaterial extends BaseModel{
                 ", type='" + type + '\'' +
                 ", remarks='" + remarks + '\'' +
                 '}';
+    }
+
+    public String getBatch() {
+        return batch;
+    }
+
+    public void setBatch(String batch) {
+        this.batch = batch;
+    }
+
+    public String getDispatch() {
+        return dispatch;
+    }
+
+    public void setDispatch(String dispatch) {
+        this.dispatch = dispatch;
+    }
+
+    public String getTexture() {
+        return texture;
+    }
+
+    public void setTexture(String texture) {
+        this.texture = texture;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
     }
 
     public String getmName() {

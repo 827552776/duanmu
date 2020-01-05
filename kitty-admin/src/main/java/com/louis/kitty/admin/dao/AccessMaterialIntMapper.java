@@ -7,9 +7,10 @@ import java.util.List;
 
 public interface AccessMaterialIntMapper {
     List<AccessMaterial> findPage1();
-    List<AccessMaterial> findPage();
+    List<AccessMaterial> findPageT();
     int insertSelective(AccessMaterial record);
 
     int updateByPrimaryKeySelective(AccessMaterial record);
     List<AccessMaterial> findPageByType(@Param(value="type") String type);
+    List<AccessMaterial> findPageByName(@Param(value="name") String name);
 }

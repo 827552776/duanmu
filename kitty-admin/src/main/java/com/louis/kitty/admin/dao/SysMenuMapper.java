@@ -21,11 +21,11 @@ public interface SysMenuMapper {
     
 	List<SysMenu> findPage();
 
-	List<SysMenu> findPageByName(@Param(value="name") String name);
+	List<SysMenu> findPageByName(@Param(value = "name") String name);
 	
 	List<SysMenu> findAll();
 
-	List<SysMenu> findByUserName(@Param(value="userName") String userName);
+	List<SysMenu> findByUserName(@Param(value = "userName") String userName);
 
-	List<SysMenu> findRoleMenus(@Param(value="roleId") Long roleId);
+	List<SysMenu> findRoleMenus(@Param(value = "roleId") Long roleId);
 }

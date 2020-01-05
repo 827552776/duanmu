@@ -78,7 +78,7 @@ public class SysLoginController {
 		
 		// 用户信息
 		SysUser user = sysUserService.findByName(userName);
-//
+
 //		// 账号不存在、密码错误
 //		if (user == null) {
 //			return HttpResult.error("账号不存在");

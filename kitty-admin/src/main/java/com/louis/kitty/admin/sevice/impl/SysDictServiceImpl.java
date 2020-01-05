@@ -50,7 +50,6 @@ public class SysDictServiceImpl  implements SysDictService {
 		ColumnFilter columnFilter = pageRequest.getColumnFilter("label");
 		if(columnFilter != null) {
 			return MybatisPageHelper.findPage(pageRequest, sysDictMapper, "findPageByLabel", columnFilter.getValue());
-
 		}
 		return MybatisPageHelper.findPage(pageRequest, sysDictMapper);
 	}
