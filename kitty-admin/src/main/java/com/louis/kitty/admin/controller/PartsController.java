@@ -53,6 +53,11 @@ public class PartsController {
     public HttpResult findPageD(@RequestBody Filter filter) {
         return HttpResult.ok(partsService.findPageD(filter));
     }
+    //查询待入库合格品部件
+    @PostMapping(value="/findPageDn")
+    public HttpResult findPageDn(@RequestBody Filter filter) {
+        return HttpResult.ok(partsService.findPageDn(filter));
+    }
     //修改工艺流程
     @PostMapping(value="/saveCraft")
     public HttpResult saveCraft(@RequestBody Parts parts){

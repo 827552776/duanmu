@@ -19,6 +19,8 @@ public class Check extends BaseModel{
 
     private Date createTime;
 
+    private String shuxing;
+
     public Date getCreateTime() {
         return createTime;
     }
@@ -134,4 +136,12 @@ public class Check extends BaseModel{
     private BigDecimal gongShi;
 
     private BigDecimal others;
+
+    public String getShuxing() {
+        return shuxing;
+    }
+
+    public void setShuxing(String shuxing) {
+        this.shuxing = shuxing;
+    }
 }

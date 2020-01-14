@@ -75,10 +75,13 @@
     and shuxing = '铸造'
   </select>
   <select id="findPageQuery" resultMap="BaseResultMap">
-    select
-    *,(case when ord_sts='A' then '已录入' when ord_sts='B' then '已预估成本' when ord_sts='C' then '已拆单' end) sts
-    from b_ord_main
-    where ifnull(flag,'') != 'N'
+   select
+    o.*
+    from b_ord_main o  join b_parts p on p.f_id = o.id
+    where
+     p.attribute = '通用件'
+     and p.sts = 'D'
+    and ifnull(o.flag,'') != 'N'
   </select>
 
   <select id="findPageAb" resultMap="BaseResultMap">
@@ -121,10 +124,13 @@
     <bind name="pattern" value="'%' + _parameter.cust+ '%'" />
     <bind name="pattern1" value="'%' + _parameter.mouldNm+ '%'" />
     select
-    *
-    from b_ord_main where
-    cust like #{pattern}
-    and mould_nm like #{pattern1}
+    o.*
+    from b_ord_main o  join b_parts p on p.f_id = o.id
+    where
+    p.attribute = '通用件'
+    and p.sts = 'D'
+    and o.cust like #{pattern}
+    and o.mould_nm like #{pattern1}
     and  ifnull(flag,'') != 'N'
   </select>
 

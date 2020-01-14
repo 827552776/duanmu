@@ -17,6 +17,7 @@ public interface PartsService extends CurdService<Parts> {
     List<Parts> queryParts(OrderMain orderMain);
     List<Parts> findPagePp(Filter filter);
     List<Parts> findPageD(Filter filter);
+    List<Parts> findPageDn(Filter filter);
     int updatePick(Parts parts);
     int updateStsC(Parts parts);
     int updateStsB(Parts parts);

@@ -14,6 +14,7 @@ import org.apache.commons.lang.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -96,6 +97,13 @@ public class PartsServiceImpl implements PartsService{
     }
 
     @Override
+    public List<Parts> findPageDn(Filter filter) {
+        String name = filter.getName();
+        String mouldNm = filter.getMouldNm();
+        return partsMapper.findPageDn(name,mouldNm);
+    }
+
+    @Override
     public int updatePick(Parts parts) {
         Long id = parts.getId();
         return partsMapper.updatePick(id);
@@ -103,8 +111,8 @@ public class PartsServiceImpl implements PartsService{
 
     @Override
     public int updateStsC(Parts parts) {
-        Long id = parts.getId();
-        return partsMapper.updateStsC(id);
+
+        return partsMapper.updateStsC(parts);
     }
     @Override
     public int updateStsB(Parts parts) {

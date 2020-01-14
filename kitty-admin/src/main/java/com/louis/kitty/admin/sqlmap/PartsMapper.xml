@@ -20,6 +20,8 @@
         <result column="is_buy" jdbcType="VARCHAR" property="isBuy"/>
         <result column="supplier" jdbcType="VARCHAR" property="supplier"/>
         <result column="mould_nm" jdbcType="VARCHAR" property="mouldNm" />
+        <result column="lot_no" jdbcType="VARCHAR" property="lotNo" />
+        <result column="cust" jdbcType="VARCHAR" property="cust" />
         <result column="dispatch_no" jdbcType="VARCHAR" property="dispatchNo"/>
         <result column="buy_material" jdbcType="VARCHAR" property="buyMaterial" />
         <result column="flow" jdbcType="VARCHAR" property="flow" />
@@ -29,6 +31,8 @@
         <result column="remarks" jdbcType="VARCHAR" property="remarks" />
         <result column="tem_purch" jdbcType="VARCHAR" property="temPurch" />
         <result column="is_pick" jdbcType="VARCHAR" property="isPick" />
+        <result column="part_price" jdbcType="DECIMAL" property="partPrice" />
+        <result column="buhege" jdbcType="VARCHAR" property="buhege" />
     </resultMap>
     <insert id="insert" parameterType="com.louis.kitty.admin.model.Parts">
         insert into b_parts (id,f_id,create_time,create_by,name,specs,modle,ask,input_value,attribute,quantity,sts,is_buy,supplier)
@@ -55,7 +59,7 @@
     </insert>
     <select id="findPage" resultMap="BaseResultMap">
         select
-        p.*
+        *
         from b_parts p,b_ord_main o where p.f_id = o.id
         and o.ord_sts = 'C'
         and p.sts = 'A'
@@ -63,7 +67,7 @@
     </select>
     <select id="findPage1" resultMap="BaseResultMap">
         select
-        p.*
+        *
         from b_parts p,b_ord_main o where p.f_id = o.id
         and o.ord_sts = 'C'
         and p.sts = 'B'
@@ -117,7 +121,7 @@
     </select>
     <select id="findPagePp" resultMap="BaseResultMap">
         SELECT
-        p.*,o.mould_nm,o.buy_material,o.dispatch_no,
+        *,
         (case when sts='A' then '工艺编制' when sts='B' then '正在投产' when sts='C' then '生产结束待质检'
          when sts='D' then '质检合格待入库' end) st
         FROM
@@ -131,13 +135,23 @@
     </select>
     <select id="findPageD" resultMap="BaseResultMap">
         SELECT
-        p.*,o.mould_nm,o.buy_material,o.dispatch_no
-
+        *
         FROM
         b_parts p LEFT JOIN b_ord_main o
         ON
         p.f_id = o.id
         WHERE p.sts = 'D'
+        AND ifnull(p.name,'') like concat ('%',#{param1,jdbcType=VARCHAR},'%')
+        AND ifnull(o.mould_nm,'') like concat ('%',#{param2,jdbcType=VARCHAR},'%')
+    </select>
+    <select id="findPageDn" resultMap="BaseResultMap">
+        SELECT
+        *
+        FROM
+        b_parts p LEFT JOIN b_ord_main o
+        ON
+        p.f_id = o.id
+        WHERE p.buhege = 'Y'
         AND ifnull(p.name,'') like concat ('%',#{param1,jdbcType=VARCHAR},'%')
         AND ifnull(o.mould_nm,'') like concat ('%',#{param2,jdbcType=VARCHAR},'%')
     </select>
@@ -170,9 +184,10 @@
         last_update_time = #{lastUpdateTime,jdbcType=DATE}
         where id = #{id,jdbcType=BIGINT}
     </update>
-    <update id="updateStsC" parameterType="java.lang.Long">
+    <update id="updateStsC" parameterType="com.louis.kitty.admin.model.Parts">
         update b_parts
         set sts = 'C',
+        part_price = #{partPrice,jdbcType=DECIMAL},
         last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
         last_update_time = now()
         where id = #{id,jdbcType=BIGINT}
@@ -194,6 +209,7 @@
     <update id="updateStsA" parameterType="java.lang.Long">
         update b_parts
         set sts = 'A',
+        buhege = 'Y',
         last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
         last_update_time = now()
         where id = #{id,jdbcType=BIGINT}
@@ -219,7 +235,7 @@
     <select id="findPageByLabel" resultMap="BaseResultMap" parameterType="java.lang.String">
         <bind name="pattern" value="'%' + _parameter.name+ '%'" />
         select
-        p.*
+        *
         from b_parts p,b_ord_main o where p.f_id = o.id
         and o.ord_sts = 'C'
         and p.sts = 'B'
@@ -229,7 +245,7 @@
     <select id="findPageBy" resultMap="BaseResultMap" parameterType="java.lang.String">
     <bind name="pattern" value="'%' + _parameter.name+ '%'" />
     select
-    p.*
+    *
     from b_parts p,b_ord_main o where p.f_id = o.id
     and o.ord_sts = 'C'
     and p.sts = 'A'

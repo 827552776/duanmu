@@ -4,6 +4,7 @@ import com.louis.kitty.admin.model.OrderMain;
 import com.louis.kitty.admin.model.Parts;
 import org.apache.ibatis.annotations.Param;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface PartsMapper {
@@ -16,6 +17,7 @@ public interface PartsMapper {
     List<Parts> findPagePi();
     List<Parts> findPagePp(String name,String mouldNm);
     List<Parts> findPageD(String name,String mouldNm);
+    List<Parts> findPageDn(String name,String mouldNm);
     List<Parts> findPageBy(@Param(value="name") String name);
     List<Parts> findPageByQc(@Param(value="name") String name);
     List<Parts> findPageByPr(@Param(value="name") String name);
@@ -27,7 +29,7 @@ public interface PartsMapper {
     String queryCraft(Long id);
     List<Parts> queryParts(String fid);
     int updatePick(Long id);
-    int updateStsC(Long id);
+    int updateStsC(Parts parts);
     int updateStsB(Long id);
     int updateStsA(Long id);
     int updateStsAA(Parts parts);
