@@ -5,6 +5,10 @@
      <id column="id" jdbcType="BIGINT" property="id" />
     <result column="m_name" jdbcType="VARCHAR" property="mName" />
     <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="dispatch" jdbcType="VARCHAR" property="dispatch" />
+    <result column="batch" jdbcType="VARCHAR" property="batch" />
+    <result column="texture" jdbcType="VARCHAR" property="texture" />
+    <result column="company" jdbcType="VARCHAR" property="company" />
     <result column="int_time" jdbcType="TIMESTAMP" property="intTime" />
     <result column="int_number" jdbcType="BIGINT" property="intNumber" />
     <result column="tr_time" jdbcType="TIMESTAMP" property="trTime" />
@@ -22,7 +26,7 @@
     <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id,name,m_name,int_time,int_number,tr_time,number,waixie,wx_time,wx_int,wx_number,wx_price,type,remarks, create_by, create_time, last_update_by,
+    id,name,m_name,dispatch,batch,texture,company,int_time,int_number,tr_time,number,waixie,wx_time,wx_int,wx_number,wx_price,type,remarks, create_by, create_time, last_update_by,
     last_update_time
   </sql>
 
@@ -43,6 +47,18 @@
       </if>
       <if test="name != null">
         name,
+      </if>
+      <if test="dispatch != null">
+        dispatch,
+      </if>
+      <if test="batch != null">
+        batch,
+      </if>
+      <if test="texture != null">
+        texture,
+      </if>
+      <if test="company != null">
+        company,
       </if>
       <if test="intTime != null">
         int_time,
@@ -102,6 +118,18 @@
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
+      <if test="dispatch != null">
+        #{dispatch,jdbcType=VARCHAR},
+      </if>
+      <if test="batch != null">
+        #{batch,jdbcType=VARCHAR},
+      </if>
+      <if test="texture != null">
+        #{texture,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null">
+        #{company,jdbcType=VARCHAR},
+      </if>
       <if test="intTime != null">
         #{intTime,jdbcType=TIMESTAMP},
       </if>
@@ -159,6 +187,18 @@
       </if>
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="dispatch != null">
+        dispatch = #{dispatch,jdbcType=VARCHAR},
+      </if>
+      <if test="batch != null">
+        batch = #{batch,jdbcType=VARCHAR},
+      </if>
+      <if test="texture != null">
+        texture = #{texture,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null">
+        company = #{company,jdbcType=VARCHAR},
       </if>
       <if test="intTime != null">
         int_time = #{intTime,jdbcType=TIMESTAMP},

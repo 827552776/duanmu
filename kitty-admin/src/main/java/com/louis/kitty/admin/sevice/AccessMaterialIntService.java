@@ -7,4 +7,5 @@ import com.louis.kitty.core.service.CurdService;
 
 public interface AccessMaterialIntService extends CurdService<AccessMaterial> {
     PageResult findPage1(PageRequest pageRequest);
+    PageResult findPageT(PageRequest pageRequest);
 }

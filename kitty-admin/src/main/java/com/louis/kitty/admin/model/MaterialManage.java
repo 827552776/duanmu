@@ -15,6 +15,14 @@ public class MaterialManage extends BaseModel{
      */
     private String mName;
     /**
+     * 单位
+     */
+    private String company;
+    /**
+     * 材质
+     */
+    private String texture;
+    /**
      * 库存数量
      */
     private Long number;
@@ -60,6 +68,8 @@ public class MaterialManage extends BaseModel{
         return "MaterialManage{" +
                 "name='" + name + '\'' +
                 ", mName='" + mName + '\'' +
+                ", company='" + company + '\'' +
+                ", texture='" + texture + '\'' +
                 ", number=" + number +
                 ", size='" + size + '\'' +
                 ", price=" + price +
@@ -71,6 +81,22 @@ public class MaterialManage extends BaseModel{
                 ", invoice='" + invoice + '\'' +
                 ", remarks='" + remarks + '\'' +
                 '}';
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
+    public String getTexture() {
+        return texture;
+    }
+
+    public void setTexture(String texture) {
+        this.texture = texture;
     }
 
     public String getmName() {

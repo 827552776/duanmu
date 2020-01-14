@@ -35,7 +35,7 @@ public class AccessMaterialController {
      */
     @PostMapping(value = "/findA")
     public HttpResult findPageA(@RequestBody PageRequest pageRequest) {
-        return HttpResult.ok(accessMaterialIntService.findPage(pageRequest));
+        return HttpResult.ok(accessMaterialIntService.findPageT(pageRequest));
     }
     @PostMapping(value = "/findR")
     public HttpResult findPage1(@RequestBody PageRequest pageRequest){
