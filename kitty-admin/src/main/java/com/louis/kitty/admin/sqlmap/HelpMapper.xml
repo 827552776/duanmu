@@ -3,7 +3,7 @@
 <mapper namespace="com.louis.kitty.admin.dao.HelpMapper">
     <resultMap id="BaseResultMap" type="com.louis.kitty.admin.model.Help">
         <id column="id" jdbcType="BIGINT" property="id" />
-        <result column="f_id" jdbcType="BIGINT" property="fId" />
+        <result column="f_id" jdbcType="VARCHAR" property="fId" />
         <result column="last_update_time" jdbcType="DATE" property="lastUpdateTime" />
         <result column="last_update_by" jdbcType="VARCHAR" property="lastUpdateBy" />
         <result column="create_time" jdbcType="DATE" property="createTime" />
@@ -14,18 +14,20 @@
         <result column="end_date" jdbcType="DATE" property="endDate" />
         <result column="price" jdbcType="DECIMAL" property="price" />
         <result column="help_remarks" jdbcType="VARCHAR" property="helpRemarks"/>
+        <result column="help_quan" jdbcType="VARCHAR" property="helpQuan"/>
+        <result column="pay_date" jdbcType="DATE" property="payDate"/>
     </resultMap>
     <insert id="insert" parameterType="com.louis.kitty.admin.model.Help">
-        insert into b_help (id,f_id,create_time,create_by,work,help_nm,start_date,end_date,price,help_remarks)
-        values (#{id,jdbcType=BIGINT},#{fId,jdbcType=BIGINT}, #{createTime,jdbcType=DATE}, #{createBy,jdbcType=VARCHAR},
+        insert into b_help (id,f_id,create_time,create_by,work,help_nm,start_date,end_date,price,help_remarks,help_quan,pay_date)
+        values (#{id,jdbcType=BIGINT},#{fId,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, #{createBy,jdbcType=VARCHAR},
         #{work,jdbcType=VARCHAR}, #{helpNm,jdbcType=VARCHAR},#{startDate,jdbcType=DATE},#{endDate,jdbcType=DATE},
-        #{price,jdbcType=DECIMAL},#{helpRemarks,jdbcType=VARCHAR})
+        #{price,jdbcType=DECIMAL},#{helpRemarks,jdbcType=VARCHAR},#{helpQuan,jdbcType=VARCHAR},#{payDate,jdbcType=DATE})
     </insert>
     <select id="query" resultMap="BaseResultMap">
         select
         *
         from b_help
-        where f_id = #{param1,jdbcType=BIGINT}
+        where f_id = #{param1,jdbcType=VARCHAR}
     </select>
     <update id="update" parameterType="com.louis.kitty.admin.model.Help">
         update b_help
@@ -37,7 +39,9 @@
         start_date = #{startDate,jdbcType=DATE},
         end_date = #{endDate,jdbcType=DATE},
         price =#{price,jdbcType=DECIMAL},
-        help_remarks = #{helpRemarks,jdbcType=VARCHAR}
+        help_remarks = #{helpRemarks,jdbcType=VARCHAR},
+        help_quan = #{helpQuan,jdbcType=VARCHAR},
+        pay_date = #{payDate,jdbcType=DATE}
         where id = #{id,jdbcType=BIGINT}
     </update>
 

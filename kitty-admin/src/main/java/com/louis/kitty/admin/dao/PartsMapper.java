@@ -10,6 +10,8 @@ import java.util.List;
 public interface PartsMapper {
     int insert(Parts parts);
     int insertStsD(Parts parts);
+    int queryByFid(String fId);
+    int queryByFidd(String fId);
     List<Parts> findPage();
     List<Parts> findPage1();
     List<Parts> findPageQc();

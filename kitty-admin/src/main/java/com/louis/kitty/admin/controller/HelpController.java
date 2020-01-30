@@ -1,6 +1,7 @@
 package com.louis.kitty.admin.controller;
 
 import com.louis.kitty.admin.model.Check;
+import com.louis.kitty.admin.model.Core;
 import com.louis.kitty.admin.model.Help;
 import com.louis.kitty.admin.model.Parts;
 import com.louis.kitty.admin.sevice.HelpService;
@@ -23,7 +24,7 @@ public class HelpController {
         return HttpResult.ok(result);
     }
     @PostMapping(value="/query")
-    public HttpResult query(@RequestBody Parts parts){
-        return HttpResult.ok(helpService.query(parts));
+    public HttpResult query(@RequestBody Core core){
+        return HttpResult.ok(helpService.query(core));
     }
 }

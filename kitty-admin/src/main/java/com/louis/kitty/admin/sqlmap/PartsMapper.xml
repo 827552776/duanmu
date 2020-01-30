@@ -57,6 +57,23 @@
         #{supplier,jdbcType=VARCHAR},#{applicant,jdbcType=VARCHAR},#{dept,jdbcType=VARCHAR},
         #{budget,jdbcType=VARCHAR},#{remarks,jdbcType=VARCHAR},#{temPurch,jdbcType=VARCHAR})
     </insert>
+    <select id="queryByFid" resultType="java.lang.Integer">
+        select
+        count(id)
+        from b_parts
+        where
+       attribute = '通用件'
+        and f_id = #{fId,jdbcType=VARCHAR}
+    </select>
+    <select id="queryByFidd" resultType="java.lang.Integer">
+        select
+        count(id)
+        from b_parts
+        where
+        sts = 'D'
+        and attribute = '通用件'
+        and f_id = #{fId,jdbcType=VARCHAR}
+    </select>
     <select id="findPage" resultMap="BaseResultMap">
         select
         *

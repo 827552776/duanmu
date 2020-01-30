@@ -1,5 +1,7 @@
 package com.louis.kitty.admin.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class OrderMain {
@@ -162,6 +164,67 @@ public class OrderMain {
     private String ordSts;
 
     private String sts;
+
+    public Date getWareDate() {
+        return wareDate;
+    }
+
+    public void setWareDate(Date wareDate) {
+        this.wareDate = wareDate;
+    }
+
+    public Date getOutDate() {
+        return outDate;
+    }
+
+    public void setOutDate(Date outDate) {
+        this.outDate = outDate;
+    }
+
+    public Integer getWareNum() {
+        return wareNum;
+    }
+
+    public void setWareNum(Integer wareNum) {
+        this.wareNum = wareNum;
+    }
+
+    public Integer getOutNum() {
+        return outNum;
+    }
+
+    public void setOutNum(Integer outNum) {
+        this.outNum = outNum;
+    }
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
+    private Date wareDate;
+
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
+    private Date outDate;
+
+    private Integer wareNum;
+
+    private Integer outNum;
+
+    private Integer isWare;
+
+    public Integer getIsOut() {
+        return isOut;
+    }
+
+    public void setIsOut(Integer isOut) {
+        this.isOut = isOut;
+    }
+
+    private Integer isOut;
+
+    public Integer getIsWare() {
+        return isWare;
+    }
+
+    public void setIsWare(Integer isWare) {
+        this.isWare = isWare;
+    }
 
     public String getSts() {
         return sts;

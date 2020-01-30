@@ -3,17 +3,37 @@ package com.louis.kitty.admin.model;
 import java.util.Date;
 
 public class Help extends BaseModel{
-    private Integer fId;
+    private String fId;
 
     private String work;
 
+    public String getHelpQuan() {
+        return helpQuan;
+    }
+
+    public void setHelpQuan(String helpQuan) {
+        this.helpQuan = helpQuan;
+    }
+
+    public Date getPayDate() {
+        return payDate;
+    }
+
+    public void setPayDate(Date payDate) {
+        this.payDate = payDate;
+    }
+
     private String helpNm;
 
-    public Integer getfId() {
+    private String helpQuan;
+
+    private Date payDate;
+
+    public String getfId() {
         return fId;
     }
 
-    public void setfId(Integer fId) {
+    public void setfId(String fId) {
         this.fId = fId;
     }
 

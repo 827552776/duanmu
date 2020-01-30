@@ -1,11 +1,13 @@
 package com.louis.kitty.admin.controller;
 
+import com.louis.kitty.admin.model.Ware;
 import com.louis.kitty.core.http.HttpResult;
 import com.louis.kitty.admin.model.OrderMain;
 import com.louis.kitty.admin.sevice.OrderMainService;
 import com.louis.kitty.core.page.PageRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import com.louis.kitty.admin.model.Out;
 
 import java.util.List;
 
@@ -42,11 +44,26 @@ public class OrderMainController {
         return HttpResult.ok(orderMainService.findPageZhu(pageRequest));
     }
 
-    //查询状态A和B
+    //查询状态A1和B
     @PostMapping(value="/findPageAb")
     public HttpResult findPageAb(@RequestBody PageRequest pageRequest) {
         return HttpResult.ok(orderMainService.findPageAb(pageRequest));
     }
+    //保存入库信息
+    @PostMapping(value="/updateWare")
+    public HttpResult updateWare(@RequestBody Ware ware){
+        int result = 0;
+        result = orderMainService.updateWare(ware);
+        return HttpResult.ok(result);
+    }
+    //保存出库信息
+    @PostMapping(value="/updateOut")
+    public HttpResult updateOut(@RequestBody Out out){
+        int result = 0;
+        result = orderMainService.updateOut(out);
+        return HttpResult.ok(result);
+    }
+
     @PostMapping(value="/updateSts")
     public HttpResult updateSts(@RequestBody OrderMain main){
         int result = 0;

@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface HelpMapper {
     int insert(Help help);
-    List<Help> query(Long fId);
+    List<Help> query(String fId);
     int update(Help help);
 }

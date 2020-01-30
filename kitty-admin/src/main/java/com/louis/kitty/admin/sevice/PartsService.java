@@ -22,7 +22,7 @@ public interface PartsService extends CurdService<Parts> {
     int updateStsC(Parts parts);
     int updateStsB(Parts parts);
     int updateStsA(Parts parts);
-    int updateStsD(Parts parts);
+    Integer updateStsD(Parts parts);
     int deleteParts(Parts parts);
     PageResult findPageQc(PageRequest pageRequest);
     PageResult findPagePr(PageRequest pageRequest);

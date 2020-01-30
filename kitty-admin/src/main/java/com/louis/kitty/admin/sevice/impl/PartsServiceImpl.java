@@ -1,20 +1,18 @@
 package com.louis.kitty.admin.sevice.impl;
 
+import com.louis.kitty.admin.dao.OrderMainMapper;
 import com.louis.kitty.admin.dao.PartsMapper;
 import com.louis.kitty.admin.model.Filter;
 import com.louis.kitty.admin.model.OrderMain;
 import com.louis.kitty.admin.model.Parts;
 import com.louis.kitty.admin.sevice.PartsService;
-import com.louis.kitty.common.utils.StringUtils;
 import com.louis.kitty.core.page.ColumnFilter;
 import com.louis.kitty.core.page.MybatisPageHelper;
 import com.louis.kitty.core.page.PageRequest;
 import com.louis.kitty.core.page.PageResult;
-import org.apache.commons.lang.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -22,6 +20,8 @@ public class PartsServiceImpl implements PartsService{
     int n = 0;
     @Autowired
     private PartsMapper partsMapper;
+    @Autowired
+    private OrderMainMapper orderMainMapper;
     @Override
     public int save(Parts record) {
         return partsMapper.insert(record);
@@ -125,9 +125,16 @@ public class PartsServiceImpl implements PartsService{
         return partsMapper.updateStsA(id);
     }
     @Override
-    public int updateStsD(Parts parts) {
+    public Integer updateStsD(Parts parts) {
         Long id = parts.getId();
-        return partsMapper.updateStsD(id);
+        String fId = parts.getfId();
+         partsMapper.updateStsD(id);
+         Integer total = partsMapper.queryByFid(fId);
+         Integer totalD = partsMapper.queryByFidd(fId);
+         if(total==totalD){
+             orderMainMapper.updateStsD(fId);
+         }
+         return 0;
     }
     @Override
     public int deleteParts(Parts parts) {
