@@ -12,7 +12,7 @@
 
 	<groupId>com.louis</groupId>
 	<artifactId>kitty-common</artifactId>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	<version>1.0.0</version>
 	<name>kitty-common</name>
 	<description>kitty-common</description>
@@ -26,4 +26,8 @@
 	<dependencies>
 
 	</dependencies>
+	<build>
+		<plugins> <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-war-plugin</artifactId> <version>3.1.0</version> <configuration> <failOnMissingWebXml>false</failOnMissingWebXml> </configuration> </plugin> </plugins>
+	</build>
+
 </project>

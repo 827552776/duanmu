@@ -13,7 +13,7 @@
 	<groupId>com.louis</groupId>
 	<artifactId>kitty-backup</artifactId>
 	<version>${project.version}</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	
 	<name>kitty-backup</name>
 	<description>kitty backup service</description>

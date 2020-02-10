@@ -9,6 +9,10 @@ public class Welding  extends BaseModel{
      */
     private String name;
     /**
+     * 来源
+     */
+    private String source;
+    /**
      * 发货出库时间
      */
     private Date deTime;
@@ -36,6 +40,10 @@ public class Welding  extends BaseModel{
      * 自用出库数量
      */
     private Date outTime;
+    /**
+     *型号
+     */
+    private  String model;
     /**
      * 自用出库
      */
@@ -65,10 +73,12 @@ public class Welding  extends BaseModel{
      */
     private String remarks;
 
+
     @Override
     public String toString() {
         return "Welding{" +
                 "name='" + name + '\'' +
+                ", source='" + source + '\'' +
                 ", deTime=" + deTime +
                 ", deCompany='" + deCompany + '\'' +
                 ", deNumber=" + deNumber +
@@ -76,6 +86,7 @@ public class Welding  extends BaseModel{
                 ", price=" + price +
                 ", intTime=" + intTime +
                 ", outTime=" + outTime +
+                ", model='" + model + '\'' +
                 ", reNumber=" + reNumber +
                 ", number=" + number +
                 ", sNumber=" + sNumber +
@@ -84,6 +95,22 @@ public class Welding  extends BaseModel{
                 ", zu='" + zu + '\'' +
                 ", remarks='" + remarks + '\'' +
                 '}';
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
     }
 
     public int getType() {

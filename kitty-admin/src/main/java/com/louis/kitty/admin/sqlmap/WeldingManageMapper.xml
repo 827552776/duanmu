@@ -25,7 +25,10 @@
     id,name,number,model,source,company,price,int_number,out_number,type,type_number,sure_number,difference,remarks ,create_by, create_time, last_update_by,
     last_update_time
   </sql>
-
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tr_welding_manage
+    where id = #{id,jdbcType=BIGINT}
+     </delete>
     <select id="findPage" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
@@ -36,6 +39,15 @@
         <include refid="Base_Column_List" />
         from tr_welding_manage
         where type ='1'
+    </select>
+    <select id="findPageByNameAndSource" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <bind name="pattern" value="'%' + _parameter.name + '%'" />
+        <bind name="pattern1" value="'%' + _parameter.source + '%'" />
+        select
+        <include refid="Base_Column_List" />
+        from tr_welding_manage
+        where name like #{pattern}
+        and source like #{pattern1}
     </select>
     <insert id="insertSelective" parameterType="com.louis.kitty.admin.model.WeldingManage">
         insert into tr_welding_manage

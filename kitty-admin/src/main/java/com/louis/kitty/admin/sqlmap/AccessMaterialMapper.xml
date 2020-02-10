@@ -34,7 +34,7 @@
     select 
     <include refid="Base_Column_List" />
     from tr_material_access
-    where type = '0'
+    where type = '0' and wx_number != ''
   </select>
   <insert id="insertSelective" parameterType="com.louis.kitty.admin.model.AccessStock">
     insert into tr_material_access

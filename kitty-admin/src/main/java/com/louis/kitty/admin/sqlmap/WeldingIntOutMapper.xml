@@ -6,6 +6,8 @@
         <result column="name" jdbcType="VARCHAR" property="name" />
         <result column="de_time" jdbcType="TIMESTAMP" property="deTime" />
         <result column="de_company" jdbcType="VARCHAR" property="deCompany" />
+        <result column="source" jdbcType="VARCHAR" property="source" />
+        <result column="model" jdbcType="VARCHAR" property="model" />
         <result column="de_number" jdbcType="BIGINT" property="deNumber" />
         <result column="company" jdbcType="VARCHAR" property="company" />
         <result column="price" jdbcType="DECIMAL" property="price" />
@@ -24,7 +26,7 @@
         <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
     </resultMap>
     <sql id="Base_Column_List">
-    id,name,de_time,de_company,de_number,company,price,out_time,int_time,re_number,number,s_number,type,mould_name,zu,remarks ,create_by, create_time, last_update_by,
+    id,name,de_time,de_company,de_number,source,model,company,price,out_time,int_time,re_number,number,s_number,type,mould_name,zu,remarks ,create_by, create_time, last_update_by,
     last_update_time
   </sql>
 
@@ -32,6 +34,7 @@
         select
         <include refid="Base_Column_List" />
         from tr_welding_int_out
+        where type = '0'
     </select>
     <select id="findPageAb" resultMap="BaseResultMap">
         select
@@ -48,38 +51,50 @@
             <if test="name != null">
                 name,
             </if>
-            <if test="model != null">
-                model,
+            <if test="deTime != null">
+                de_time,
+            </if>
+            <if test="deCompany != null">
+                de_company,
             </if>
             <if test="source != null">
                 source,
             </if>
-            <if test="number != null">
-                number,
+            <if test="model != null">
+                model,
             </if>
             <if test="company != null">
                 company,
             </if>
+            <if test="deNumber != null">
+                de_number,
+            </if>
             <if test="price != null">
                 price,
             </if>
-            <if test="difference != null">
-                difference,
+            <if test="intTime != null">
+                int_time,
             </if>
-            <if test="intNumber != null">
-                int_number,
+            <if test="outTime != null">
+                out_time,
             </if>
-            <if test="outNumber != null">
-                out_number,
+            <if test="reNumber != null">
+                re_number,
+            </if>
+            <if test="number != null">
+                number,
+            </if>
+            <if test="sNumber != null">
+                s_number,
             </if>
             <if test="type != null">
                 type,
             </if>
-            <if test="typeNumber != null">
-                type_number,
+            <if test="mouldName != null">
+                mould_name,
             </if>
-            <if test="sureNumber != null">
-                sure_number,
+            <if test="zu != null">
+                zu,
             </if>
             <if test="remarks != null">
                 remarks,
@@ -106,38 +121,50 @@
             <if test="name != null">
                 #{name,jdbcType=VARCHAR},
             </if>
-            <if test="model != null">
-                #{model,jdbcType=VARCHAR},
+            <if test="deTime != null">
+                #{deTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deCompany != null">
+                #{deCompany,jdbcType=VARCHAR},
             </if>
             <if test="source != null">
                 #{source,jdbcType=VARCHAR},
             </if>
-            <if test="number != null">
-                #{number,jdbcType=BIGINT},
+            <if test="model != null">
+                #{model,jdbcType=VARCHAR},
             </if>
             <if test="company != null">
                 #{company,jdbcType=VARCHAR},
             </if>
+            <if test="deNumber != null">
+                #{deNumber,jdbcType=BIGINT},
+            </if>
             <if test="price != null">
                 #{price,jdbcType=DECIMAL},
             </if>
-            <if test="difference != null">
-                #{difference,jdbcType=BIGINT},
+            <if test="intTime != null">
+                #{intTime,jdbcType=TIMESTAMP},
             </if>
-            <if test="intNumber != null">
-                #{intNumber,jdbcType=BIGINT},
+            <if test="outTime != null">
+                #{outTime,jdbcType=TIMESTAMP},
             </if>
-            <if test="outNumber != null">
-                #{outNumber,jdbcType=BIGINT},
+            <if test="reNumber != null">
+                #{reNumber,jdbcType=BIGINT},
+            </if>
+            <if test="number != null">
+                #{number,jdbcType=BIGINT},
+            </if>
+            <if test="sNumber != null">
+                #{sNumber,jdbcType=BIGINT},
             </if>
             <if test="type != null">
                 #{type,jdbcType=BIGINT},
             </if>
-            <if test="typeNumber != null">
-                #{typeNumber,jdbcType=BIGINT},
+            <if test="mouldName != null">
+                #{mouldName,jdbcType=VARCHAR},
             </if>
-            <if test="sureNumber != null">
-                #{sureNumber,jdbcType=BIGINT},
+            <if test="zu != null">
+                #{zu,jdbcType=VARCHAR},
             </if>
             <if test="remarks != null">
                 #{remarks,jdbcType=VARCHAR},
@@ -164,41 +191,53 @@
             <if test="name != null">
                 name = #{name,jdbcType=VARCHAR},
             </if>
-            <if test="model != null">
-                model = #{model,jdbcType=VARCHAR},
+            <if test="deTime != null">
+                de_time = #{deTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deCompany != null">
+                de_company = #{deCompany,jdbcType=VARCHAR},
             </if>
             <if test="source != null">
-                source = #{source,jdbcType=VARCHAR},
+                source =  #{source,jdbcType=VARCHAR},
             </if>
-            <if test="number != null">
-                number = #{number,jdbcType=BIGINT},
+            <if test="model != null">
+                model =  #{model,jdbcType=VARCHAR},
             </if>
             <if test="company != null">
                 company =  #{company,jdbcType=VARCHAR},
             </if>
+            <if test="deNumber != null">
+                de_number = #{deNumber,jdbcType=BIGINT},
+            </if>
             <if test="price != null">
                 price = #{price,jdbcType=DECIMAL},
             </if>
-            <if test="difference != null">
-                difference =#{difference,jdbcType=BIGINT},
+            <if test="intTime != null">
+                int_time = #{intTime,jdbcType=TIMESTAMP},
             </if>
-            <if test="intNumber != null">
-                int_number = #{intNumber,jdbcType=BIGINT},
+            <if test="outTime != null">
+                out_time = #{outTime,jdbcType=TIMESTAMP},
             </if>
-            <if test="outNumber != null">
-                out_number = #{outNumber,jdbcType=BIGINT},
+            <if test="reNumber != null">
+                re_number =  #{reNumber,jdbcType=BIGINT},
+            </if>
+            <if test="number != null">
+                number = #{number,jdbcType=BIGINT},
+            </if>
+            <if test="sNumber != null">
+                s_number =  #{sNumber,jdbcType=BIGINT},
             </if>
             <if test="type != null">
                 type = #{type,jdbcType=BIGINT},
             </if>
-            <if test="typeNumber != null">
-                type_number = #{typeNumber,jdbcType=BIGINT},
+            <if test="mouldName != null">
+                mould_number = #{mouldName,jdbcType=VARCHAR},
             </if>
-            <if test="sureNumber != null">
-                sure_number =  #{sureNumber,jdbcType=BIGINT},
+            <if test="zu != null">
+                zu =  #{zu,jdbcType=VARCHAR},
             </if>
             <if test="remarks != null">
-                remarks = #{remarks,jdbcType=TINYINT},
+                remarks = #{remarks,jdbcType=VARCHAR},
             </if>
             <if test="createBy != null">
                 create_by = #{createBy,jdbcType=BIGINT},
