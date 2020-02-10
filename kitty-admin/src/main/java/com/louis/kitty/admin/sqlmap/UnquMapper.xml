@@ -22,7 +22,7 @@
     <select id="query" resultMap="BaseResultMap">
         select
         *
-        from
+        from b_unqu
         where f_id = #{param1,jdbcType=BIGINT}
     </select>
 </mapper>

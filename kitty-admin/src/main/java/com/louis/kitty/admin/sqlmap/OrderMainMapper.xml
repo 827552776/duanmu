@@ -10,7 +10,7 @@
     <result column="lot_no" jdbcType="VARCHAR" property="lotNo" />
     <result column="cust" jdbcType="VARCHAR" property="cust" />
     <result column="mould_nm" jdbcType="VARCHAR" property="mouldNm" />
-    <result column="quantity" jdbcType="VARCHAR" property="quantity" />
+    <result column="quantity" jdbcType="BIGINT" property="quantity" />
     <result column="company" jdbcType="VARCHAR" property="company" />
     <result column="dispatch_no" jdbcType="VARCHAR" property="dispatchNo"/>
     <result column="buy_material" jdbcType="VARCHAR" property="buyMaterial" />
@@ -20,6 +20,12 @@
     <result column="ord_sts" jdbcType="VARCHAR" property="ordSts" />
     <result column="sts" jdbcType="VARCHAR" property="sts" />
     <result column="shuxing" jdbcType="VARCHAR" property="shuxing" />
+    <result column="ware_date" jdbcType="DATE" property="wareDate" />
+    <result column="out_date" jdbcType="DATE" property="outDate" />
+    <result column="ware_num" jdbcType="BIGINT" property="wareNum" />
+    <result column="out_num" jdbcType="BIGINT" property="outNum" />
+    <result column="is_ware" jdbcType="BIGINT" property="isWare"/>
+    <result column="is_out" jdbcType="BIGINT" property="isOut"/>
   </resultMap>
 
   <insert id="insert" parameterType="com.louis.kitty.admin.model.OrderMain">
@@ -36,12 +42,41 @@
     where id = #{id,jdbcType=VARCHAR}
 
   </select>
+  <select id="selectQuan" parameterType="java.lang.String" resultType="java.lang.Integer">
+    select quantity from b_ord_main
+    where id = #{id,jdbcType=VARCHAR}
+
+  </select>
   <update id="update" parameterType="com.louis.kitty.admin.model.OrderMain">
     update b_ord_main
     set lot_no = #{lotNo,jdbcType=VARCHAR},cust = #{cust,jdbcType=VARCHAR},mould_nm = #{mouldNm,jdbcType=VARCHAR},
     quantity = #{quantity,jdbcType=VARCHAR},dispatch_no = #{dispatchNo,jdbcType=VARCHAR},buy_material = #{buyMaterial,jdbcType=VARCHAR},
     remarks = #{remarks,jdbcType=VARCHAR},flag = #{flag,jdbcType=VARCHAR},
     last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},last_update_time = #{lastUpdateTime,jdbcType=DATE}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateWare" parameterType="com.louis.kitty.admin.model.OrderMain">
+    update b_ord_main
+    set ware_date = #{wareDate,jdbcType=DATE},ware_num = #{wareNum,jdbcType=BIGINT},
+    last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},last_update_time = #{lastUpdateTime,jdbcType=DATE}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateOut" parameterType="com.louis.kitty.admin.model.OrderMain">
+    update b_ord_main
+    set out_date = #{outDate,jdbcType=DATE},out_num = #{outNum,jdbcType=BIGINT},
+    last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},last_update_time = #{lastUpdateTime,jdbcType=DATE}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateA1" parameterType="java.lang.String">
+    update b_ord_main
+    set ord_sts = 'A1',
+    is_ware = '1'
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateE" parameterType="java.lang.String">
+    update b_ord_main
+    set
+    is_out = '1'
     where id = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateStsB" parameterType="java.lang.String">
@@ -54,6 +89,11 @@
     set ord_sts = 'C'
     where id = #{id,jdbcType=VARCHAR}
   </update>
+  <update id="updateStsD" parameterType="java.lang.String">
+    update b_ord_main
+    set ord_sts = 'D'
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
   <delete id="delete" parameterType="java.lang.String">
     update  b_ord_main
     set flag = 'N'
@@ -62,36 +102,37 @@
   </delete>
   <select id="findPage" resultMap="BaseResultMap">
     select
-    *,(case when ord_sts='A' then '已录入' when ord_sts='B' then '已预估成本' when ord_sts='C' then '已拆单' end)  sts
+    *,(case when ord_sts='A' then '已录入'when ord_sts='A1' then '已入库' when ord_sts='B' then '已预估成本' when ord_sts='C' then '已拆单' end)  sts
     from b_ord_main
     where ifnull(flag,'') != 'N'
 
   </select>
   <select id="findPageZhu" resultMap="BaseResultMap">
     select
-    *,(case when ord_sts='A' then '已录入' when ord_sts='B' then '已预估成本' when ord_sts='C' then '已拆单' end) sts
+    *,(case when ord_sts='A' then '已录入'when ord_sts='A1' then '已入库' when ord_sts='B' then '已预估成本' when ord_sts='C' then '已拆单' end) sts
     from b_ord_main
     where ifnull(flag,'') != 'N'
     and shuxing = '铸造'
   </select>
   <select id="findPageQuery" resultMap="BaseResultMap">
-    select
-    *,(case when ord_sts='A' then '已录入' when ord_sts='B' then '已预估成本' when ord_sts='C' then '已拆单' end) sts
+   select
+    *,(case when ord_sts='A' then '已录入'when ord_sts='A1' then '已入库' when ord_sts='B' then '已预估成本' when ord_sts='C' then '已拆单' end)  sts
     from b_ord_main
     where ifnull(flag,'') != 'N'
+    and ord_sts = 'D'
   </select>
 
   <select id="findPageAb" resultMap="BaseResultMap">
     select
     *
-    from b_ord_main where ord_sts = 'A'or ord_sts ='B'
+    from b_ord_main where ord_sts = 'A1'or ord_sts ='B'
     and  ifnull(flag,'') != 'N'
   </select>
   <select id="findPageAboo" resultMap="BaseResultMap" parameterType="java.lang.String">
     <bind name="pattern1" value="'%' + _parameter.mouldNm+ '%'" />
   select
   *
-  from b_ord_main where ord_sts = 'A'or ord_sts ='B'
+  from b_ord_main where ord_sts = 'A1'or ord_sts ='B'
   and mould_nm like #{pattern1}
   and  ifnull(flag,'') != 'N'
 </select>
@@ -121,9 +162,11 @@
     <bind name="pattern" value="'%' + _parameter.cust+ '%'" />
     <bind name="pattern1" value="'%' + _parameter.mouldNm+ '%'" />
     select
-    *
-    from b_ord_main where
-    cust like #{pattern}
+    *,(case when ord_sts='A' then '已录入'when ord_sts='A1' then '已入库' when ord_sts='B' then '已预估成本' when ord_sts='C' then '已拆单' end)  sts
+    from b_ord_main
+    where ifnull(flag,'') != 'N'
+    and ord_sts = 'D'
+    and cust like #{pattern}
     and mould_nm like #{pattern1}
     and  ifnull(flag,'') != 'N'
   </select>

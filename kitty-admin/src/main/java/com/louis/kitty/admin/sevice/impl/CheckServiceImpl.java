@@ -37,4 +37,9 @@ public class CheckServiceImpl implements CheckService {
     public PageResult findPage(PageRequest pageRequest) {
         return null;
     }
+
+    @Override
+    public int save1(Check check) {
+        return checkMapper.save1(check);
+    }
 }

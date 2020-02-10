@@ -1,6 +1,7 @@
 package com.louis.kitty.admin.sevice.impl;
 
 import com.louis.kitty.admin.dao.HelpMapper;
+import com.louis.kitty.admin.model.Core;
 import com.louis.kitty.admin.model.Help;
 import com.louis.kitty.admin.model.Parts;
 import com.louis.kitty.admin.sevice.HelpService;
@@ -48,8 +49,8 @@ public class HelpServiceImpl implements HelpService{
     }
 
     @Override
-    public List<Help> query(Parts parts) {
-        Long fId = parts.getId();
+    public List<Help> query(Core core) {
+        String fId = core.getId();
         return helpMapper.query(fId);
     }
 }

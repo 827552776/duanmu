@@ -16,6 +16,7 @@
         <result column="yun_fei" jdbcType="DECIMAL" property="yunFei" />
         <result column="gong_shi" jdbcType="DECIMAL" property="gongShi" />
         <result column="others" jdbcType="DECIMAL" property="others" />
+        <result column="shuxing" jdbcType="VARCHAR" property="shuxing" />
     </resultMap>
     <insert id="save" parameterType="com.louis.kitty.admin.model.Check">
         insert into b_check (id,f_id,create_time,create_by,han_cai,cai,re_ch,wai_wei,wai_gou,yun_fei,gong_shi,others)
@@ -23,6 +24,12 @@
         #{hanCai,jdbcType=DECIMAL},
         #{cai,jdbcType=DECIMAL},#{reCh,jdbcType=DECIMAL},#{waiWei,jdbcType=DECIMAL},#{waiGou,jdbcType=DECIMAL},
         #{yunFei,jdbcType=DECIMAL},#{gongShi,jdbcType=DECIMAL},#{others,jdbcType=DECIMAL})
+    </insert>
+    <insert id="save1" parameterType="com.louis.kitty.admin.model.Check">
+        insert into b_check (id,f_id,create_time,create_by,han_cai,cai,re_ch,gong_shi,others,shuxing)
+        values (#{id,jdbcType=BIGINT},#{fId,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, #{createBy,jdbcType=VARCHAR},
+        #{hanCai,jdbcType=DECIMAL}, #{cai,jdbcType=DECIMAL},#{reCh,jdbcType=DECIMAL},
+        #{gongShi,jdbcType=DECIMAL},#{others,jdbcType=DECIMAL},'Y')
     </insert>
 
 </mapper>

@@ -21,5 +21,11 @@ public class UnquController {
         result = unquService.save(unqu);
         return HttpResult.ok(result);
     }
+    @PostMapping(value="/query")
+    public HttpResult query(@RequestBody Unqu unqu){
+
+
+        return HttpResult.ok(unquService.query(unqu));
+    }
 
 }

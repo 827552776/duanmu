@@ -38,4 +38,10 @@ public class UnquServiceImpl implements UnquService{
     public PageResult findPage(PageRequest pageRequest) {
         return null;
     }
+
+    @Override
+    public List<Unqu> query(Unqu unqu) {
+       Integer fId = unqu.getfId();
+        return unquMapper.query(fId);
+    }
 }

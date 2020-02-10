@@ -21,4 +21,10 @@ public class CheckController {
         result = checkService.save(check);
         return HttpResult.ok(result);
     }
+    @PostMapping(value="/save1")
+    public HttpResult save1(@RequestBody Check check){
+        int result = 0;
+        result = checkService.save1(check);
+        return HttpResult.ok(result);
+    }
 }

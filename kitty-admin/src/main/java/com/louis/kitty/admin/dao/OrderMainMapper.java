@@ -17,9 +17,15 @@ public interface OrderMainMapper {
     List<OrderMain> findPageAboo(@Param(value="mouldNm") String mouldNm);
     List<OrderMain> query(String lotNo,String custNm,String dispatchNo);
     int updateStsB(String id);
+    int updateA1(String id);
+    int updateE(String id);
     int updateStsC(String id);
     List<OrderMain> findPageByLabel(@Param(value="cust") String cust,@Param(value = "mouldNm") String mouldNm);
     List<OrderMain> findPageZhuoo(@Param(value="cust") String cust,@Param(value = "mouldNm") String mouldNm);
     List<OrderMain> findPageQueryoo(@Param(value="cust") String cust,@Param(value = "mouldNm") String mouldNm);
     String selectPrimaryKey();
+    int updateStsD(String id);
+    int updateWare(OrderMain orderMain);
+    int updateOut(OrderMain orderMain);
+    int selectQuan(String id);
 }

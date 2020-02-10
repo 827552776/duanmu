@@ -2,6 +2,8 @@ package com.louis.kitty.admin.sevice.impl;
 
 import com.louis.kitty.admin.dao.OrderMainMapper;
 import com.louis.kitty.admin.model.OrderMain;
+import com.louis.kitty.admin.model.Out;
+import com.louis.kitty.admin.model.Ware;
 import com.louis.kitty.admin.sevice.OrderMainService;
 import com.louis.kitty.core.page.ColumnFilter;
 import com.louis.kitty.core.page.MybatisPageHelper;
@@ -63,6 +65,32 @@ public class OrderMainServiceImpl implements OrderMainService {
     public int updateSts(OrderMain main) {
       String id = main.getId();
         return orderMainMapper.updateStsB(id);
+    }
+
+    @Override
+    public int updateWare(Ware ware) {
+        OrderMain orderMain = new OrderMain();
+        orderMain.setId(ware.getId());
+        orderMain.setWareDate(ware.getWareDate());
+        orderMain.setWareNum(ware.getWareNum());
+        orderMainMapper.updateWare(orderMain);
+        if(orderMainMapper.selectQuan(ware.getId()) == ware.getWareNum()){
+            orderMainMapper.updateA1(ware.getId());
+        }
+        return 0;
+    }
+
+    @Override
+    public int updateOut(Out out) {
+        OrderMain orderMain = new OrderMain();
+        orderMain.setId(out.getId());
+        orderMain.setOutDate(out.getOutDate());
+        orderMain.setOutNum(out.getOutNum());
+        orderMainMapper.updateOut(orderMain);
+        if(orderMainMapper.selectQuan(out.getId()) == out.getOutNum()){
+            orderMainMapper.updateE(out.getId());
+        }
+        return 0;
     }
 
     @Override

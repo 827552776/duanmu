@@ -1,5 +1,6 @@
 package com.louis.kitty.admin.model;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class Parts extends BaseModel{
@@ -38,6 +39,30 @@ public class Parts extends BaseModel{
     private String dept;
 
     private String temPurch;
+
+    private BigDecimal partPrice;
+
+    private String buhege;
+
+    public String getLotNo() {
+        return lotNo;
+    }
+
+    public void setLotNo(String lotNo) {
+        this.lotNo = lotNo;
+    }
+
+    public String getCust() {
+        return cust;
+    }
+
+    public void setCust(String cust) {
+        this.cust = cust;
+    }
+
+    private String lotNo;
+
+    private String cust;
 
     public String getIsPick() {
         return isPick;
@@ -224,5 +249,21 @@ public class Parts extends BaseModel{
 
     public void setFlow(String flow) {
         this.flow = flow;
+    }
+
+    public BigDecimal getPartPrice() {
+        return partPrice;
+    }
+
+    public void setPartPrice(BigDecimal partPrice) {
+        this.partPrice = partPrice;
+    }
+
+    public String getBuhege() {
+        return buhege;
+    }
+
+    public void setBuhege(String buhege) {
+        this.buhege = buhege;
     }
 }
