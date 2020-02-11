@@ -59,12 +59,6 @@
             <if test="name != null">
                 name,
             </if>
-            <if test="texture != null">
-                texture,
-            </if>
-            <if test="company != null">
-                company,
-            </if>
             <if test="mName != null">
                 m_name,
             </if>
@@ -73,6 +67,12 @@
             </if>
             <if test="size != null">
                 size,
+            </if>
+            <if test="texture != null">
+                texture,
+            </if>
+            <if test="company != null">
+                company,
             </if>
             <if test="price != null">
                 price,
@@ -110,8 +110,6 @@
             <if test="lastUpdateTime != null">
                 last_update_time,
             </if>
-
-
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id != null">

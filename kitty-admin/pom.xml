@@ -67,11 +67,6 @@
 		</dependency>
 		<!-- 报表组件-->
 		<!-- ureport 依赖 -->
-		<dependency>
-			<groupId>com.bstek.ureport</groupId>
-			<artifactId>ureport2-console</artifactId>
-			<version>2.2.9</version>
-		</dependency>
 		<!-- druid -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
