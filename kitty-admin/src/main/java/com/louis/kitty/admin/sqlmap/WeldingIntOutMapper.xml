@@ -40,7 +40,21 @@
         select
         <include refid="Base_Column_List" />
         from tr_welding_int_out
+        where type ='2'
+    </select>
+    <select id="findPage1" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tr_welding_int_out
         where type ='1'
+    </select>
+    <select id="findPageByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <bind name="pattern" value="'%' + _parameter.name + '%'" />
+        select
+        <include refid="Base_Column_List" />
+        from tr_welding_int_out
+        where name like #{pattern}
+         and type ='0'
     </select>
     <insert id="insertSelective" parameterType="com.louis.kitty.admin.model.WeldingManage">
         insert into tr_welding_int_out

@@ -25,6 +25,10 @@ public class WeldingIntOutController {
     public HttpResult findPage(@RequestBody PageRequest pageRequest) {
         return HttpResult.ok(weldingIntOutService.findPage(pageRequest));
     }
+    @PostMapping(value = "/find1")
+    public HttpResult findPage1(@RequestBody PageRequest pageRequest) {
+        return HttpResult.ok(weldingIntOutService.findPage1(pageRequest));
+    }
     @PostMapping(value = "/findAb")
     public HttpResult findPageAb(@RequestBody PageRequest pageRequest) {
         return HttpResult.ok(weldingIntOutService.findPageAb(pageRequest));

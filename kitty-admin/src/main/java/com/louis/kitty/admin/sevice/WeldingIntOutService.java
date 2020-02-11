@@ -8,4 +8,5 @@ import com.louis.kitty.core.service.CurdService;
 public interface WeldingIntOutService extends CurdService<Welding> {
     PageResult findPage1(PageRequest pageRequest);
     PageResult findPageAb(PageRequest pageRequest);
+    PageResult findPageT(PageRequest pageRequest);
 }
