@@ -1,5 +1,6 @@
 package com.louis.kitty.admin.sevice;
 
+import com.louis.kitty.admin.model.AccessMaterial;
 import com.louis.kitty.admin.model.Out;
 import com.louis.kitty.admin.model.Ware;
 import com.louis.kitty.core.page.PageRequest;
@@ -15,6 +16,7 @@ public interface OrderMainService extends CurdService<OrderMain> {
         int updateWare(Ware ware);
         int updateOut(Out out);
         int updateStsC(OrderMain main);
+        List<String> queryMoudles();
         PageResult findPageAb(PageRequest pageRequest);
         PageResult findPageZhu(PageRequest pageRequest);
         PageResult findPageQuery(PageRequest pageRequest);

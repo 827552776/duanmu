@@ -28,4 +28,5 @@ public interface OrderMainMapper {
     int updateWare(OrderMain orderMain);
     int updateOut(OrderMain orderMain);
     int selectQuan(String id);
+    List<String> queryMoudles();
 }
