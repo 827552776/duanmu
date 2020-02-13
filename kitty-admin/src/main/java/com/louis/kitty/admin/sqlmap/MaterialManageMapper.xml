@@ -127,12 +127,13 @@
             <if test="size != null">
                 #{size,jdbcType=VARCHAR},
             </if>
-            <if test="company != null">
-                #{company,jdbcType=VARCHAR},
-            </if>
             <if test="texture != null">
                 #{texture,jdbcType=VARCHAR},
             </if>
+            <if test="company != null">
+                #{company,jdbcType=VARCHAR},
+            </if>
+
             <if test="price != null">
                 #{price,jdbcType=DECIMAL},
             </if>
