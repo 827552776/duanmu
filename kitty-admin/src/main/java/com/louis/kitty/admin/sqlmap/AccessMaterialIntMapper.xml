@@ -40,7 +40,7 @@
     select
     <include refid="Base_Column_List" />
     from tr_material_access
-    where type = '1' or type = '3'
+    where type = '1'
   </select>
   <select id="findPageByType" parameterType="java.lang.String" resultMap="BaseResultMap">
     <bind name="pattern" value="'%' + _parameter.type + '%'" />

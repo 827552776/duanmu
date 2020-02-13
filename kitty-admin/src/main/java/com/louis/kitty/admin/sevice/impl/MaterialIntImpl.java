@@ -38,8 +38,9 @@ public class MaterialIntImpl implements MaterialInt {
     @Override
     public PageResult findPage(PageRequest pageRequest) {
         ColumnFilter columnFilter = pageRequest.getColumnFilter("name");
-        if(columnFilter != null) {
-            return MybatisPageHelper.findPage(pageRequest, materialIntMapper, "findPageByName", columnFilter.getValue());
+        ColumnFilter columnFilter1 = pageRequest.getColumnFilter("mName");
+        if(columnFilter != null && columnFilter1 !=null) {
+            return MybatisPageHelper.findPage(pageRequest, materialIntMapper, "findPageByNameAndMName", columnFilter.getValue(),columnFilter1.getValue());
         }
         return MybatisPageHelper.findPage(pageRequest, materialIntMapper);
     }

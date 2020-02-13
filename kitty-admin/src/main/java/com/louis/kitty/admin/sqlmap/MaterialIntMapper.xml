@@ -36,12 +36,14 @@
     from tr_material_access
     where type = '2'
   </select>
-  <select id="findPageByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="findPageByNameAndMName" parameterType="java.lang.String" resultMap="BaseResultMap">
     <bind name="pattern" value="'%' + _parameter.name + '%'" />
+    <bind name="pattern1" value="'%' + _parameter.mName + '%'" />
     select
     <include refid="Base_Column_List" />
     from tr_material_access
     where name like #{pattern}
+    and m_name like #{pattern1}
         and type = '2'
   </select>
 

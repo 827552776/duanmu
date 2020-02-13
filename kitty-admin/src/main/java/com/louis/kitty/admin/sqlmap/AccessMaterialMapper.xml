@@ -34,8 +34,38 @@
     select 
     <include refid="Base_Column_List" />
     from tr_material_access
-    where type = '0' and wx_number != ''
+    where type = '1'
   </select>
+  <select id="findPageByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <bind name="pattern" value="'%' + _parameter.name + '%'" />
+    <bind name="pattern1" value="'%' + _parameter.mName + '%'" />
+    select
+    <include refid="Base_Column_List" />
+    from tr_material_access
+    where name like #{pattern}
+       and m_name like #{pattern1}
+       and type = '1'
+  </select>
+  <select id="findPageByLabel" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <bind name="pattern" value="'%' + _parameter.name + '%'" />
+    <bind name="pattern1" value="'%' + _parameter.mName + '%'" />
+    select
+    <include refid="Base_Column_List" />
+    from tr_material_access
+    where name like #{pattern}
+    and m_name like #{pattern1}
+    and type = '0'
+  </select>
+  <select id="findPageAb" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tr_material_access
+    where type = '0'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tr_material_access
+    where id = #{id,jdbcType=BIGINT}
+     </delete>
   <insert id="insertSelective" parameterType="com.louis.kitty.admin.model.AccessStock">
     insert into tr_material_access
     <trim prefix="(" suffix=")" suffixOverrides=",">

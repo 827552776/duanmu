@@ -2,6 +2,7 @@ package com.louis.kitty.admin.sevice.impl;
 
 import com.louis.kitty.admin.dao.AccessMaterialMapper;
 import com.louis.kitty.admin.model.AccessMaterial;
+import com.louis.kitty.admin.model.MaterialManage;
 import com.louis.kitty.admin.sevice.AccessMaterialService;
 import com.louis.kitty.core.page.ColumnFilter;
 import com.louis.kitty.core.page.MybatisPageHelper;
@@ -26,12 +27,15 @@ public class AccessMaterialServiceImpl implements AccessMaterialService {
 
     @Override
     public int delete(AccessMaterial record) {
-        return 0;
+        return accessMaterialMapper.deleteByPrimaryKey(record.getId());
     }
 
     @Override
     public int delete(List<AccessMaterial> records) {
-        return 0;
+        for(AccessMaterial record:records){
+            delete(record);
+        }
+        return 1;
     }
 
     @Override
@@ -41,11 +45,21 @@ public class AccessMaterialServiceImpl implements AccessMaterialService {
 
     @Override
     public PageResult findPage(PageRequest pageRequest) {
-        ColumnFilter columnFilter = pageRequest.getColumnFilter("label");
-        if(columnFilter != null) {
-            return MybatisPageHelper.findPage(pageRequest, accessMaterialMapper, "findPageByLabel", columnFilter.getValue());
+        ColumnFilter columnFilter = pageRequest.getColumnFilter("name");
+        ColumnFilter columnFilter1 = pageRequest.getColumnFilter("mName");
+        if(columnFilter != null && columnFilter1 != null) {
+            return MybatisPageHelper.findPage(pageRequest, accessMaterialMapper, "findPageByName", columnFilter.getValue(),columnFilter1.getValue());
         }
         return MybatisPageHelper.findPage(pageRequest, accessMaterialMapper);
     }
 
+    @Override
+    public PageResult findPageAb(PageRequest pageRequest) {
+        ColumnFilter columnFilter = pageRequest.getColumnFilter("name");
+        ColumnFilter columnFilter1 = pageRequest.getColumnFilter("mName");
+        if(columnFilter != null && columnFilter1 != null) {
+            return MybatisPageHelper.findPageAb(pageRequest, accessMaterialMapper, "findPageByLabel", columnFilter.getValue(),columnFilter1.getValue());
+        }
+        return MybatisPageHelper.findPageAb(pageRequest, accessMaterialMapper);
+    }
 }
