@@ -28,7 +28,7 @@ management:
 kitty:
   backup:
     datasource:
-      host: 123.206.9.27
-      userName: ugo
-      password: 123456
-      database: test
+      host: 123.56.123.34
+      userName: root
+      password: 12345678
+      database: duanmu

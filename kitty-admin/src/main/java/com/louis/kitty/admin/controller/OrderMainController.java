@@ -1,5 +1,6 @@
 package com.louis.kitty.admin.controller;
 
+import com.louis.kitty.admin.model.AccessMaterial;
 import com.louis.kitty.admin.model.Ware;
 import com.louis.kitty.core.http.HttpResult;
 import com.louis.kitty.admin.model.OrderMain;
@@ -37,6 +38,11 @@ public class OrderMainController {
     @PostMapping(value="/findPageQuery")
     public HttpResult findPageQuery(@RequestBody PageRequest pageRequest) {
         return HttpResult.ok(orderMainService.findPageQuery(pageRequest));
+    }
+    //查询
+    @GetMapping(value="/queryMoudles")
+    public HttpResult queryMoudles() {
+        return HttpResult.ok(orderMainService.queryMoudles());
     }
     //查询(铸造）
     @PostMapping(value="/findPageZhu")

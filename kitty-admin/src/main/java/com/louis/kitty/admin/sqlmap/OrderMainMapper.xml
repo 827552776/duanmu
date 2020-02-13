@@ -42,6 +42,17 @@
     where id = #{id,jdbcType=VARCHAR}
 
   </select>
+  <select id="queryMoudles" parameterType="java.lang.String" resultType="java.lang.String">
+   SELECT
+	mould_nm
+FROM
+	b_ord_main
+WHERE
+	ifnull(is_ware, '') = '1'
+AND ifnull(is_out, '') != '1'
+
+
+  </select>
   <select id="selectQuan" parameterType="java.lang.String" resultType="java.lang.Integer">
     select quantity from b_ord_main
     where id = #{id,jdbcType=VARCHAR}

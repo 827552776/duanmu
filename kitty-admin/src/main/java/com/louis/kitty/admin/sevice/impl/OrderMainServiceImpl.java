@@ -1,6 +1,7 @@
 package com.louis.kitty.admin.sevice.impl;
 
 import com.louis.kitty.admin.dao.OrderMainMapper;
+import com.louis.kitty.admin.model.AccessMaterial;
 import com.louis.kitty.admin.model.OrderMain;
 import com.louis.kitty.admin.model.Out;
 import com.louis.kitty.admin.model.Ware;
@@ -97,6 +98,13 @@ public class OrderMainServiceImpl implements OrderMainService {
     public int updateStsC(OrderMain main) {
         String id =main.getId();
         return orderMainMapper.updateStsC(id);
+    }
+
+    @Override
+    public List<String> queryMoudles() {
+
+
+        return orderMainMapper.queryMoudles();
     }
 
     @Override
