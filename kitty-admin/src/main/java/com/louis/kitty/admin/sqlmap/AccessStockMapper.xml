@@ -5,6 +5,8 @@
      <id column="id" jdbcType="BIGINT" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="xi_type" jdbcType="VARCHAR" property="xiType" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
     <result column="mode_by" jdbcType="VARCHAR" property="modeBy" />
     <result column="mode" jdbcType="VARCHAR" property="mode" />
     <result column="out_time" jdbcType="TIMESTAMP" property="outTime" />
@@ -19,10 +21,45 @@
     <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id,name,type,mode_by,mode,out_time,int_time,out_number,remarks,number,state, create_by, create_time, last_update_by,
+    id,name,type,mode_by,mode,xi_type,price,out_time,int_time,out_number,remarks,number,state, create_by, create_time, last_update_by,
     last_update_time
   </sql>
-
+  <select id="findPageByNameAndType" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <bind name="pattern" value="'%' + _parameter.name + '%'" />
+    <bind name="pattern1" value="'%' + _parameter.type + '%'" />
+    <bind name="pattern2" value="'%' + _parameter.xiType + '%'" />
+    <bind name="pattern3" value="'%' + _parameter.modeBy + '%'" />
+    select
+    <include refid="Base_Column_List" />
+    from tr_access__stock
+    where name like #{pattern}
+    and type like #{pattern1}
+    and xi_type like #{pattern2}
+    and mode_by like #{pattern3}
+    and state = '2'
+  </select>
+  <select id="findPageByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <bind name="pattern" value="'%' + _parameter.name + '%'" />
+    <bind name="pattern1" value="'%' + _parameter.type + '%'" />
+    <bind name="pattern2" value="'%' + _parameter.xiType + '%'" />
+    select
+    <include refid="Base_Column_List" />
+    from tr_access__stock
+    where name like #{pattern}
+    and type like #{pattern1}
+    and xi_type like #{pattern2}
+    and state = '0'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tr_access__stock
+    where id = #{id,jdbcType=BIGINT}
+     </delete>
+  <select id="findPageAb" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tr_access__stock
+    where state = '2'
+  </select>
   <select id="findPage" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -41,6 +78,12 @@
       <if test="type != null">
         type,
       </if>
+      <if test="xiType != null">
+        xi_type,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
       <if test="modeBy != null">
         mode_by,
       </if>
@@ -56,11 +99,11 @@
       <if test="outNumber != null">
         out_number,
       </if>
-      <if test="state != null">
-        state,
-      </if>
       <if test="number != null">
         number,
+      </if>
+      <if test="state != null">
+        state,
       </if>
       <if test="remarks != null">
         remarks,
@@ -89,6 +132,12 @@
       </if>
       <if test="type != null">
         #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="xiType != null">
+        #{xiType,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
       </if>
       <if test="modeBy != null">
         #{modeBy,jdbcType=VARCHAR},
@@ -138,6 +187,12 @@
       </if>
       <if test="type != null">
         type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="xiType != null">
+        xi_type = #{xiType,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{xiType,jdbcType=DECIMAL},
       </if>
       <if test="modeBy != null">
         mode_by = #{modeBy,jdbcType=VARCHAR},

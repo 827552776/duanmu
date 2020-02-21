@@ -1,5 +1,6 @@
 package com.louis.kitty.admin.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class AccessStock extends BaseModel {
@@ -12,7 +13,14 @@ public class AccessStock extends BaseModel {
      * 类型
      */
     private String type;
-
+    /**
+     * 细分
+     */
+    private String xiType;
+    /**
+     * 价格
+     */
+    private BigDecimal price;
     /**
      * 入库数量
      */
@@ -51,15 +59,32 @@ public class AccessStock extends BaseModel {
         return "AccessStock{" +
                 "name='" + name + '\'' +
                 ", type='" + type + '\'' +
-                ", number='" + number + '\'' +
-                ", state='" + state + '\'' +
+                ", xiType='" + xiType + '\'' +
+                ", number=" + number +
+                ", state=" + state +
                 ", modeBy='" + modeBy + '\'' +
                 ", mode='" + mode + '\'' +
                 ", outTime=" + outTime +
                 ", intTime=" + intTime +
                 ", remarks='" + remarks + '\'' +
-                ", outNumber='" + outNumber + '\'' +
+                ", outNumber=" + outNumber +
                 '}';
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public String getXiType() {
+        return xiType;
+    }
+
+    public void setXiType(String xiType) {
+        this.xiType = xiType;
     }
 
     public String getName() {
