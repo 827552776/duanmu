@@ -72,6 +72,10 @@ public class AccessMaterial extends BaseModel{
      * 备注（外协工艺）
      */
     private String remarks;
+    /**
+     * 尺寸
+     */
+    private String size;
 
     @Override
     public String toString() {
@@ -93,7 +97,16 @@ public class AccessMaterial extends BaseModel{
                 ", wxPrice=" + wxPrice +
                 ", type='" + type + '\'' +
                 ", remarks='" + remarks + '\'' +
+                ", size='" + size + '\'' +
                 '}';
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
     }
 
     public String getBatch() {

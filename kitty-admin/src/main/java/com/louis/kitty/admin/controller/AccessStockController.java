@@ -29,9 +29,25 @@ public class AccessStockController {
     public HttpResult findPage(@RequestBody PageRequest pageRequest) {
         return HttpResult.ok(accessStockService.findPage(pageRequest));
     }
+
+    /**
+     * 自用出库分页查询
+     * @param pageRequest
+     * @return
+     */
     @PostMapping(value = "/accessAb")
     public HttpResult findPageAb(@RequestBody PageRequest pageRequest) {
         return HttpResult.ok(accessStockService.findPageAb(pageRequest));
+    }
+
+    /**
+     * 外售出库分页查询
+     * @param pageRequest
+     * @return
+     */
+    @PostMapping(value = "/access1")
+    public HttpResult findPage1(@RequestBody PageRequest pageRequest) {
+        return HttpResult.ok(accessStockService.findPage1(pageRequest));
     }
     /**
      * 删除

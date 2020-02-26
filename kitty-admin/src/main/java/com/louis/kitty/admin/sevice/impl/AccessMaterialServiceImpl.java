@@ -47,10 +47,16 @@ public class AccessMaterialServiceImpl implements AccessMaterialService {
     public PageResult findPage(PageRequest pageRequest) {
         ColumnFilter columnFilter = pageRequest.getColumnFilter("name");
         ColumnFilter columnFilter1 = pageRequest.getColumnFilter("mName");
+        ColumnFilter columnFilter2 = pageRequest.getColumnFilter("waixie");
         if(columnFilter != null && columnFilter1 != null) {
-            return MybatisPageHelper.findPage(pageRequest, accessMaterialMapper, "findPageByName", columnFilter.getValue(),columnFilter1.getValue());
+            return MybatisPageHelper.findPage(pageRequest, accessMaterialMapper, "findPageByName", columnFilter.getValue(),columnFilter1.getValue(),columnFilter2.getValue());
+        } else {
+            if(columnFilter2 !=null){
+                return MybatisPageHelper.findPage(pageRequest, accessMaterialMapper, "findPageByName", columnFilter.getValue(),columnFilter1.getValue(),columnFilter2.getValue());
+            }
+            return MybatisPageHelper.findPage(pageRequest, accessMaterialMapper);
         }
-        return MybatisPageHelper.findPage(pageRequest, accessMaterialMapper);
+
     }
 
     @Override

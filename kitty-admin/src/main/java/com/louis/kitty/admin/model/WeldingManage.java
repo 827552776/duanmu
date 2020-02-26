@@ -21,7 +21,7 @@ public class WeldingManage extends BaseModel {
     /**
      * 数量
      */
-    private Long number;
+    private double number;
     /**
      * 单位
      */
@@ -29,11 +29,11 @@ public class WeldingManage extends BaseModel {
     /**
      * 入库数量
      */
-    private Long intNumber;
+    private double intNumber;
     /**
      * 出库数量
      */
-    private Long outNumber;
+    private double outNumber;
     /**
      * 预警
      */
@@ -41,15 +41,15 @@ public class WeldingManage extends BaseModel {
     /**
      * 预警数量
      */
-    private Long typeNumber;
+    private double typeNumber;
     /**
      * 实盘数
      */
-    private Long sureNumber;
+    private double sureNumber;
     /**
      * 差额
      */
-    private Long difference;
+    private double difference;
     /**
      * 备注
      */
@@ -80,6 +80,14 @@ public class WeldingManage extends BaseModel {
                 '}';
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getSource() {
         return source;
     }
@@ -96,27 +104,11 @@ public class WeldingManage extends BaseModel {
         this.model = model;
     }
 
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Long getNumber() {
+    public double getNumber() {
         return number;
     }
 
-    public void setNumber(Long number) {
+    public void setNumber(double number) {
         this.number = number;
     }
 
@@ -128,19 +120,19 @@ public class WeldingManage extends BaseModel {
         this.company = company;
     }
 
-    public Long getIntNumber() {
+    public double getIntNumber() {
         return intNumber;
     }
 
-    public void setIntNumber(Long intNumber) {
+    public void setIntNumber(double intNumber) {
         this.intNumber = intNumber;
     }
 
-    public Long getOutNumber() {
+    public double getOutNumber() {
         return outNumber;
     }
 
-    public void setOutNumber(Long outNumber) {
+    public void setOutNumber(double outNumber) {
         this.outNumber = outNumber;
     }
 
@@ -152,27 +144,27 @@ public class WeldingManage extends BaseModel {
         this.type = type;
     }
 
-    public Long getTypeNumber() {
+    public double getTypeNumber() {
         return typeNumber;
     }
 
-    public void setTypeNumber(Long typeNumber) {
+    public void setTypeNumber(double typeNumber) {
         this.typeNumber = typeNumber;
     }
 
-    public Long getSureNumber() {
+    public double getSureNumber() {
         return sureNumber;
     }
 
-    public void setSureNumber(Long sureNumber) {
+    public void setSureNumber(double sureNumber) {
         this.sureNumber = sureNumber;
     }
 
-    public Long getDifference() {
+    public double getDifference() {
         return difference;
     }
 
-    public void setDifference(Long difference) {
+    public void setDifference(double difference) {
         this.difference = difference;
     }
 
@@ -182,5 +174,13 @@ public class WeldingManage extends BaseModel {
 
     public void setRemarks(String remarks) {
         this.remarks = remarks;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 }

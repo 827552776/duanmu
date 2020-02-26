@@ -23,7 +23,7 @@ public class Welding  extends BaseModel{
     /**
      * 发货数量
      */
-    private int deNumber;
+    private double deNumber;
     /**
      * 单位
      */
@@ -31,7 +31,7 @@ public class Welding  extends BaseModel{
     /**
      * 价格
      */
-    private BigDecimal price;
+    private double price;
     /**
      * 入库时间
      */
@@ -47,15 +47,15 @@ public class Welding  extends BaseModel{
     /**
      * 自用出库
      */
-    private int reNumber;
+    private double reNumber;
     /**
      * 退回数
      */
-    private int number;
+    private double number;
     /**
      * 入库数量
      */
-    private int sNumber;
+    private double sNumber;
     /**
      * 模具名称
      */
@@ -72,7 +72,6 @@ public class Welding  extends BaseModel{
      * 备注信息
      */
     private String remarks;
-
 
     @Override
     public String toString() {
@@ -97,12 +96,12 @@ public class Welding  extends BaseModel{
                 '}';
     }
 
-    public String getModel() {
-        return model;
+    public String getName() {
+        return name;
     }
 
-    public void setModel(String model) {
-        this.model = model;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getSource() {
@@ -111,22 +110,6 @@ public class Welding  extends BaseModel{
 
     public void setSource(String source) {
         this.source = source;
-    }
-
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public Date getDeTime() {
@@ -145,11 +128,11 @@ public class Welding  extends BaseModel{
         this.deCompany = deCompany;
     }
 
-    public int getDeNumber() {
+    public double getDeNumber() {
         return deNumber;
     }
 
-    public void setDeNumber(int deNumber) {
+    public void setDeNumber(double deNumber) {
         this.deNumber = deNumber;
     }
 
@@ -161,11 +144,11 @@ public class Welding  extends BaseModel{
         this.company = company;
     }
 
-    public BigDecimal getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -185,27 +168,35 @@ public class Welding  extends BaseModel{
         this.outTime = outTime;
     }
 
-    public int getReNumber() {
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public double getReNumber() {
         return reNumber;
     }
 
-    public void setReNumber(int reNumber) {
+    public void setReNumber(double reNumber) {
         this.reNumber = reNumber;
     }
 
-    public int getNumber() {
+    public double getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(double number) {
         this.number = number;
     }
 
-    public int getsNumber() {
+    public double getsNumber() {
         return sNumber;
     }
 
-    public void setsNumber(int sNumber) {
+    public void setsNumber(double sNumber) {
         this.sNumber = sNumber;
     }
 
@@ -215,6 +206,14 @@ public class Welding  extends BaseModel{
 
     public void setMouldName(String mouldName) {
         this.mouldName = mouldName;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 
     public String getZu() {

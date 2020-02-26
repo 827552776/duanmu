@@ -84,6 +84,10 @@ public class SysUserServiceImpl  implements SysUserService {
 	public SysUser findByName(String name) {
 		return sysUserMapper.findByName(name);
 	}
+	@Override
+	public SysUser findOne(String name){
+		return sysUserMapper.findOne(name);
+	}
 	
 	@Override
 	public PageResult findPage(PageRequest pageRequest) {

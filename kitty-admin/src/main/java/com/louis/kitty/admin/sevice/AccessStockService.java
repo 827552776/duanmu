@@ -8,4 +8,5 @@ import com.louis.kitty.core.service.CurdService;
 
 public interface AccessStockService extends CurdService<AccessStock> {
     PageResult findPageAb(PageRequest pageRequest);
+    PageResult findPage1(PageRequest pageRequest);
 }

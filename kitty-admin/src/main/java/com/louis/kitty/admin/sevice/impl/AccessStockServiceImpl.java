@@ -75,4 +75,20 @@ public class AccessStockServiceImpl implements AccessStockService {
         }
 
     }
+
+    @Override
+    public PageResult findPage1(PageRequest pageRequest) {
+        ColumnFilter columnFilter = pageRequest.getColumnFilter("name");
+        ColumnFilter columnFilter1 = pageRequest.getColumnFilter("type");
+        ColumnFilter columnFilter2 = pageRequest.getColumnFilter("xiType");
+        ColumnFilter columnFilter3 = pageRequest.getColumnFilter("modeBy");
+        if(columnFilter != null && columnFilter1 != null) {
+            return MybatisPageHelper.findPage1(pageRequest, accessStockMapper, "findPageByNameAnd", columnFilter.getValue(),columnFilter1.getValue(),columnFilter2.getValue(),columnFilter3.getValue());
+        } else {
+            if( columnFilter2 !=null && columnFilter3 != null){
+                return MybatisPageHelper.findPage1(pageRequest, accessStockMapper, "findPageByNameAnd", columnFilter.getValue(),columnFilter1.getValue(),columnFilter2.getValue(),columnFilter3.getValue());
+            }
+            return MybatisPageHelper.findPage1(pageRequest, accessStockMapper);
+        }
+    }
 }

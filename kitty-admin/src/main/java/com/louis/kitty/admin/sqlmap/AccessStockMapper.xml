@@ -38,6 +38,20 @@
     and mode_by like #{pattern3}
     and state = '2'
   </select>
+  <select id="findPageByNameAnd" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <bind name="pattern" value="'%' + _parameter.name + '%'" />
+    <bind name="pattern1" value="'%' + _parameter.type + '%'" />
+    <bind name="pattern2" value="'%' + _parameter.xiType + '%'" />
+    <bind name="pattern3" value="'%' + _parameter.modeBy + '%'" />
+    select
+    <include refid="Base_Column_List" />
+    from tr_access__stock
+    where name like #{pattern}
+    and type like #{pattern1}
+    and xi_type like #{pattern2}
+    and mode_by like #{pattern3}
+    and state = '3'
+  </select>
   <select id="findPageByName" parameterType="java.lang.String" resultMap="BaseResultMap">
     <bind name="pattern" value="'%' + _parameter.name + '%'" />
     <bind name="pattern1" value="'%' + _parameter.type + '%'" />
@@ -59,6 +73,12 @@
     <include refid="Base_Column_List" />
     from tr_access__stock
     where state = '2'
+  </select>
+  <select id="findPage1" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tr_access__stock
+    where state = '3'
   </select>
   <select id="findPage" resultMap="BaseResultMap">
     select 
@@ -192,7 +212,7 @@
         xi_type = #{xiType,jdbcType=VARCHAR},
       </if>
       <if test="price != null">
-        price = #{xiType,jdbcType=DECIMAL},
+        price = #{price,jdbcType=DECIMAL},
       </if>
       <if test="modeBy != null">
         mode_by = #{modeBy,jdbcType=VARCHAR},

@@ -8,14 +8,14 @@
         <result column="de_company" jdbcType="VARCHAR" property="deCompany" />
         <result column="source" jdbcType="VARCHAR" property="source" />
         <result column="model" jdbcType="VARCHAR" property="model" />
-        <result column="de_number" jdbcType="BIGINT" property="deNumber" />
+        <result column="de_number" jdbcType="DOUBLE" property="deNumber" />
         <result column="company" jdbcType="VARCHAR" property="company" />
         <result column="price" jdbcType="DECIMAL" property="price" />
         <result column="out_time" jdbcType="TIMESTAMP" property="outTime" />
         <result column="int_time" jdbcType="TIMESTAMP" property="intTime" />
-        <result column="re_number" jdbcType="BIGINT" property="reNumber" />
-        <result column="number" jdbcType="BIGINT" property="number" />
-        <result column="s_number" jdbcType="BIGINT" property="sNumber" />
+        <result column="re_number" jdbcType="DOUBLE" property="reNumber" />
+        <result column="number" jdbcType="DOUBLE" property="number" />
+        <result column="s_number" jdbcType="DOUBLE" property="sNumber" />
         <result column="type" jdbcType="BIGINT" property="type" />
         <result column="mould_name" jdbcType="VARCHAR" property="mouldName" />
         <result column="zu" jdbcType="VARCHAR" property="zu" />
@@ -200,7 +200,7 @@
                 #{company,jdbcType=VARCHAR},
             </if>
             <if test="deNumber != null">
-                #{deNumber,jdbcType=BIGINT},
+                #{deNumber,jdbcType=DOUBLE},
             </if>
             <if test="price != null">
                 #{price,jdbcType=DECIMAL},
@@ -212,13 +212,13 @@
                 #{outTime,jdbcType=TIMESTAMP},
             </if>
             <if test="reNumber != null">
-                #{reNumber,jdbcType=BIGINT},
+                #{reNumber,jdbcType=DOUBLE},
             </if>
             <if test="number != null">
-                #{number,jdbcType=BIGINT},
+                #{number,jdbcType=DOUBLE},
             </if>
             <if test="sNumber != null">
-                #{sNumber,jdbcType=BIGINT},
+                #{sNumber,jdbcType=DOUBLE},
             </if>
             <if test="type != null">
                 #{type,jdbcType=BIGINT},
@@ -270,7 +270,7 @@
                 company =  #{company,jdbcType=VARCHAR},
             </if>
             <if test="deNumber != null">
-                de_number = #{deNumber,jdbcType=BIGINT},
+                de_number = #{deNumber,jdbcType=DOUBLE},
             </if>
             <if test="price != null">
                 price = #{price,jdbcType=DECIMAL},
@@ -282,13 +282,13 @@
                 out_time = #{outTime,jdbcType=TIMESTAMP},
             </if>
             <if test="reNumber != null">
-                re_number =  #{reNumber,jdbcType=BIGINT},
+                re_number =  #{reNumber,jdbcType=DOUBLE},
             </if>
             <if test="number != null">
-                number = #{number,jdbcType=BIGINT},
+                number = #{number,jdbcType=DOUBLE},
             </if>
             <if test="sNumber != null">
-                s_number =  #{sNumber,jdbcType=BIGINT},
+                s_number =  #{sNumber,jdbcType=DOUBLE},
             </if>
             <if test="type != null">
                 type = #{type,jdbcType=BIGINT},
