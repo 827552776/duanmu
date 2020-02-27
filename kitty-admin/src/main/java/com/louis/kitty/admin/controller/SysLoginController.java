@@ -68,30 +68,30 @@ public class SysLoginController {
 		String captcha = loginBean.getCaptcha();
 		
 		// 从session中获取之前保存的验证码跟前台传来的验证码进行匹配
-//		Object kaptcha = ShiroUtils.getSessionAttribute(Constants.KAPTCHA_SESSION_KEY);
-//		if(kaptcha == null){
-//			return HttpResult.error("验证码已失效");
-//		}
-//		if(!captcha.equals(kaptcha)){
-//			return HttpResult.error("验证码不正确");
-//		}
+		Object kaptcha = ShiroUtils.getSessionAttribute(Constants.KAPTCHA_SESSION_KEY);
+		if(kaptcha == null){
+			return HttpResult.error("验证码已失效");
+		}
+		if(!captcha.equals(kaptcha)){
+			return HttpResult.error("验证码不正确");
+		}
 		
 		// 用户信息
 		SysUser user = sysUserService.findByName(userName);
 
-//		// 账号不存在、密码错误
-//		if (user == null) {
-//			return HttpResult.error("账号不存在");
-//		}
-//
-//		if (!match(user, password)) {
-//			return HttpResult.error("密码不正确");
-//		}
-//
-//		// 账号锁定
-//		if (user.getStatus() == 0) {
-//			return HttpResult.error("账号已被锁定,请联系管理员");
-//		}
+		// 账号不存在、密码错误
+		if (user == null) {
+			return HttpResult.error("账号不存在");
+		}
+
+		if (!match(user, password)) {
+			return HttpResult.error("密码不正确");
+		}
+
+		// 账号锁定
+		if (user.getStatus() == 0) {
+			return HttpResult.error("账号已被锁定,请联系管理员");
+		}
 
 		// 生成token，并保存到数据库
 		SysUserToken data = sysUserTokenService.createToken(user.getId());

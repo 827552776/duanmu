@@ -10,6 +10,7 @@
         <result column="company" jdbcType="VARCHAR" property="company" />
         <result column="texture" jdbcType="VARCHAR" property="texture" />
         <result column="price" jdbcType="DECIMAL" property="price" />
+        <result column="sum_price" jdbcType="DOUBLE" property="sumPrice" />
         <result column="state" jdbcType="VARCHAR" property="state" />
         <result column="int_number" jdbcType="BIGINT" property="intNumber" />
         <result column="out_number" jdbcType="BIGINT" property="outNumber" />
@@ -23,7 +24,7 @@
         <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
     </resultMap>
     <sql id="Base_Column_List">
-    id,name,m_name,number,size,price,company,texture,state,int_number,out_number,type,type_number,invoice,remarks ,create_by, create_time, last_update_by,
+    id,name,m_name,number,size,price,company,texture,state,int_number,out_number,sum_price,type,type_number,invoice,remarks ,create_by, create_time, last_update_by,
     last_update_time
   </sql>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
@@ -77,6 +78,9 @@
             <if test="price != null">
                 price,
             </if>
+            <if test="sumPrice != null">
+                sum_price,
+            </if>
             <if test="state != null">
                 state,
             </if>
@@ -127,14 +131,18 @@
             <if test="size != null">
                 #{size,jdbcType=VARCHAR},
             </if>
-            <if test="company != null">
-                #{company,jdbcType=VARCHAR},
-            </if>
             <if test="texture != null">
                 #{texture,jdbcType=VARCHAR},
             </if>
+            <if test="company != null">
+                #{company,jdbcType=VARCHAR},
+            </if>
+
             <if test="price != null">
                 #{price,jdbcType=DECIMAL},
+            </if>
+            <if test="sumPrice != null">
+                #{sumPrice,jdbcType=DOUBLE},
             </if>
             <if test="state != null">
                 #{state,jdbcType=VARCHAR},
@@ -196,6 +204,9 @@
             </if>
             <if test="price != null">
                 price = #{price,jdbcType=DECIMAL},
+            </if>
+            <if test="sumPrice != null">
+                sum_price = #{sumPrice,jdbcType=DOBLE},
             </if>
             <if test="state != null">
                 state =#{state,jdbcType=VARCHAR},

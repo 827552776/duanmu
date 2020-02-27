@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface MaterialIntMapper {
     List<AccessMaterial> findPage();
-    List<AccessMaterial> findPageByName(@Param(value="name") String name);
+    List<AccessMaterial> findPageByNameAndMName(@Param(value="name") String name,@Param(value="mName") String mName);
 }

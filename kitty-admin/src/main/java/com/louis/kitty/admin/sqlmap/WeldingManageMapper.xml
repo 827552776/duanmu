@@ -6,15 +6,15 @@
         <result column="name" jdbcType="VARCHAR" property="name" />
         <result column="source" jdbcType="VARCHAR" property="source" />
         <result column="model" jdbcType="VARCHAR" property="model" />
-        <result column="number" jdbcType="BIGINT" property="number" />
+        <result column="number" jdbcType="DOUBLE" property="number" />
         <result column="company" jdbcType="VARCHAR" property="company" />
         <result column="price" jdbcType="DECIMAL" property="price" />
-        <result column="int_number" jdbcType="BIGINT" property="intNumber" />
-        <result column="out_number" jdbcType="BIGINT" property="outNumber" />
+        <result column="int_number" jdbcType="DOUBLE" property="intNumber" />
+        <result column="out_number" jdbcType="DOUBLE" property="outNumber" />
         <result column="type" jdbcType="BIGINT" property="type" />
-        <result column="type_number" jdbcType="BIGINT" property="typeNumber" />
-        <result column="sure_number" jdbcType="BIGINT" property="sureNumber" />
-        <result column="difference" jdbcType="BIGINT" property="difference" />
+        <result column="type_number" jdbcType="DOUBLE" property="typeNumber" />
+        <result column="sure_number" jdbcType="DOUBLE" property="sureNumber" />
+        <result column="difference" jdbcType="DOUBLE" property="difference" />
         <result column="remarks" jdbcType="VARCHAR" property="remarks" />
         <result column="create_by" jdbcType="BIGINT" property="createBy" />
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
@@ -123,7 +123,7 @@
                 #{source,jdbcType=VARCHAR},
             </if>
             <if test="number != null">
-                #{number,jdbcType=BIGINT},
+                #{number,jdbcType=DOUBLE},
             </if>
             <if test="company != null">
                 #{company,jdbcType=VARCHAR},
@@ -132,22 +132,22 @@
                 #{price,jdbcType=DECIMAL},
             </if>
             <if test="difference != null">
-                #{difference,jdbcType=BIGINT},
+                #{difference,jdbcType=DOUBLE},
             </if>
             <if test="intNumber != null">
-                #{intNumber,jdbcType=BIGINT},
+                #{intNumber,jdbcType=DOUBLE},
             </if>
             <if test="outNumber != null">
-                #{outNumber,jdbcType=BIGINT},
+                #{outNumber,jdbcType=DOUBLE},
             </if>
             <if test="type != null">
                 #{type,jdbcType=BIGINT},
             </if>
             <if test="typeNumber != null">
-                #{typeNumber,jdbcType=BIGINT},
+                #{typeNumber,jdbcType=DOUBLE},
             </if>
             <if test="sureNumber != null">
-                #{sureNumber,jdbcType=BIGINT},
+                #{sureNumber,jdbcType=DOUBLE},
             </if>
             <if test="remarks != null">
                 #{remarks,jdbcType=VARCHAR},
@@ -181,7 +181,7 @@
                 source = #{source,jdbcType=VARCHAR},
             </if>
             <if test="number != null">
-                number = #{number,jdbcType=BIGINT},
+                number = #{number,jdbcType=DOUBLE},
             </if>
             <if test="company != null">
                 company =  #{company,jdbcType=VARCHAR},
@@ -190,22 +190,22 @@
                 price = #{price,jdbcType=DECIMAL},
             </if>
             <if test="difference != null">
-                difference =#{difference,jdbcType=BIGINT},
+                difference =#{difference,jdbcType=DOUBLE},
             </if>
             <if test="intNumber != null">
-                int_number = #{intNumber,jdbcType=BIGINT},
+                int_number = #{intNumber,jdbcType=DOUBLE},
             </if>
             <if test="outNumber != null">
-                out_number = #{outNumber,jdbcType=BIGINT},
+                out_number = #{outNumber,jdbcType=DOUBLE},
             </if>
             <if test="type != null">
                 type = #{type,jdbcType=BIGINT},
             </if>
             <if test="typeNumber != null">
-                type_number = #{typeNumber,jdbcType=BIGINT},
+                type_number = #{typeNumber,jdbcType=DOUBLE},
             </if>
             <if test="sureNumber != null">
-                sure_number =  #{sureNumber,jdbcType=BIGINT},
+                sure_number =  #{sureNumber,jdbcType=DOUBLE},
             </if>
             <if test="remarks != null">
                 remarks = #{remarks,jdbcType=TINYINT},

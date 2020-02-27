@@ -7,5 +7,5 @@ import com.louis.kitty.core.page.PageResult;
 import com.louis.kitty.core.service.CurdService;
 
 public interface AccessMaterialService extends CurdService<AccessMaterial> {
-
+    PageResult findPageAb(PageRequest pageRequest);
 }

@@ -35,6 +35,10 @@ public class MaterialManage extends BaseModel{
      */
     private BigDecimal price;
     /**
+     * 材料总价格
+     */
+    private Double sumPrice;
+    /**
      * 对账状态
      */
     private String state;
@@ -63,6 +67,7 @@ public class MaterialManage extends BaseModel{
      */
     private String remarks;
 
+
     @Override
     public String toString() {
         return "MaterialManage{" +
@@ -73,6 +78,7 @@ public class MaterialManage extends BaseModel{
                 ", number=" + number +
                 ", size='" + size + '\'' +
                 ", price=" + price +
+                ", sumPrice=" + sumPrice +
                 ", state='" + state + '\'' +
                 ", outNumber=" + outNumber +
                 ", intNumber=" + intNumber +
@@ -81,6 +87,14 @@ public class MaterialManage extends BaseModel{
                 ", invoice='" + invoice + '\'' +
                 ", remarks='" + remarks + '\'' +
                 '}';
+    }
+
+    public Double getSumPrice() {
+        return sumPrice;
+    }
+
+    public void setSumPrice(Double sumPrice) {
+        this.sumPrice = sumPrice;
     }
 
     public String getCompany() {

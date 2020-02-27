@@ -1,5 +1,6 @@
 package com.louis.kitty.admin.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class AccessStock extends BaseModel {
@@ -12,7 +13,14 @@ public class AccessStock extends BaseModel {
      * 类型
      */
     private String type;
-
+    /**
+     * 细分
+     */
+    private String xiType;
+    /**
+     * 价格
+     */
+    private BigDecimal price;
     /**
      * 入库数量
      */
@@ -38,6 +46,14 @@ public class AccessStock extends BaseModel {
      */
     private Date intTime;
     /**
+     * 前时间
+     */
+    private Date qianTime;
+    /**
+     * 后时间
+     */
+    private Date houTime;
+    /**
      * 备注
      */
     private String remarks;
@@ -51,15 +67,51 @@ public class AccessStock extends BaseModel {
         return "AccessStock{" +
                 "name='" + name + '\'' +
                 ", type='" + type + '\'' +
-                ", number='" + number + '\'' +
-                ", state='" + state + '\'' +
+                ", xiType='" + xiType + '\'' +
+                ", price=" + price +
+                ", number=" + number +
+                ", state=" + state +
                 ", modeBy='" + modeBy + '\'' +
                 ", mode='" + mode + '\'' +
                 ", outTime=" + outTime +
                 ", intTime=" + intTime +
+                ", qianTime=" + qianTime +
+                ", houTime=" + houTime +
                 ", remarks='" + remarks + '\'' +
-                ", outNumber='" + outNumber + '\'' +
+                ", outNumber=" + outNumber +
                 '}';
+    }
+
+    public Date getQianTime() {
+        return qianTime;
+    }
+
+    public void setQianTime(Date qianTime) {
+        this.qianTime = qianTime;
+    }
+
+    public Date getHouTime() {
+        return houTime;
+    }
+
+    public void setHouTime(Date houTime) {
+        this.houTime = houTime;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public String getXiType() {
+        return xiType;
+    }
+
+    public void setXiType(String xiType) {
+        this.xiType = xiType;
     }
 
     public String getName() {

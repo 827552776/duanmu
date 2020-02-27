@@ -2,6 +2,7 @@ package com.louis.kitty.admin.sevice.impl;
 
 import com.louis.kitty.admin.dao.AccessStockMapper;
 import com.louis.kitty.admin.model.AccessStock;
+import com.louis.kitty.admin.model.TrStockManage;
 import com.louis.kitty.admin.sevice.AccessStockService;
 import com.louis.kitty.core.page.ColumnFilter;
 import com.louis.kitty.core.page.MybatisPageHelper;
@@ -26,12 +27,15 @@ public class AccessStockServiceImpl implements AccessStockService {
 
     @Override
     public int delete(AccessStock record) {
-        return 0;
+        return accessStockMapper.deleteByPrimaryKey(record.getId());
     }
 
     @Override
     public int delete(List<AccessStock> records) {
-        return 0;
+        for(AccessStock record:records){
+            delete(record);
+        }
+        return 1;
     }
 
     @Override
@@ -41,11 +45,57 @@ public class AccessStockServiceImpl implements AccessStockService {
 
     @Override
     public PageResult findPage(PageRequest pageRequest) {
-        ColumnFilter columnFilter = pageRequest.getColumnFilter("label");
-        if(columnFilter != null) {
-            return MybatisPageHelper.findPage(pageRequest, accessStockMapper, "findPageByLabel", columnFilter.getValue());
+        ColumnFilter columnFilter = pageRequest.getColumnFilter("name");
+        ColumnFilter columnFilter1 = pageRequest.getColumnFilter("type");
+        ColumnFilter columnFilter2 = pageRequest.getColumnFilter("xiType");
+        ColumnFilter columnFilter3 = pageRequest.getColumnFilter("qianTime");
+        ColumnFilter columnFilter4 = pageRequest.getColumnFilter("houTime");
+//        System.out.println(columnFilter.getValue());
+//        System.out.println(columnFilter1.getValue());
+//        System.out.println(columnFilter2 .getValue());
+//        System.out.println(columnFilter3 .getValue());
+//        System.out.println(columnFilter4.getValue());
+        if(columnFilter != null && columnFilter1 != null) {
+            return MybatisPageHelper.findPage(pageRequest, accessStockMapper, "findPageByName", columnFilter.getValue(),columnFilter1.getValue(),columnFilter2.getValue(),columnFilter3.getValue(),columnFilter4.getValue());
+        }else {
+            if(columnFilter2 != null  ){
+                return MybatisPageHelper.findPage(pageRequest, accessStockMapper, "findPageByName", columnFilter.getValue(),columnFilter1.getValue(),columnFilter2.getValue(),columnFilter3.getValue(),columnFilter4.getValue());
+            }
+            return MybatisPageHelper.findPage(pageRequest, accessStockMapper);
         }
-        return MybatisPageHelper.findPage(pageRequest, accessStockMapper);
+
     }
 
+    @Override
+    public PageResult findPageAb(PageRequest pageRequest) {
+        ColumnFilter columnFilter = pageRequest.getColumnFilter("name");
+        ColumnFilter columnFilter1 = pageRequest.getColumnFilter("type");
+        ColumnFilter columnFilter2 = pageRequest.getColumnFilter("xiType");
+        ColumnFilter columnFilter3 = pageRequest.getColumnFilter("modeBy");
+        if(columnFilter != null && columnFilter1 != null) {
+            return MybatisPageHelper.findPageAb(pageRequest, accessStockMapper, "findPageByNameAndType", columnFilter.getValue(),columnFilter1.getValue(),columnFilter2.getValue(),columnFilter3.getValue());
+        } else {
+            if( columnFilter2 !=null && columnFilter3 != null){
+                return MybatisPageHelper.findPageAb(pageRequest, accessStockMapper, "findPageByNameAndType", columnFilter.getValue(),columnFilter1.getValue(),columnFilter2.getValue(),columnFilter3.getValue());
+            }
+            return MybatisPageHelper.findPageAb(pageRequest, accessStockMapper);
+        }
+
+    }
+
+    @Override
+    public PageResult findPage1(PageRequest pageRequest) {
+        ColumnFilter columnFilter = pageRequest.getColumnFilter("name");
+        ColumnFilter columnFilter1 = pageRequest.getColumnFilter("type");
+        ColumnFilter columnFilter2 = pageRequest.getColumnFilter("xiType");
+        ColumnFilter columnFilter3 = pageRequest.getColumnFilter("modeBy");
+        if(columnFilter != null && columnFilter1 != null) {
+            return MybatisPageHelper.findPage1(pageRequest, accessStockMapper, "findPageByNameAnd", columnFilter.getValue(),columnFilter1.getValue(),columnFilter2.getValue(),columnFilter3.getValue());
+        } else {
+            if( columnFilter2 !=null && columnFilter3 != null){
+                return MybatisPageHelper.findPage1(pageRequest, accessStockMapper, "findPageByNameAnd", columnFilter.getValue(),columnFilter1.getValue(),columnFilter2.getValue(),columnFilter3.getValue());
+            }
+            return MybatisPageHelper.findPage1(pageRequest, accessStockMapper);
+        }
+    }
 }

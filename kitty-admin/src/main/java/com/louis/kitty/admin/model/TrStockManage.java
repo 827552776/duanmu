@@ -3,6 +3,14 @@ package com.louis.kitty.admin.model;
 public class TrStockManage extends BaseModel {
     private String trName;
     private String trType;
+    /**
+     * 差额
+     */
+    private int xNumber;
+    /**
+     * 实盘数
+     */
+    private int number;
     private String trSubdivide;
     private int trNumber;
     private String trPrice;
@@ -17,6 +25,8 @@ public class TrStockManage extends BaseModel {
         return "TrStockManage{" +
                 "trName='" + trName + '\'' +
                 ", trType='" + trType + '\'' +
+                ", xNumber=" + xNumber +
+                ", number=" + number +
                 ", trSubdivide='" + trSubdivide + '\'' +
                 ", trNumber=" + trNumber +
                 ", trPrice='" + trPrice + '\'' +
@@ -26,6 +36,22 @@ public class TrStockManage extends BaseModel {
                 ", type=" + type +
                 ", typeNumber=" + typeNumber +
                 '}';
+    }
+
+    public int getxNumber() {
+        return xNumber;
+    }
+
+    public void setxNumber(int xNumber) {
+        this.xNumber = xNumber;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
     }
 
     public int getType() {

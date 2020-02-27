@@ -2,6 +2,7 @@ package com.louis.kitty.admin.controller;
 
 import com.louis.kitty.admin.model.AccessMaterial;
 import com.louis.kitty.admin.model.AccessStock;
+import com.louis.kitty.admin.model.MaterialManage;
 import com.louis.kitty.admin.sevice.AccessMaterialIntService;
 import com.louis.kitty.admin.sevice.AccessMaterialService;
 import com.louis.kitty.admin.sevice.AccessStockService;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("accessMaterial")
 public class AccessMaterialController {
@@ -22,7 +25,16 @@ public class AccessMaterialController {
     private AccessMaterialIntService accessMaterialIntService;
 
     /**
-     * 分页查询
+     * 自用出库记录分页查询
+     * @param pageRequest
+     * @return
+     */
+    @PostMapping(value = "/findAb")
+    public HttpResult findPageAb(@RequestBody PageRequest pageRequest) {
+        return HttpResult.ok(accessMaterialService.findPageAb(pageRequest));
+    }
+    /**
+     * 外协出库记录分页查询
      * @param pageRequest
      * @return
      */
@@ -59,6 +71,13 @@ public class AccessMaterialController {
         record.setType(str);
 //        record.setState((long) a);
         return HttpResult.ok(accessMaterialService.save(record));
+    }
+    /**
+     * 删除
+     */
+    @PostMapping(value="/delete")
+    public HttpResult delete(@RequestBody List<AccessMaterial> record) {
+        return HttpResult.ok(accessMaterialService.delete(record));
     }
     /**
      * 入库确认

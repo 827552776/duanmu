@@ -8,6 +8,7 @@
     <result column="dispatch" jdbcType="VARCHAR" property="dispatch" />
     <result column="batch" jdbcType="VARCHAR" property="batch" />
     <result column="texture" jdbcType="VARCHAR" property="texture" />
+    <result column="size" jdbcType="VARCHAR" property="size" />
     <result column="company" jdbcType="VARCHAR" property="company" />
     <result column="int_time" jdbcType="TIMESTAMP" property="intTime" />
     <result column="int_number" jdbcType="BIGINT" property="intNumber" />
@@ -18,6 +19,7 @@
     <result column="wx_int" jdbcType="TIMESTAMP" property="wxInt" />
     <result column="wx_number" jdbcType="BIGINT" property="wxNumber" />
     <result column="wx_price" jdbcType="DECIMAL" property="wxPrice" />
+    <result column="sum_price" jdbcType="DOUBLE" property="sumPrice" />
     <result column="type" jdbcType="VARCHAR" property="type" />
     <result column="remarks" jdbcType="VARCHAR" property="remarks" />
     <result column="create_by" jdbcType="BIGINT" property="createBy" />
@@ -26,7 +28,7 @@
     <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id,name,m_name,dispatch,batch,texture,company,int_time,int_number,tr_time,number,waixie,wx_time,wx_int,wx_number,wx_price,type,remarks, create_by, create_time, last_update_by,
+    id,name,m_name,dispatch,size,batch,texture,company,int_time,int_number,tr_time,number,waixie,wx_time,wx_int,wx_number,sum_price,wx_price,type,remarks, create_by, create_time, last_update_by,
     last_update_time
   </sql>
 
@@ -40,7 +42,7 @@
     select
     <include refid="Base_Column_List" />
     from tr_material_access
-    where type = '1' or type = '3'
+    where type = '1'
   </select>
   <select id="findPageByType" parameterType="java.lang.String" resultMap="BaseResultMap">
     <bind name="pattern" value="'%' + _parameter.type + '%'" />
@@ -69,6 +71,9 @@
       </if>
       <if test="name != null">
         name,
+      </if>
+      <if test="size != null">
+        size,
       </if>
       <if test="dispatch != null">
         dispatch,
@@ -109,6 +114,9 @@
       <if test="wxPrice != null">
         wx_price,
       </if>
+      <if test="sumPrice != null">
+        sum_price,
+      </if>
       <if test="type != null">
         type,
       </if>
@@ -139,6 +147,9 @@
       </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null">
+        #{size,jdbcType=VARCHAR},
       </if>
       <if test="dispatch != null">
         #{dispatch,jdbcType=VARCHAR},
@@ -179,6 +190,9 @@
       <if test="wxPrice!= null">
         #{wxPrice,jdbcType=DECIMAL},
       </if>
+      <if test="sumPrice!= null">
+        #{sumPrice,jdbcType=DOUBLE},
+      </if>
       <if test="type!= null">
         #{type,jdbcType=VARCHAR},
       </if>
@@ -209,6 +223,9 @@
      </if>
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null">
+        size = #{size,jdbcType=VARCHAR},
       </if>
       <if test="dispatch != null">
         dispatch = #{dispatch,jdbcType=VARCHAR},
@@ -248,6 +265,9 @@
       </if>
       <if test="wxPrice != null">
         wx_price = #{wxPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="sumPrice != null">
+        sum_price = #{sumPrice,jdbcType=DOUBLE},
       </if>
       <if test="type != null">
         type = #{type,jdbcType=VARCHAR},

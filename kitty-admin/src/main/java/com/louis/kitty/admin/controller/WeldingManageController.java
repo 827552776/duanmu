@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -44,16 +45,17 @@ public class WeldingManageController {
      */
     @PostMapping(value="/save")
     public HttpResult save(@RequestBody WeldingManage record) {
-        Long a = record.getIntNumber();
-        Long b= record.getOutNumber();
+        double a = record.getIntNumber();
+        double b= record.getOutNumber();
+        double c=0.00;
         if((record.getNumber()+a-b)>record.getTypeNumber()){
             record.setType((long) 0);
         }else {
             record.setType((long) 1);
         }
         record.setNumber(record.getNumber()+a-b);
-        record.setIntNumber((long) 0);
-        record.setOutNumber((long) 0);
+        record.setIntNumber(0);
+        record.setOutNumber(0);
         return HttpResult.ok(weldingManageService.save(record));
     }
 }

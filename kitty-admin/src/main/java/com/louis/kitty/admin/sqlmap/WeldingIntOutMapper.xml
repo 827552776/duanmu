@@ -8,14 +8,15 @@
         <result column="de_company" jdbcType="VARCHAR" property="deCompany" />
         <result column="source" jdbcType="VARCHAR" property="source" />
         <result column="model" jdbcType="VARCHAR" property="model" />
-        <result column="de_number" jdbcType="BIGINT" property="deNumber" />
+        <result column="de_number" jdbcType="DOUBLE" property="deNumber" />
         <result column="company" jdbcType="VARCHAR" property="company" />
         <result column="price" jdbcType="DECIMAL" property="price" />
+        <result column="sum_price" jdbcType="DOUBLE" property="sumPrice" />
         <result column="out_time" jdbcType="TIMESTAMP" property="outTime" />
         <result column="int_time" jdbcType="TIMESTAMP" property="intTime" />
-        <result column="re_number" jdbcType="BIGINT" property="reNumber" />
-        <result column="number" jdbcType="BIGINT" property="number" />
-        <result column="s_number" jdbcType="BIGINT" property="sNumber" />
+        <result column="re_number" jdbcType="DOUBLE" property="reNumber" />
+        <result column="number" jdbcType="DOUBLE" property="number" />
+        <result column="s_number" jdbcType="DOUBLE" property="sNumber" />
         <result column="type" jdbcType="BIGINT" property="type" />
         <result column="mould_name" jdbcType="VARCHAR" property="mouldName" />
         <result column="zu" jdbcType="VARCHAR" property="zu" />
@@ -26,10 +27,13 @@
         <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
     </resultMap>
     <sql id="Base_Column_List">
-    id,name,de_time,de_company,de_number,source,model,company,price,out_time,int_time,re_number,number,s_number,type,mould_name,zu,remarks ,create_by, create_time, last_update_by,
+    id,name,de_time,de_company,de_number,source,model,company,price,sum_price,out_time,int_time,re_number,number,s_number,type,mould_name,zu,remarks ,create_by, create_time, last_update_by,
     last_update_time
   </sql>
-
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tr_welding_int_out
+    where id = #{id,jdbcType=BIGINT}
+     </delete>
     <select id="findPage" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
@@ -48,6 +52,12 @@
         from tr_welding_int_out
         where type ='1'
     </select>
+    <select id="findPageT" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tr_welding_int_out
+        where type ='3'
+    </select>
     <select id="findPageByName" parameterType="java.lang.String" resultMap="BaseResultMap">
         <bind name="pattern" value="'%' + _parameter.name + '%'" />
         select
@@ -55,6 +65,46 @@
         from tr_welding_int_out
         where name like #{pattern}
          and type ='0'
+    </select>
+    <select id="findPageByAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <bind name="pattern" value="'%' + _parameter.name + '%'" />
+        <bind name="pattern1" value="'%' + _parameter.mouldName + '%'" />
+        <bind name="pattern2" value="'%' + _parameter.model + '%'" />
+        <bind name="pattern3" value="'%' + _parameter.zu + '%'" />
+        select
+        <include refid="Base_Column_List" />
+        from tr_welding_int_out
+        where name like #{pattern}
+        and mould_name like #{pattern1}
+        and model like #{pattern2}
+        and zu like #{pattern3}
+        and type ='1'
+    </select>
+    <select id="findPageByNameAndModel" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <bind name="pattern" value="'%' + _parameter.name + '%'" />
+        <bind name="pattern1" value="'%' + _parameter.deCompany + '%'" />
+        <bind name="pattern2" value="'%' + _parameter.model + '%'" />
+
+        select
+        <include refid="Base_Column_List" />
+        from tr_welding_int_out
+        where name like #{pattern}
+        and de_company like #{pattern1}
+        and model like #{pattern2}
+        and type ='2'
+    </select>
+    <select id="findPageByDeCompany" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <bind name="pattern" value="'%' + _parameter.name + '%'" />
+        <bind name="pattern1" value="'%' + _parameter.deCompany + '%'" />
+        <bind name="pattern2" value="'%' + _parameter.model + '%'" />
+
+        select
+        <include refid="Base_Column_List" />
+        from tr_welding_int_out
+        where name like #{pattern}
+        and de_company like #{pattern1}
+        and model like #{pattern2}
+        and type ='3'
     </select>
     <insert id="insertSelective" parameterType="com.louis.kitty.admin.model.WeldingManage">
         insert into tr_welding_int_out
@@ -85,6 +135,9 @@
             </if>
             <if test="price != null">
                 price,
+            </if>
+            <if test="sumPrice != null">
+                sum_price,
             </if>
             <if test="intTime != null">
                 int_time,
@@ -151,10 +204,13 @@
                 #{company,jdbcType=VARCHAR},
             </if>
             <if test="deNumber != null">
-                #{deNumber,jdbcType=BIGINT},
+                #{deNumber,jdbcType=DOUBLE},
             </if>
             <if test="price != null">
                 #{price,jdbcType=DECIMAL},
+            </if>
+            <if test="sumPrice != null">
+                #{sumPrice,jdbcType=DOUBLE},
             </if>
             <if test="intTime != null">
                 #{intTime,jdbcType=TIMESTAMP},
@@ -163,13 +219,13 @@
                 #{outTime,jdbcType=TIMESTAMP},
             </if>
             <if test="reNumber != null">
-                #{reNumber,jdbcType=BIGINT},
+                #{reNumber,jdbcType=DOUBLE},
             </if>
             <if test="number != null">
-                #{number,jdbcType=BIGINT},
+                #{number,jdbcType=DOUBLE},
             </if>
             <if test="sNumber != null">
-                #{sNumber,jdbcType=BIGINT},
+                #{sNumber,jdbcType=DOUBLE},
             </if>
             <if test="type != null">
                 #{type,jdbcType=BIGINT},
@@ -221,10 +277,13 @@
                 company =  #{company,jdbcType=VARCHAR},
             </if>
             <if test="deNumber != null">
-                de_number = #{deNumber,jdbcType=BIGINT},
+                de_number = #{deNumber,jdbcType=DOUBLE},
             </if>
             <if test="price != null">
                 price = #{price,jdbcType=DECIMAL},
+            </if>
+            <if test="sumPrice != null">
+                sum_price = #{sumPrice,jdbcType=DOUBLE},
             </if>
             <if test="intTime != null">
                 int_time = #{intTime,jdbcType=TIMESTAMP},
@@ -233,19 +292,19 @@
                 out_time = #{outTime,jdbcType=TIMESTAMP},
             </if>
             <if test="reNumber != null">
-                re_number =  #{reNumber,jdbcType=BIGINT},
+                re_number =  #{reNumber,jdbcType=DOUBLE},
             </if>
             <if test="number != null">
-                number = #{number,jdbcType=BIGINT},
+                number = #{number,jdbcType=DOUBLE},
             </if>
             <if test="sNumber != null">
-                s_number =  #{sNumber,jdbcType=BIGINT},
+                s_number =  #{sNumber,jdbcType=DOUBLE},
             </if>
             <if test="type != null">
                 type = #{type,jdbcType=BIGINT},
             </if>
             <if test="mouldName != null">
-                mould_number = #{mouldName,jdbcType=VARCHAR},
+                mould_name = #{mouldName,jdbcType=VARCHAR},
             </if>
             <if test="zu != null">
                 zu =  #{zu,jdbcType=VARCHAR},

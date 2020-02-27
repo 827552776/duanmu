@@ -7,6 +7,8 @@
         <result column="tr_type" jdbcType="VARCHAR" property="trType" />
         <result column="tr_subdivide" jdbcType="VARCHAR" property="trSubdivide" />
         <result column="tr_number" jdbcType="BIGINT" property="trNumber" />
+        <result column="x_number" jdbcType="BIGINT" property="xNumber" />
+        <result column="number" jdbcType="BIGINT" property="number" />
         <result column="tr_price" jdbcType="DECIMAL" property="trPrice" />
         <result column="in_number" jdbcType="BIGINT" property="inNumber" />
         <result column="out_number" jdbcType="BIGINT" property="outNumber" />
@@ -19,14 +21,34 @@
         <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
     </resultMap>
     <sql id="Base_Column_List">
-    id,tr_name,tr_type,tr_subdivide,tr_number,tr_price,in_number,out_number,type,type_number,tr_remarks ,create_by, create_time, last_update_by,
+    id,tr_name,tr_type,tr_subdivide,tr_number,x_number,number,tr_price,in_number,out_number,type,type_number,tr_remarks ,create_by, create_time, last_update_by,
     last_update_time
   </sql>
-
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tr_stock_manage
+    where id = #{id,jdbcType=BIGINT}
+     </delete>
+    <select id="findPageByNameAndType" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <bind name="pattern" value="'%' + _parameter.trName + '%'" />
+        <bind name="pattern1" value="'%' + _parameter.trType + '%'" />
+        <bind name="pattern2" value="'%' + _parameter.trSubdivide + '%'" />
+        select
+        <include refid="Base_Column_List" />
+        from tr_stock_manage
+        where tr_name like #{pattern}
+        and tr_type like #{pattern1}
+        and tr_subdivide like #{pattern2}
+    </select>
     <select id="findPage" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
         from tr_stock_manage
+    </select>
+    <select id="findPageAb" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tr_stock_manage
+        where type = '1'
     </select>
     <insert id="insertSelective" parameterType="com.louis.kitty.admin.model.TrStockManage">
         insert into tr_stock_manage
@@ -45,6 +67,12 @@
             </if>
             <if test="trNumber != null">
                 tr_number,
+            </if>
+            <if test="xNumber != null">
+                x_number,
+            </if>
+            <if test="number != null">
+                number,
             </if>
             <if test="trPrice != null">
                 tr_price,
@@ -95,6 +123,12 @@
             <if test="trNumber != null">
                 #{trNumber,jdbcType=VARCHAR},
             </if>
+            <if test="xNumber != null">
+                #{xNumber,jdbcType=BIGINT},
+            </if>
+            <if test="number != null">
+                #{number,jdbcType=BIGINT},
+            </if>
             <if test="trPrice != null">
                 #{trPrice,jdbcType=DECIMAL},
             </if>
@@ -143,6 +177,12 @@
             </if>
             <if test="trNumber != null">
                 tr_number = #{trNumber,jdbcType=DECIMAL},
+            </if>
+            <if test="xNumber != null">
+                x_number = #{xNumber,jdbcType=BIGINT},
+            </if>
+            <if test="number != null">
+                number = #{number,jdbcType=BIGINT},
             </if>
             <if test="trPrice != null">
                 tr_price = #{trPrice,jdbcType=VARCHAR},

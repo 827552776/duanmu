@@ -1,6 +1,7 @@
 package com.louis.kitty.admin.sevice.impl;
 
 import com.louis.kitty.admin.dao.TrStockManageMapper;
+import com.louis.kitty.admin.model.MaterialManage;
 import com.louis.kitty.admin.model.TrStockManage;
 import com.louis.kitty.admin.sevice.TrSrockManageService;
 import com.louis.kitty.core.page.ColumnFilter;
@@ -26,12 +27,15 @@ public class TrStockManageServiceImpl implements TrSrockManageService {
 
     @Override
     public int delete(TrStockManage record) {
-        return 0;
+        return trStockManageMapper.deleteByPrimaryKey(record.getId());
     }
 
     @Override
     public int delete(List<TrStockManage> records) {
-        return 0;
+        for(TrStockManage record:records){
+            delete(record);
+        }
+        return 1;
     }
 
     @Override
@@ -42,10 +46,28 @@ public class TrStockManageServiceImpl implements TrSrockManageService {
 
     @Override
     public PageResult findPage(PageRequest pageRequest) {
-        ColumnFilter columnFilter = pageRequest.getColumnFilter("label");
-        if(columnFilter != null) {
-            return MybatisPageHelper.findPage(pageRequest, trStockManageMapper, "findPageByLabel", columnFilter.getValue());
+        ColumnFilter columnFilter = pageRequest.getColumnFilter("trName");
+        ColumnFilter columnFilter1 = pageRequest.getColumnFilter("trType");
+        ColumnFilter columnFilter2 = pageRequest.getColumnFilter("trSubdivide");
+        if(columnFilter != null && columnFilter1 != null) {
+            return MybatisPageHelper.findPage(pageRequest, trStockManageMapper, "findPageByNameAndType", columnFilter.getValue(),columnFilter1.getValue(),columnFilter2.getValue());
+        } else {
+            if(columnFilter2 != null){
+                return MybatisPageHelper.findPage(pageRequest, trStockManageMapper, "findPageByNameAndType", columnFilter.getValue(),columnFilter1.getValue(),columnFilter2.getValue());
+            }
+            return MybatisPageHelper.findPage(pageRequest, trStockManageMapper);
         }
-        return MybatisPageHelper.findPage(pageRequest, trStockManageMapper);
+
+    }
+
+    @Override
+    public PageResult findPageAb(PageRequest pageRequest) {
+        ColumnFilter columnFilter = pageRequest.getColumnFilter("name");
+//        ColumnFilter columnFilter1 = pageRequest.getColumnFilter("intTime");
+//        ColumnFilter columnFilter2 = pageRequest.getColumnFilter("endDate");
+        if( columnFilter !=null) {
+            return MybatisPageHelper.findPageAb(pageRequest, trStockManageMapper, "findPageByName", columnFilter.getValue());
+        }
+        return MybatisPageHelper.findPageAb(pageRequest, trStockManageMapper);
     }
 }

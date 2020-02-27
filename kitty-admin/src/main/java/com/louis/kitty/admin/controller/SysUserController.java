@@ -79,7 +79,10 @@ public class SysUserController {
 	public HttpResult findByUserName(@RequestParam String name) {
 		return HttpResult.ok(sysUserService.findByName(name));
 	}
-	
+	@GetMapping(value="/findOne")
+	public HttpResult findOne(@RequestParam String name){
+		return HttpResult.ok(sysUserService.findOne(name));
+	}
 	@RequiresPermissions("sys:user:view")
 	@GetMapping(value="/findPermissions")
 	public HttpResult findPermissions(@RequestParam String name) {
