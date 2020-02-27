@@ -2,6 +2,7 @@ package com.louis.kitty.admin.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class OrderMain {
@@ -58,7 +59,35 @@ public class OrderMain {
 
     private String quantity;
 
+    public BigDecimal getGongshi() {
+        return gongshi;
+    }
 
+    public void setGongshi(BigDecimal gongshi) {
+        this.gongshi = gongshi;
+    }
+
+    private BigDecimal gongshi;
+
+    public String getBillNo() {
+        return billNo;
+    }
+
+    public void setBillNo(String billNo) {
+        this.billNo = billNo;
+    }
+
+    public Date getKaipiaoTime() {
+        return kaipiaoTime;
+    }
+
+    public void setKaipiaoTime(Date kaipiaoTime) {
+        this.kaipiaoTime = kaipiaoTime;
+    }
+
+    private Date kaipiaoTime;
+
+    private String billNo;
 
     public String getLotNo() {
         return lotNo;

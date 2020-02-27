@@ -199,7 +199,7 @@
         input_value = #{inputValue,jdbcType=VARCHAR},
         last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
         last_update_time = #{lastUpdateTime,jdbcType=DATE}
-        where id = #{id,jdbcType=BIGINT}
+        where f_id = #{fId,jdbcType=VARCHAR} and attribute = '通用件'
     </update>
     <update id="updateStsC" parameterType="com.louis.kitty.admin.model.Parts">
         update b_parts

@@ -1,5 +1,7 @@
 package com.louis.kitty.admin.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class Help extends BaseModel{
@@ -27,6 +29,7 @@ public class Help extends BaseModel{
 
     private String helpQuan;
 
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
     private Date payDate;
 
     public String getfId() {
@@ -85,8 +88,10 @@ public class Help extends BaseModel{
         this.helpRemarks = helpRemarks;
     }
 
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
     private Date startDate;
 
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
     private Date endDate;
 
     private String price;

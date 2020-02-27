@@ -1,5 +1,7 @@
 package com.louis.kitty.admin.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -54,6 +56,7 @@ public class Fare extends BaseModel{
 
     private BigDecimal price;
 
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
     private Date delvDate;
 
     public String getLogis() {
