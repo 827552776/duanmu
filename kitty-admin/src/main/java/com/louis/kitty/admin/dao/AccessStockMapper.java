@@ -14,5 +14,6 @@ public interface AccessStockMapper {
     List<AccessStock> findPageByNameAndType(@Param(value="name") String name, @Param(value="type") String type,@Param(value="xiType") String xiType, @Param(value="modeBy") String modeBy);
     List<AccessStock> findPageByNameAnd(@Param(value="name") String name, @Param(value="type") String type,@Param(value="xiType") String xiType, @Param(value="modeBy") String modeBy);
     int updateByPrimaryKeySelective(AccessStock record);
-    List<AccessStock> findPageByName(@Param(value="name") String name, @Param(value="type") String type,@Param(value="xiType") String xiType);
+    List<AccessStock> findPageByName(@Param(value="name") String name, @Param(value="type") String type,@Param(value="xiType") String xiType,
+                                     @Param(value="qianTime") String qianTime,@Param(value="houTime") String houTime);
 }

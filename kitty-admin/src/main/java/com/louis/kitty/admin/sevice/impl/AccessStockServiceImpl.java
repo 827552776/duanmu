@@ -48,11 +48,18 @@ public class AccessStockServiceImpl implements AccessStockService {
         ColumnFilter columnFilter = pageRequest.getColumnFilter("name");
         ColumnFilter columnFilter1 = pageRequest.getColumnFilter("type");
         ColumnFilter columnFilter2 = pageRequest.getColumnFilter("xiType");
+        ColumnFilter columnFilter3 = pageRequest.getColumnFilter("qianTime");
+        ColumnFilter columnFilter4 = pageRequest.getColumnFilter("houTime");
+//        System.out.println(columnFilter.getValue());
+//        System.out.println(columnFilter1.getValue());
+//        System.out.println(columnFilter2 .getValue());
+//        System.out.println(columnFilter3 .getValue());
+//        System.out.println(columnFilter4.getValue());
         if(columnFilter != null && columnFilter1 != null) {
-            return MybatisPageHelper.findPage(pageRequest, accessStockMapper, "findPageByName", columnFilter.getValue(),columnFilter1.getValue(),columnFilter2.getValue());
+            return MybatisPageHelper.findPage(pageRequest, accessStockMapper, "findPageByName", columnFilter.getValue(),columnFilter1.getValue(),columnFilter2.getValue(),columnFilter3.getValue(),columnFilter4.getValue());
         }else {
-            if(columnFilter2 != null){
-                return MybatisPageHelper.findPage(pageRequest, accessStockMapper, "findPageByName", columnFilter.getValue(),columnFilter1.getValue(),columnFilter2.getValue());
+            if(columnFilter2 != null  ){
+                return MybatisPageHelper.findPage(pageRequest, accessStockMapper, "findPageByName", columnFilter.getValue(),columnFilter1.getValue(),columnFilter2.getValue(),columnFilter3.getValue(),columnFilter4.getValue());
             }
             return MybatisPageHelper.findPage(pageRequest, accessStockMapper);
         }

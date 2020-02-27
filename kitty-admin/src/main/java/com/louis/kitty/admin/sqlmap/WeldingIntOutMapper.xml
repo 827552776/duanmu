@@ -11,6 +11,7 @@
         <result column="de_number" jdbcType="DOUBLE" property="deNumber" />
         <result column="company" jdbcType="VARCHAR" property="company" />
         <result column="price" jdbcType="DECIMAL" property="price" />
+        <result column="sum_price" jdbcType="DOUBLE" property="sumPrice" />
         <result column="out_time" jdbcType="TIMESTAMP" property="outTime" />
         <result column="int_time" jdbcType="TIMESTAMP" property="intTime" />
         <result column="re_number" jdbcType="DOUBLE" property="reNumber" />
@@ -26,7 +27,7 @@
         <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
     </resultMap>
     <sql id="Base_Column_List">
-    id,name,de_time,de_company,de_number,source,model,company,price,out_time,int_time,re_number,number,s_number,type,mould_name,zu,remarks ,create_by, create_time, last_update_by,
+    id,name,de_time,de_company,de_number,source,model,company,price,sum_price,out_time,int_time,re_number,number,s_number,type,mould_name,zu,remarks ,create_by, create_time, last_update_by,
     last_update_time
   </sql>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
@@ -135,6 +136,9 @@
             <if test="price != null">
                 price,
             </if>
+            <if test="sumPrice != null">
+                sum_price,
+            </if>
             <if test="intTime != null">
                 int_time,
             </if>
@@ -205,6 +209,9 @@
             <if test="price != null">
                 #{price,jdbcType=DECIMAL},
             </if>
+            <if test="sumPrice != null">
+                #{sumPrice,jdbcType=DOUBLE},
+            </if>
             <if test="intTime != null">
                 #{intTime,jdbcType=TIMESTAMP},
             </if>
@@ -274,6 +281,9 @@
             </if>
             <if test="price != null">
                 price = #{price,jdbcType=DECIMAL},
+            </if>
+            <if test="sumPrice != null">
+                sum_price = #{sumPrice,jdbcType=DOUBLE},
             </if>
             <if test="intTime != null">
                 int_time = #{intTime,jdbcType=TIMESTAMP},

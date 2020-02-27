@@ -33,6 +33,10 @@ public class Welding  extends BaseModel{
      */
     private double price;
     /**
+     * 出库总价
+     */
+    private double sumPrice;
+    /**
      * 入库时间
      */
     private Date intTime;
@@ -83,6 +87,7 @@ public class Welding  extends BaseModel{
                 ", deNumber=" + deNumber +
                 ", company='" + company + '\'' +
                 ", price=" + price +
+                ", sumPrice=" + sumPrice +
                 ", intTime=" + intTime +
                 ", outTime=" + outTime +
                 ", model='" + model + '\'' +
@@ -94,6 +99,14 @@ public class Welding  extends BaseModel{
                 ", zu='" + zu + '\'' +
                 ", remarks='" + remarks + '\'' +
                 '}';
+    }
+
+    public double getSumPrice() {
+        return sumPrice;
+    }
+
+    public void setSumPrice(double sumPrice) {
+        this.sumPrice = sumPrice;
     }
 
     public String getName() {

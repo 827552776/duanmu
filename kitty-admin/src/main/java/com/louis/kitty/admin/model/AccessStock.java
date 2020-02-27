@@ -46,6 +46,14 @@ public class AccessStock extends BaseModel {
      */
     private Date intTime;
     /**
+     * 前时间
+     */
+    private Date qianTime;
+    /**
+     * 后时间
+     */
+    private Date houTime;
+    /**
      * 备注
      */
     private String remarks;
@@ -60,15 +68,34 @@ public class AccessStock extends BaseModel {
                 "name='" + name + '\'' +
                 ", type='" + type + '\'' +
                 ", xiType='" + xiType + '\'' +
+                ", price=" + price +
                 ", number=" + number +
                 ", state=" + state +
                 ", modeBy='" + modeBy + '\'' +
                 ", mode='" + mode + '\'' +
                 ", outTime=" + outTime +
                 ", intTime=" + intTime +
+                ", qianTime=" + qianTime +
+                ", houTime=" + houTime +
                 ", remarks='" + remarks + '\'' +
                 ", outNumber=" + outNumber +
                 '}';
+    }
+
+    public Date getQianTime() {
+        return qianTime;
+    }
+
+    public void setQianTime(Date qianTime) {
+        this.qianTime = qianTime;
+    }
+
+    public Date getHouTime() {
+        return houTime;
+    }
+
+    public void setHouTime(Date houTime) {
+        this.houTime = houTime;
     }
 
     public BigDecimal getPrice() {

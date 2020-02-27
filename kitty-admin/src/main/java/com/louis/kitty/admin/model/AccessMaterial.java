@@ -65,6 +65,10 @@ public class AccessMaterial extends BaseModel{
      */
     private BigDecimal wxPrice;
     /**
+     * 外协总费用
+     */
+    private Double sumPrice;
+    /**
      * 状态（0-3）
      */
     private String type;
@@ -95,10 +99,19 @@ public class AccessMaterial extends BaseModel{
                 ", wxInt=" + wxInt +
                 ", wxNumber=" + wxNumber +
                 ", wxPrice=" + wxPrice +
+                ", sumPrice=" + sumPrice +
                 ", type='" + type + '\'' +
                 ", remarks='" + remarks + '\'' +
                 ", size='" + size + '\'' +
                 '}';
+    }
+
+    public Double getSumPrice() {
+        return sumPrice;
+    }
+
+    public void setSumPrice(Double sumPrice) {
+        this.sumPrice = sumPrice;
     }
 
     public String getSize() {

@@ -62,6 +62,7 @@
     where name like #{pattern}
     and type like #{pattern1}
     and xi_type like #{pattern2}
+    and int_time between #{qianTime,jdbcType=TIMESTAMP} and #{houTime,jdbcType=TIMESTAMP}
     and state = '0'
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">

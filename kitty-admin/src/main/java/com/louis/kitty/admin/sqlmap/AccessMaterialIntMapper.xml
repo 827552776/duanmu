@@ -19,6 +19,7 @@
     <result column="wx_int" jdbcType="TIMESTAMP" property="wxInt" />
     <result column="wx_number" jdbcType="BIGINT" property="wxNumber" />
     <result column="wx_price" jdbcType="DECIMAL" property="wxPrice" />
+    <result column="sum_price" jdbcType="DOUBLE" property="sumPrice" />
     <result column="type" jdbcType="VARCHAR" property="type" />
     <result column="remarks" jdbcType="VARCHAR" property="remarks" />
     <result column="create_by" jdbcType="BIGINT" property="createBy" />
@@ -27,7 +28,7 @@
     <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id,name,m_name,dispatch,size,batch,texture,company,int_time,int_number,tr_time,number,waixie,wx_time,wx_int,wx_number,wx_price,type,remarks, create_by, create_time, last_update_by,
+    id,name,m_name,dispatch,size,batch,texture,company,int_time,int_number,tr_time,number,waixie,wx_time,wx_int,wx_number,sum_price,wx_price,type,remarks, create_by, create_time, last_update_by,
     last_update_time
   </sql>
 
@@ -113,6 +114,9 @@
       <if test="wxPrice != null">
         wx_price,
       </if>
+      <if test="sumPrice != null">
+        sum_price,
+      </if>
       <if test="type != null">
         type,
       </if>
@@ -186,6 +190,9 @@
       <if test="wxPrice!= null">
         #{wxPrice,jdbcType=DECIMAL},
       </if>
+      <if test="sumPrice!= null">
+        #{sumPrice,jdbcType=DOUBLE},
+      </if>
       <if test="type!= null">
         #{type,jdbcType=VARCHAR},
       </if>
@@ -258,6 +265,9 @@
       </if>
       <if test="wxPrice != null">
         wx_price = #{wxPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="sumPrice != null">
+        sum_price = #{sumPrice,jdbcType=DOUBLE},
       </if>
       <if test="type != null">
         type = #{type,jdbcType=VARCHAR},
