@@ -51,8 +51,8 @@
 FROM
 	b_ord_main
 WHERE
-	ifnull(is_ware, '') = '1'
-AND ifnull(is_out, '') != '1'
+
+ifnull(is_out, '') != '1'
 
 
   </select>
