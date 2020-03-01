@@ -7,6 +7,16 @@ public class Ware {
 
     private Date wareDate;
 
+    public String getWareNo() {
+        return wareNo;
+    }
+
+    public void setWareNo(String wareNo) {
+        this.wareNo = wareNo;
+    }
+
+    private String wareNo;
+
     public String getId() {
         return id;
     }

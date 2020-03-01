@@ -59,6 +59,26 @@ public class OrderMain {
 
     private String quantity;
 
+    private  String wareNo;
+
+    public String getWareNo() {
+        return wareNo;
+    }
+
+    public void setWareNo(String wareNo) {
+        this.wareNo = wareNo;
+    }
+
+    public String getOutNo() {
+        return outNo;
+    }
+
+    public void setOutNo(String outNo) {
+        this.outNo = outNo;
+    }
+
+    private String outNo;
+
     public BigDecimal getGongshi() {
         return gongshi;
     }

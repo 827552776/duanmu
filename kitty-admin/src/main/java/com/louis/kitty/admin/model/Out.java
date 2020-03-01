@@ -7,6 +7,16 @@ public class Out {
 
     private Date outDate;
 
+    public String getOutNo() {
+        return outNo;
+    }
+
+    public void setOutNo(String outNo) {
+        this.outNo = outNo;
+    }
+
+    private String outNo;
+
     public String getId() {
         return id;
     }

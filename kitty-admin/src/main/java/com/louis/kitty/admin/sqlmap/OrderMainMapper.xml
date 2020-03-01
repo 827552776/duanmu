@@ -29,6 +29,8 @@
     <result column="kaipiao_time" jdbcType="DATE" property="kaipiaoTime" />
     <result column="bill_no" jdbcType="VARCHAR" property="billNo" />
     <result column="gongshi" jdbcType="DECIMAL" property="gongshi" />
+    <result column="ware_no" jdbcType="VARCHAR" property="wareNo" />
+    <result column="out_no" jdbcType="VARCHAR" property="outNo" />
   </resultMap>
 
   <insert id="insert" parameterType="com.louis.kitty.admin.model.OrderMain">
@@ -65,20 +67,21 @@ ifnull(is_out, '') != '1'
     update b_ord_main
     set lot_no = #{lotNo,jdbcType=VARCHAR},cust = #{cust,jdbcType=VARCHAR},mould_nm = #{mouldNm,jdbcType=VARCHAR},
     quantity = #{quantity,jdbcType=VARCHAR},dispatch_no = #{dispatchNo,jdbcType=VARCHAR},buy_material = #{buyMaterial,jdbcType=VARCHAR},
-    remarks = #{remarks,jdbcType=VARCHAR},flag = #{flag,jdbcType=VARCHAR},
+    remarks = #{remarks,jdbcType=VARCHAR},flag = #{flag,jdbcType=VARCHAR},company = #{company,jdbcType=VARCHAR},
     last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},last_update_time = #{lastUpdateTime,jdbcType=DATE},
     kaipiao_time = #{kaipiaoTime,jdbcType=DATE},bill_no = #{billNo,jdbcType=VARCHAR},gongshi = #{gongshi,jdbcType=DECIMAL}
+
     where id = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateWare" parameterType="com.louis.kitty.admin.model.OrderMain">
     update b_ord_main
-    set ware_date = #{wareDate,jdbcType=DATE},ware_num = #{wareNum,jdbcType=BIGINT},
+    set ware_date = #{wareDate,jdbcType=DATE},ware_num = #{wareNum,jdbcType=BIGINT},ware_no = #{wareNo,jdbcType=VARCHAR},
     last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},last_update_time = #{lastUpdateTime,jdbcType=DATE}
     where id = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateOut" parameterType="com.louis.kitty.admin.model.OrderMain">
     update b_ord_main
-    set out_date = #{outDate,jdbcType=DATE},out_num = #{outNum,jdbcType=BIGINT},
+    set out_date = #{outDate,jdbcType=DATE},out_num = #{outNum,jdbcType=BIGINT},out_no = #{outNo,jdbcType=VARCHAR},
     last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},last_update_time = #{lastUpdateTime,jdbcType=DATE}
     where id = #{id,jdbcType=VARCHAR}
   </update>

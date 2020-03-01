@@ -74,6 +74,7 @@ public class OrderMainServiceImpl implements OrderMainService {
         orderMain.setId(ware.getId());
         orderMain.setWareDate(ware.getWareDate());
         orderMain.setWareNum(ware.getWareNum());
+        orderMain.setWareNo(ware.getWareNo());
         orderMainMapper.updateWare(orderMain);
         if(orderMainMapper.selectQuan(ware.getId()) == ware.getWareNum()){
             orderMainMapper.updateA1(ware.getId());
@@ -87,6 +88,7 @@ public class OrderMainServiceImpl implements OrderMainService {
         orderMain.setId(out.getId());
         orderMain.setOutDate(out.getOutDate());
         orderMain.setOutNum(out.getOutNum());
+        orderMain.setOutNo(out.getOutNo());
         orderMainMapper.updateOut(orderMain);
         if(orderMainMapper.selectQuan(out.getId()) == out.getOutNum()){
             orderMainMapper.updateE(out.getId());
