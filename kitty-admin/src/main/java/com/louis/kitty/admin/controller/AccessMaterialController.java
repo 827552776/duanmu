@@ -3,6 +3,7 @@ package com.louis.kitty.admin.controller;
 import com.louis.kitty.admin.model.AccessMaterial;
 import com.louis.kitty.admin.model.AccessStock;
 import com.louis.kitty.admin.model.MaterialManage;
+import com.louis.kitty.admin.model.OrderMain;
 import com.louis.kitty.admin.sevice.AccessMaterialIntService;
 import com.louis.kitty.admin.sevice.AccessMaterialService;
 import com.louis.kitty.admin.sevice.AccessStockService;
@@ -93,5 +94,10 @@ public class AccessMaterialController {
         record.setType(str);
 //        record.setState((long) a);
         return HttpResult.ok(accessMaterialService.save(record));
+    }
+
+    @PostMapping(value = "/queryTogeter")
+    public HttpResult queryTogeter(@RequestBody OrderMain orderMain) {
+        return HttpResult.ok(accessMaterialService.queryTogeter(orderMain));
     }
 }

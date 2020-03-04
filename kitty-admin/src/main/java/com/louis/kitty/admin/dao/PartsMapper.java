@@ -37,4 +37,5 @@ public interface PartsMapper {
     int updateStsAA(Parts parts);
     int updateStsD(Long id);
     int deleteParts(Long id);
+    List<Parts> queryTogeter(String id);
 }

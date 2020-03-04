@@ -8,4 +8,5 @@ public interface HelpMapper {
     int insert(Help help);
     List<Help> query(String fId);
     int update(Help help);
+    List<Help> queryTogeter(String id);
 }

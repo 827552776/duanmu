@@ -2,6 +2,7 @@ package com.louis.kitty.admin.controller;
 
 import com.louis.kitty.admin.constants.SysConstants;
 import com.louis.kitty.admin.model.MaterialManage;
+import com.louis.kitty.admin.model.OrderMain;
 import com.louis.kitty.admin.model.TrStockManage;
 import com.louis.kitty.admin.sevice.MaterialManageService;
 import com.louis.kitty.admin.util.FileUtils;
@@ -64,6 +65,11 @@ public class MaterialManageController {
     public void exportExcelUser(@RequestBody PageRequest pageRequest, HttpServletResponse res){
         File file = materialManageService.createUserExcelFile(pageRequest);
         FileUtils.downloadFile(res,file,file.getName());
+    }
+    //模具和材料联合查询
+    @PostMapping(value = "/queryTogeter")
+    public HttpResult queryTogeter(@RequestBody OrderMain orderMain) {
+        return HttpResult.ok(materialManageService.queryTogeter(orderMain));
     }
 }
 

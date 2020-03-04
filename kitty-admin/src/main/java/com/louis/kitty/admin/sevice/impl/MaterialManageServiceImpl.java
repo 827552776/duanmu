@@ -2,6 +2,7 @@ package com.louis.kitty.admin.sevice.impl;
 
 import com.louis.kitty.admin.dao.MaterialManageMapper;
 import com.louis.kitty.admin.model.MaterialManage;
+import com.louis.kitty.admin.model.OrderMain;
 import com.louis.kitty.admin.sevice.MaterialManageService;
 import com.louis.kitty.admin.util.PoiUtils;
 import com.louis.kitty.core.page.ColumnFilter;
@@ -71,6 +72,13 @@ public class MaterialManageServiceImpl implements MaterialManageService {
        PageResult pageResult = findPage(pageRequest);
        return createUserExcelFile(pageResult.getContent());
     }
+
+    @Override
+    public List<MaterialManage> queryTogeter(OrderMain orderMain) {
+       String id = orderMain.getId();
+        return materialManageMapper.queryTogeter(id);
+    }
+
     public static File createUserExcelFile(List<?> records){
        if(records == null){
            records = new ArrayList<>();

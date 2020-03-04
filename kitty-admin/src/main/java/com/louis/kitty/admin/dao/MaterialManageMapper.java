@@ -15,4 +15,5 @@ public interface MaterialManageMapper {
 
     int updateByPrimaryKeySelective(MaterialManage record);
     List<MaterialManage> findPageByNameAndmName(@Param(value="name") String name,@Param(value="mName") String mName);
+    List<MaterialManage> queryTogeter(String id);
 }

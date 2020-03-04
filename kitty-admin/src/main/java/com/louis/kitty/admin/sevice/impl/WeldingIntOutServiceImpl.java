@@ -2,6 +2,7 @@ package com.louis.kitty.admin.sevice.impl;
 
 
 import com.louis.kitty.admin.dao.WeldingIntOutMapper;
+import com.louis.kitty.admin.model.OrderMain;
 import com.louis.kitty.admin.model.Welding;
 import com.louis.kitty.admin.model.WeldingManage;
 import com.louis.kitty.admin.sevice.WeldingIntOutService;
@@ -101,6 +102,13 @@ public class WeldingIntOutServiceImpl implements WeldingIntOutService {
             return MybatisPageHelper.findPageT(pageRequest, weldingIntOutMapper);
         }
 
+    }
+
+    @Override
+    public List<Welding> queryTogeter(OrderMain orderMain) {
+        String id = orderMain.getId();
+
+        return weldingIntOutMapper.queryTogeter(id);
     }
 
 }

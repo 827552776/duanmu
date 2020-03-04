@@ -12,7 +12,7 @@
         <result column="descri" jdbcType="VARCHAR" property="descri" />
         <result column="logis" jdbcType="VARCHAR" property="logis" />
         <result column="price" jdbcType="DECIMAL" property="price" />
-        <result column="delv_date" jdbcType="DATE" property="delvDate" />
+        <result column="delv_date" jdbcType="DATE" property="delvDate"/>
     </resultMap>
     <insert id="save" parameterType="com.louis.kitty.admin.model.Fare">
         insert into b_fare (id,f_id,create_time,create_by,fare_type,descri,price,delv_date,logis)

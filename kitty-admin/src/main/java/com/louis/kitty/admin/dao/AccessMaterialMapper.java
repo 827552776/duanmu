@@ -14,4 +14,5 @@ public interface AccessMaterialMapper {
     List<AccessMaterial> findPageByLabel( @Param(value="name") String name,@Param(value="mName") String mName);
     int updateByPrimaryKeySelective(AccessMaterial record);
     int deleteByPrimaryKey(Long id);
+    List<AccessMaterial> queryTogeter(String id);
 }

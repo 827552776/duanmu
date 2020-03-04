@@ -30,4 +30,5 @@ public interface PartsService extends CurdService<Parts> {
     PageResult findPage1(PageRequest pageRequest);
     int fixRetrn(Parts parts);
     int fix(Parts parts);
+    List<Parts> queryTogeter(OrderMain orderMain);
 }

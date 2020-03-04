@@ -2,6 +2,7 @@ package com.louis.kitty.admin.controller;
 
 import com.louis.kitty.admin.model.Fare;
 import com.louis.kitty.admin.model.Help;
+import com.louis.kitty.admin.model.OrderMain;
 import com.louis.kitty.admin.sevice.FareService;
 import com.louis.kitty.core.http.HttpResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +25,10 @@ public class FareController {
     @PostMapping(value="/query")
     public HttpResult query(@RequestBody Fare fare){
         return HttpResult.ok(fareService.query(fare));
+    }
+
+    @PostMapping(value="/queryTogeter")
+    public HttpResult queryTogeter(@RequestBody OrderMain orderMain){
+        return HttpResult.ok(fareService.queryTogeter(orderMain));
     }
 }

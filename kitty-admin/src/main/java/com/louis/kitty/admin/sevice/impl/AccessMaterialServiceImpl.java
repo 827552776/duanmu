@@ -3,6 +3,7 @@ package com.louis.kitty.admin.sevice.impl;
 import com.louis.kitty.admin.dao.AccessMaterialMapper;
 import com.louis.kitty.admin.model.AccessMaterial;
 import com.louis.kitty.admin.model.MaterialManage;
+import com.louis.kitty.admin.model.OrderMain;
 import com.louis.kitty.admin.sevice.AccessMaterialService;
 import com.louis.kitty.core.page.ColumnFilter;
 import com.louis.kitty.core.page.MybatisPageHelper;
@@ -67,5 +68,11 @@ public class AccessMaterialServiceImpl implements AccessMaterialService {
             return MybatisPageHelper.findPageAb(pageRequest, accessMaterialMapper, "findPageByLabel", columnFilter.getValue(),columnFilter1.getValue());
         }
         return MybatisPageHelper.findPageAb(pageRequest, accessMaterialMapper);
+    }
+
+    @Override
+    public List<AccessMaterial> queryTogeter(OrderMain orderMain) {
+        String id = orderMain.getId();
+        return accessMaterialMapper.queryTogeter(id);
     }
 }

@@ -25,4 +25,13 @@
         from b_unqu
         where f_id = #{param1,jdbcType=BIGINT}
     </select>
+
+    <select id="queryTogeter" resultMap="BaseResultMap">
+        select u.* from b_unqu u,b_parts p,b_ord_main o
+        where
+        u.f_id = p.id
+        and p.f_id = o.id
+        and o.id = #{id,jdbcType=VARCHAR}
+        and attribute = '通用件'
+    </select>
 </mapper>

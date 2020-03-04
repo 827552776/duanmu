@@ -245,5 +245,11 @@
         </set>
         where id = #{id,jdbcType=BIGINT}
     </update>
-
+    <select id="queryTogeter" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        m.*
+        from tr_material_manage m,b_ord_main o
+        where o.id = #{id,jdbcType=VARCHAR}
+        and o.mould_nm = m.m_name
+    </select>
 </mapper>

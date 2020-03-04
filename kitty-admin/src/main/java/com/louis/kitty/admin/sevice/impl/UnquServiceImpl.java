@@ -1,6 +1,7 @@
 package com.louis.kitty.admin.sevice.impl;
 
 import com.louis.kitty.admin.dao.UnquMapper;
+import com.louis.kitty.admin.model.OrderMain;
 import com.louis.kitty.admin.model.Unqu;
 import com.louis.kitty.admin.sevice.UnquService;
 import com.louis.kitty.core.page.PageRequest;
@@ -43,5 +44,11 @@ public class UnquServiceImpl implements UnquService{
     public List<Unqu> query(Unqu unqu) {
        Integer fId = unqu.getfId();
         return unquMapper.query(fId);
+    }
+
+    @Override
+    public List<Unqu> queryTogeter(OrderMain orderMain) {
+        String id = orderMain.getId();
+        return unquMapper.queryTogeter(id);
     }
 }

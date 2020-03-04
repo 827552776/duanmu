@@ -129,4 +129,9 @@ public class PartsController {
         result = partsService.savePurch(parts);
         return HttpResult.ok(result);
     }
+    //模具详情外购标件
+    @PostMapping(value="/queryTogeter")
+    public HttpResult queryTogeter(@RequestBody OrderMain orderMain){
+        return HttpResult.ok(partsService.queryTogeter(orderMain));
+    }
 }

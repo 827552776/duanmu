@@ -328,5 +328,12 @@
         </set>
         where id = #{id,jdbcType=BIGINT}
     </update>
-
+    <select id="queryTogeter" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        w.*
+        from tr_welding_int_out w,b_ord_main o
+        where o.id = #{id,jdbcType=VARCHAR}
+        and w.mould_name = o.mould_nm
+        and w.type = 1
+    </select>
 </mapper>

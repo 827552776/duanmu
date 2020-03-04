@@ -2,6 +2,7 @@ package com.louis.kitty.admin.sevice.impl;
 
 import com.louis.kitty.admin.dao.FareMapper;
 import com.louis.kitty.admin.model.Fare;
+import com.louis.kitty.admin.model.OrderMain;
 import com.louis.kitty.admin.sevice.FareService;
 import com.louis.kitty.core.page.PageRequest;
 import com.louis.kitty.core.page.PageResult;
@@ -48,5 +49,11 @@ public class FareServiceImpl implements FareService{
         String fId = fare.getfId();
 
         return fareMapper.query(fId);
+    }
+
+    @Override
+    public List<Fare> queryTogeter(OrderMain orderMain) {
+        String id = orderMain.getId();
+        return fareMapper.query(id);
     }
 }

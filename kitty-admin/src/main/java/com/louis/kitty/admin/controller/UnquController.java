@@ -1,6 +1,7 @@
 package com.louis.kitty.admin.controller;
 
 import com.louis.kitty.admin.model.Help;
+import com.louis.kitty.admin.model.OrderMain;
 import com.louis.kitty.admin.model.Unqu;
 import com.louis.kitty.admin.sevice.UnquService;
 import com.louis.kitty.core.http.HttpResult;
@@ -26,6 +27,12 @@ public class UnquController {
 
 
         return HttpResult.ok(unquService.query(unqu));
+    }
+    @PostMapping(value="/queryTogeter")
+    public HttpResult queryTogeter(@RequestBody OrderMain orderMain){
+
+
+        return HttpResult.ok(unquService.queryTogeter(orderMain));
     }
 
 }

@@ -7,4 +7,5 @@ import java.util.List;
 public interface UnquMapper {
     int insert(Unqu unqu);
     List<Unqu> query(Integer fId);
+    List<Unqu> queryTogeter(String id);
 }

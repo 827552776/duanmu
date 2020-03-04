@@ -180,4 +180,10 @@ public class PartsServiceImpl implements PartsService{
         parts.setId(null);
         return partsMapper.insertStsD(parts);
     }
+
+    @Override
+    public List<Parts> queryTogeter(OrderMain orderMain) {
+        String id = orderMain.getId();
+        return partsMapper.queryTogeter(id);
+    }
 }

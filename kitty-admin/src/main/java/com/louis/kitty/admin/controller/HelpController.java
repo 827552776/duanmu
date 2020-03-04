@@ -1,9 +1,6 @@
 package com.louis.kitty.admin.controller;
 
-import com.louis.kitty.admin.model.Check;
-import com.louis.kitty.admin.model.Core;
-import com.louis.kitty.admin.model.Help;
-import com.louis.kitty.admin.model.Parts;
+import com.louis.kitty.admin.model.*;
 import com.louis.kitty.admin.sevice.HelpService;
 import com.louis.kitty.core.http.HttpResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +23,10 @@ public class HelpController {
     @PostMapping(value="/query")
     public HttpResult query(@RequestBody Core core){
         return HttpResult.ok(helpService.query(core));
+    }
+
+    @PostMapping(value="/queryTogeter")
+    public HttpResult queryTogeter(@RequestBody OrderMain orderMain){
+        return HttpResult.ok(helpService.queryTogeter(orderMain));
     }
 }

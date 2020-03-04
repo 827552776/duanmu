@@ -1,5 +1,6 @@
 package com.louis.kitty.admin.controller;
 
+import com.louis.kitty.admin.model.OrderMain;
 import com.louis.kitty.admin.model.Welding;
 import com.louis.kitty.admin.model.WeldingManage;
 import com.louis.kitty.admin.sevice.WeldingIntOutService;
@@ -53,6 +54,11 @@ public class WeldingIntOutController {
     @PostMapping(value="/save")
     public HttpResult save(@RequestBody Welding record) {
         return HttpResult.ok(weldingIntOutService.save(record));
+    }
+  //联合查询焊材模具
+    @PostMapping(value="/queryTogeter")
+    public HttpResult queryTogeter(@RequestBody OrderMain orderMain) {
+        return HttpResult.ok(weldingIntOutService.queryTogeter(orderMain));
     }
 }
 

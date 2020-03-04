@@ -301,5 +301,12 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-
+  <select id="queryTogeter" resultMap="BaseResultMap">
+    select
+    m.*
+    from tr_material_access m,b_ord_main o
+    where m.type = '1'
+    and  o.mould_nm = m.m_name
+    and o.id = #{id,jdbcType=VARCHAR}
+  </select>
 </mapper>

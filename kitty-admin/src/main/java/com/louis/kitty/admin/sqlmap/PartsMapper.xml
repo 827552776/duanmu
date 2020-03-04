@@ -324,4 +324,14 @@
         AND p.sts = 'A' AND  name like #{pattern})
 
     </select>
+
+    <select id="queryTogeter" resultMap="BaseResultMap">
+        select
+        *
+        from b_parts
+        where
+        attribute = '标准件'
+        and is_buy = '是'
+        and f_id = #{id,jdbcType=VARCHAR}
+    </select>
 </mapper>

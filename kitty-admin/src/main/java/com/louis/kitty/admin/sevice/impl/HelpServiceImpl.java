@@ -3,6 +3,7 @@ package com.louis.kitty.admin.sevice.impl;
 import com.louis.kitty.admin.dao.HelpMapper;
 import com.louis.kitty.admin.model.Core;
 import com.louis.kitty.admin.model.Help;
+import com.louis.kitty.admin.model.OrderMain;
 import com.louis.kitty.admin.model.Parts;
 import com.louis.kitty.admin.sevice.HelpService;
 import com.louis.kitty.core.page.PageRequest;
@@ -52,5 +53,11 @@ public class HelpServiceImpl implements HelpService{
     public List<Help> query(Core core) {
         String fId = core.getId();
         return helpMapper.query(fId);
+    }
+
+    @Override
+    public List<Help> queryTogeter(OrderMain orderMain) {
+        String id = orderMain.getId();
+        return helpMapper.queryTogeter(id);
     }
 }

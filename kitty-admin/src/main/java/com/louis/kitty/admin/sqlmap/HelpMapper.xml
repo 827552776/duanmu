@@ -44,6 +44,11 @@
         pay_date = #{payDate,jdbcType=DATE}
         where id = #{id,jdbcType=BIGINT}
     </update>
-
+    <select id="queryTogeter" resultMap="BaseResultMap">
+        select
+        *
+        from b_help
+        where f_id = #{id,jdbcType=VARCHAR}
+    </select>
 
 </mapper>
