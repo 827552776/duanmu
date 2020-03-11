@@ -45,6 +45,14 @@ public class AccessMaterial extends BaseModel{
      */
     private Date trTime;
     /**
+     * 前时间
+     */
+    private Date qianTime;
+    /**
+     * 后时间
+     */
+    private Date houTime;
+    /**
      * 外协厂家名称
      */
     private String waixie;
@@ -81,6 +89,7 @@ public class AccessMaterial extends BaseModel{
      */
     private String size;
 
+
     @Override
     public String toString() {
         return "AccessMaterial{" +
@@ -94,6 +103,8 @@ public class AccessMaterial extends BaseModel{
                 ", intTime=" + intTime +
                 ", number=" + number +
                 ", trTime=" + trTime +
+                ", qianTime=" + qianTime +
+                ", houTime=" + houTime +
                 ", waixie='" + waixie + '\'' +
                 ", wxTime=" + wxTime +
                 ", wxInt=" + wxInt +
@@ -104,6 +115,22 @@ public class AccessMaterial extends BaseModel{
                 ", remarks='" + remarks + '\'' +
                 ", size='" + size + '\'' +
                 '}';
+    }
+
+    public Date getQianTime() {
+        return qianTime;
+    }
+
+    public void setQianTime(Date qianTime) {
+        this.qianTime = qianTime;
+    }
+
+    public Date getHouTime() {
+        return houTime;
+    }
+
+    public void setHouTime(Date houTime) {
+        this.houTime = houTime;
     }
 
     public Double getSumPrice() {

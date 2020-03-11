@@ -48,10 +48,11 @@ public class WeldingIntOutServiceImpl implements WeldingIntOutService {
     @Override
     public PageResult findPage(PageRequest pageRequest) {
         ColumnFilter columnFilter = pageRequest.getColumnFilter("name");
-//        ColumnFilter columnFilter1 = pageRequest.getColumnFilter("intTime");
-//        ColumnFilter columnFilter2 = pageRequest.getColumnFilter("endDate");
+        ColumnFilter columnFilter3 = pageRequest.getColumnFilter("qianTime");
+        ColumnFilter columnFilter4 = pageRequest.getColumnFilter("houTime");
         if( columnFilter !=null) {
-            return MybatisPageHelper.findPage(pageRequest, weldingIntOutMapper, "findPageByName", columnFilter.getValue());
+            return MybatisPageHelper.findPage(pageRequest, weldingIntOutMapper, "findPageByName", columnFilter.getValue(),
+                    columnFilter3.getValue(),columnFilter4.getValue());
         }
         return MybatisPageHelper.findPage(pageRequest, weldingIntOutMapper);
     }
@@ -61,11 +62,15 @@ public class WeldingIntOutServiceImpl implements WeldingIntOutService {
         ColumnFilter columnFilter1 = pageRequest.getColumnFilter("mouldName");
         ColumnFilter columnFilter2 = pageRequest.getColumnFilter("model");
         ColumnFilter columnFilter3 = pageRequest.getColumnFilter("zu");
+        ColumnFilter columnFilter4 = pageRequest.getColumnFilter("qianTime");
+        ColumnFilter columnFilter5 = pageRequest.getColumnFilter("houTime");
         if(columnFilter != null && columnFilter1 != null ) {
-            return MybatisPageHelper.findPage1(pageRequest, weldingIntOutMapper, "findPageByAll", columnFilter.getValue(),columnFilter1.getValue(),columnFilter2.getValue(),columnFilter3.getValue());
+            return MybatisPageHelper.findPage1(pageRequest, weldingIntOutMapper, "findPageByAll", columnFilter.getValue(),columnFilter1.getValue(),columnFilter2.getValue(),
+                    columnFilter3.getValue(),columnFilter4.getValue(),columnFilter5.getValue());
         } else {
             if(columnFilter2 != null && columnFilter3 != null){
-                return MybatisPageHelper.findPage1(pageRequest, weldingIntOutMapper, "findPageByAll", columnFilter.getValue(),columnFilter1.getValue(),columnFilter2.getValue(),columnFilter3.getValue());
+                return MybatisPageHelper.findPage1(pageRequest, weldingIntOutMapper, "findPageByAll", columnFilter.getValue(),columnFilter1.getValue(),columnFilter2.getValue(),
+                        columnFilter3.getValue(),columnFilter4.getValue(),columnFilter5.getValue());
             }
             return MybatisPageHelper.findPage1(pageRequest, weldingIntOutMapper);
         }
@@ -77,11 +82,15 @@ public class WeldingIntOutServiceImpl implements WeldingIntOutService {
         ColumnFilter columnFilter = pageRequest.getColumnFilter("name");
         ColumnFilter columnFilter1 = pageRequest.getColumnFilter("deCompany");
         ColumnFilter columnFilter2 = pageRequest.getColumnFilter("model");
+        ColumnFilter columnFilter3 = pageRequest.getColumnFilter("qianTime");
+        ColumnFilter columnFilter4 = pageRequest.getColumnFilter("houTime");
         if(columnFilter != null && columnFilter1 != null) {
-            return MybatisPageHelper.findPageAb(pageRequest, weldingIntOutMapper, "findPageByNameAndModel", columnFilter.getValue(),columnFilter1.getValue(),columnFilter2.getValue());
+            return MybatisPageHelper.findPageAb(pageRequest, weldingIntOutMapper, "findPageByNameAndModel", columnFilter.getValue(),columnFilter1.getValue(),
+                    columnFilter2.getValue(),columnFilter3.getValue(),columnFilter4.getValue());
         } else{
             if(columnFilter2 != null){
-                return MybatisPageHelper.findPageAb(pageRequest, weldingIntOutMapper, "findPageByNameAndModel", columnFilter.getValue(),columnFilter1.getValue(),columnFilter2.getValue());
+                return MybatisPageHelper.findPageAb(pageRequest, weldingIntOutMapper, "findPageByNameAndModel", columnFilter.getValue(),columnFilter1.getValue(),
+                        columnFilter2.getValue(),columnFilter3.getValue(),columnFilter4.getValue());
             }
             return MybatisPageHelper.findPageAb(pageRequest, weldingIntOutMapper);
         }
@@ -93,11 +102,15 @@ public class WeldingIntOutServiceImpl implements WeldingIntOutService {
         ColumnFilter columnFilter = pageRequest.getColumnFilter("name");
         ColumnFilter columnFilter1 = pageRequest.getColumnFilter("deCompany");
         ColumnFilter columnFilter2 = pageRequest.getColumnFilter("model");
+        ColumnFilter columnFilter3 = pageRequest.getColumnFilter("qianTime");
+        ColumnFilter columnFilter4 = pageRequest.getColumnFilter("houTime");
         if(columnFilter != null && columnFilter1 != null) {
-            return MybatisPageHelper.findPageT(pageRequest, weldingIntOutMapper, "findPageByDeCompany", columnFilter.getValue(),columnFilter1.getValue(),columnFilter2.getValue());
+            return MybatisPageHelper.findPageT(pageRequest, weldingIntOutMapper, "findPageByDeCompany", columnFilter.getValue(),columnFilter1.getValue(),
+                    columnFilter2.getValue(),columnFilter3.getValue(),columnFilter4.getValue());
         }else{
             if( columnFilter2 != null){
-                return MybatisPageHelper.findPageT(pageRequest, weldingIntOutMapper, "findPageByDeCompany", columnFilter.getValue(),columnFilter1.getValue(),columnFilter2.getValue());
+                return MybatisPageHelper.findPageT(pageRequest, weldingIntOutMapper, "findPageByDeCompany", columnFilter.getValue(),columnFilter1.getValue(),
+                        columnFilter2.getValue(),columnFilter3.getValue(),columnFilter4.getValue());
             }
             return MybatisPageHelper.findPageT(pageRequest, weldingIntOutMapper);
         }

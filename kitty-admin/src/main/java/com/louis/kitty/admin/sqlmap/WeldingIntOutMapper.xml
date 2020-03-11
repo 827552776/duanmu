@@ -64,6 +64,7 @@
         <include refid="Base_Column_List" />
         from tr_welding_int_out
         where name like #{pattern}
+        and int_time between #{qianTime,jdbcType=TIMESTAMP} and #{houTime,jdbcType=TIMESTAMP}
          and type ='0'
     </select>
     <select id="findPageByAll" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -78,6 +79,7 @@
         and mould_name like #{pattern1}
         and model like #{pattern2}
         and zu like #{pattern3}
+        and out_time between #{qianTime,jdbcType=TIMESTAMP} and #{houTime,jdbcType=TIMESTAMP}
         and type ='1'
     </select>
     <select id="findPageByNameAndModel" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -91,6 +93,7 @@
         where name like #{pattern}
         and de_company like #{pattern1}
         and model like #{pattern2}
+        and de_time between #{qianTime,jdbcType=TIMESTAMP} and #{houTime,jdbcType=TIMESTAMP}
         and type ='2'
     </select>
     <select id="findPageByDeCompany" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -104,6 +107,7 @@
         where name like #{pattern}
         and de_company like #{pattern1}
         and model like #{pattern2}
+        and de_time between #{qianTime,jdbcType=TIMESTAMP} and #{houTime,jdbcType=TIMESTAMP}
         and type ='3'
     </select>
     <insert id="insertSelective" parameterType="com.louis.kitty.admin.model.WeldingManage">
