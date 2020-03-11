@@ -64,7 +64,9 @@
         <include refid="Base_Column_List" />
         from tr_welding_int_out
         where name like #{pattern}
+        <if test='qianTime != null'>
         and int_time between #{qianTime,jdbcType=TIMESTAMP} and #{houTime,jdbcType=TIMESTAMP}
+        </if>
          and type ='0'
     </select>
     <select id="findPageByAll" parameterType="java.lang.String" resultMap="BaseResultMap">
