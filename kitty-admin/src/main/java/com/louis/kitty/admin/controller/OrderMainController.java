@@ -34,6 +34,11 @@ public class OrderMainController {
     public HttpResult findPage(@RequestBody PageRequest pageRequest) {
         return HttpResult.ok(orderMainService.findPage(pageRequest));
     }
+    //查询(已完成)
+    @PostMapping(value="/findPageCom")
+    public HttpResult findPageCom(@RequestBody PageRequest pageRequest) {
+        return HttpResult.ok(orderMainService.findPageCom(pageRequest));
+    }
     //查询
     @PostMapping(value="/findPageQuery")
     public HttpResult findPageQuery(@RequestBody PageRequest pageRequest) {
