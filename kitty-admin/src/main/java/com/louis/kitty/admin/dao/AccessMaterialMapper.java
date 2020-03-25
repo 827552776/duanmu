@@ -10,8 +10,10 @@ public interface AccessMaterialMapper {
     List<AccessMaterial> findPage();
     int insertSelective(AccessMaterial record);
     List<AccessMaterial> findPageAb();
-    List<AccessMaterial> findPageByName( @Param(value="name") String name,@Param(value="mName") String mName,@Param(value = "waixie") String waixie);
-    List<AccessMaterial> findPageByLabel( @Param(value="name") String name,@Param(value="mName") String mName);
+    List<AccessMaterial> findPageByName( @Param(value="name") String name,@Param(value="mName") String mName,@Param(value = "waixie") String waixie,
+                                         @Param(value="qianTime") String qianTime,@Param(value="houTime") String houTime);
+    List<AccessMaterial> findPageByLabel( @Param(value="name") String name,@Param(value="mName") String mName,
+                                          @Param(value="qianTime") String qianTime,@Param(value="houTime") String houTime);
     int updateByPrimaryKeySelective(AccessMaterial record);
     int deleteByPrimaryKey(Long id);
     List<AccessMaterial> queryTogeter(String id);

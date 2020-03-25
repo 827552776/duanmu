@@ -36,6 +36,7 @@
     and type like #{pattern1}
     and xi_type like #{pattern2}
     and mode_by like #{pattern3}
+    and out_time between #{qianTime,jdbcType=TIMESTAMP} and #{houTime,jdbcType=TIMESTAMP}
     and state = '2'
   </select>
   <select id="findPageByNameAnd" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -50,6 +51,7 @@
     and type like #{pattern1}
     and xi_type like #{pattern2}
     and mode_by like #{pattern3}
+    and out_time between #{qianTime,jdbcType=TIMESTAMP} and #{houTime,jdbcType=TIMESTAMP}
     and state = '3'
   </select>
   <select id="findPageByName" parameterType="java.lang.String" resultMap="BaseResultMap">

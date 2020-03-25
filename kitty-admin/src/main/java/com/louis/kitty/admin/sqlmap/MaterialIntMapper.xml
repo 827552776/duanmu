@@ -44,6 +44,7 @@
     <include refid="Base_Column_List" />
     from tr_material_access
     where name like #{pattern}
+    and int_time between #{qianTime,jdbcType=TIMESTAMP} and #{houTime,jdbcType=TIMESTAMP}
     and m_name like #{pattern1}
         and type = '2'
   </select>

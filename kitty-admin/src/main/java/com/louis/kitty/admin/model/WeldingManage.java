@@ -1,6 +1,7 @@
 package com.louis.kitty.admin.model;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * 焊材库
@@ -47,6 +48,14 @@ public class WeldingManage extends BaseModel {
      */
     private double sureNumber;
     /**
+     * 前时间
+     */
+    private Date qianTime;
+    /**
+     * 后时间
+     */
+    private Date houTime;
+    /**
      * 差额
      */
     private double difference;
@@ -74,10 +83,28 @@ public class WeldingManage extends BaseModel {
                 ", type=" + type +
                 ", typeNumber=" + typeNumber +
                 ", sureNumber=" + sureNumber +
+                ", qianTime=" + qianTime +
+                ", houTime=" + houTime +
                 ", difference=" + difference +
                 ", remarks='" + remarks + '\'' +
                 ", price=" + price +
                 '}';
+    }
+
+    public Date getQianTime() {
+        return qianTime;
+    }
+
+    public void setQianTime(Date qianTime) {
+        this.qianTime = qianTime;
+    }
+
+    public Date getHouTime() {
+        return houTime;
+    }
+
+    public void setHouTime(Date houTime) {
+        this.houTime = houTime;
     }
 
     public String getName() {
