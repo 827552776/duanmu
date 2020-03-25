@@ -120,6 +120,16 @@ public class OrderMainServiceImpl implements OrderMainService {
     }
 
     @Override
+    public PageResult findPageCom(PageRequest pageRequest) {
+        ColumnFilter columnFilter = pageRequest.getColumnFilter("cust");
+        ColumnFilter columnFilter1 = pageRequest.getColumnFilter("mouldNm");
+        if(columnFilter != null&&columnFilter1 != null) {
+            return MybatisPageHelper.findPage(pageRequest,orderMainMapper,"findPageByCom",columnFilter.getValue(),columnFilter1.getValue());
+        }
+        return MybatisPageHelper.findPageCom(pageRequest,orderMainMapper);
+    }
+
+    @Override
     public PageResult findPageZhu(PageRequest pageRequest) {
         ColumnFilter columnFilter = pageRequest.getColumnFilter("cust");
         ColumnFilter columnFilter1 = pageRequest.getColumnFilter("mouldNm");
