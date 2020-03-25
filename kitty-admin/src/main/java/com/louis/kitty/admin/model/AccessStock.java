@@ -22,6 +22,10 @@ public class AccessStock extends BaseModel {
      */
     private BigDecimal price;
     /**
+     * 金额
+     */
+    private Double sumPrice;
+    /**
      * 入库数量
      */
     private Long number;
@@ -80,6 +84,14 @@ public class AccessStock extends BaseModel {
                 ", remarks='" + remarks + '\'' +
                 ", outNumber=" + outNumber +
                 '}';
+    }
+
+    public Double getSumPrice() {
+        return sumPrice;
+    }
+
+    public void setSumPrice(Double sumPrice) {
+        this.sumPrice = sumPrice;
     }
 
     public Date getQianTime() {

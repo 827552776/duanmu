@@ -6,6 +6,7 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="type" jdbcType="VARCHAR" property="type" />
     <result column="xi_type" jdbcType="VARCHAR" property="xiType" />
+    <result column="sum_price" jdbcType="DOUBLE" property="sumPrice" />
     <result column="price" jdbcType="DECIMAL" property="price" />
     <result column="mode_by" jdbcType="VARCHAR" property="modeBy" />
     <result column="mode" jdbcType="VARCHAR" property="mode" />
@@ -21,7 +22,7 @@
     <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id,name,type,mode_by,mode,xi_type,price,out_time,int_time,out_number,remarks,number,state, create_by, create_time, last_update_by,
+    id,name,type,mode_by,mode,xi_type,price,sum_price,out_time,int_time,out_number,remarks,number,state, create_by, create_time, last_update_by,
     last_update_time
   </sql>
   <select id="findPageByNameAndType" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -107,6 +108,9 @@
       <if test="price != null">
         price,
       </if>
+      <if test="sumPrice != null">
+        sum_price,
+      </if>
       <if test="modeBy != null">
         mode_by,
       </if>
@@ -162,6 +166,9 @@
       <if test="price != null">
         #{price,jdbcType=DECIMAL},
       </if>
+      <if test="sumPrice != null">
+        #{sumPrice,jdbcType=DOUBLE},
+      </if>
       <if test="modeBy != null">
         #{modeBy,jdbcType=VARCHAR},
       </if>
@@ -216,6 +223,9 @@
       </if>
       <if test="price != null">
         price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="sumPrice != null">
+        sum_price = #{sumPrice,jdbcType=DOUBLE},
       </if>
       <if test="modeBy != null">
         mode_by = #{modeBy,jdbcType=VARCHAR},
