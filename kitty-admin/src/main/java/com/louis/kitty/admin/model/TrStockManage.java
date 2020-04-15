@@ -19,7 +19,10 @@ public class TrStockManage extends BaseModel {
     private int outNumber;
     private int type;
     private int typeNumber;
-
+    /**
+     * 材料总价格
+     */
+    private Double sumPrice;
     @Override
     public String toString() {
         return "TrStockManage{" +
@@ -30,12 +33,21 @@ public class TrStockManage extends BaseModel {
                 ", trSubdivide='" + trSubdivide + '\'' +
                 ", trNumber=" + trNumber +
                 ", trPrice='" + trPrice + '\'' +
+                ", sumPrice=" + sumPrice +
                 ", trRemarks='" + trRemarks + '\'' +
                 ", inNumber=" + inNumber +
                 ", outNumber=" + outNumber +
                 ", type=" + type +
                 ", typeNumber=" + typeNumber +
                 '}';
+    }
+
+    public Double getSumPrice() {
+        return sumPrice;
+    }
+
+    public void setSumPrice(Double sumPrice) {
+        this.sumPrice = sumPrice;
     }
 
     public int getxNumber() {

@@ -73,6 +73,7 @@ public class AccessStock extends BaseModel {
                 ", type='" + type + '\'' +
                 ", xiType='" + xiType + '\'' +
                 ", price=" + price +
+                ", sumPrice=" + sumPrice +
                 ", number=" + number +
                 ", state=" + state +
                 ", modeBy='" + modeBy + '\'' +

@@ -206,7 +206,7 @@
                 price = #{price,jdbcType=DECIMAL},
             </if>
             <if test="sumPrice != null">
-                sum_price = #{sumPrice,jdbcType=DOBLE},
+                sum_price = #{sumPrice,jdbcType=DOUBLE},
             </if>
             <if test="state != null">
                 state =#{state,jdbcType=VARCHAR},

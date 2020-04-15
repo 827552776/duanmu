@@ -10,6 +10,7 @@
         <result column="x_number" jdbcType="BIGINT" property="xNumber" />
         <result column="number" jdbcType="BIGINT" property="number" />
         <result column="tr_price" jdbcType="DECIMAL" property="trPrice" />
+        <result column="sum_price" jdbcType="DOUBLE" property="sumPrice" />
         <result column="in_number" jdbcType="BIGINT" property="inNumber" />
         <result column="out_number" jdbcType="BIGINT" property="outNumber" />
         <result column="type" jdbcType="BIGINT" property="type" />
@@ -77,6 +78,9 @@
             <if test="trPrice != null">
                 tr_price,
             </if>
+            <if test="sumPrice != null">
+                sum_price,
+            </if>
             <if test="inNumber != null">
                 in_number,
             </if>
@@ -132,6 +136,9 @@
             <if test="trPrice != null">
                 #{trPrice,jdbcType=DECIMAL},
             </if>
+            <if test="sumPrice != null">
+                #{sumPrice,jdbcType=DOUBLE},
+            </if>
             <if test="inNumber != null">
                 #{inNumber,jdbcType=BIGINT},
             </if>
@@ -186,6 +193,9 @@
             </if>
             <if test="trPrice != null">
                 tr_price = #{trPrice,jdbcType=VARCHAR},
+            </if>
+            <if test="sumPrice != null">
+                sum_price = #{sumPrice,jdbcType=DOUBLE},
             </if>
             <if test="inNumber != null">
                 in_number = #{inNumber,jdbcType=BIGINT},
