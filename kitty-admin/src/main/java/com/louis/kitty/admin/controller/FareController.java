@@ -5,6 +5,7 @@ import com.louis.kitty.admin.model.Help;
 import com.louis.kitty.admin.model.OrderMain;
 import com.louis.kitty.admin.sevice.FareService;
 import com.louis.kitty.core.http.HttpResult;
+import com.louis.kitty.core.page.PageRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,5 +31,13 @@ public class FareController {
     @PostMapping(value="/queryTogeter")
     public HttpResult queryTogeter(@RequestBody OrderMain orderMain){
         return HttpResult.ok(fareService.queryTogeter(orderMain));
+    }
+    @PostMapping(value = "/find")
+    public HttpResult findPage(@RequestBody PageRequest pageRequest) {
+        return HttpResult.ok(fareService.findPage(pageRequest));
+    }
+    @PostMapping(value = "/find1")
+    public HttpResult findPage1(@RequestBody PageRequest pageRequest) {
+        return HttpResult.ok(fareService.findPage1(pageRequest));
     }
 }
