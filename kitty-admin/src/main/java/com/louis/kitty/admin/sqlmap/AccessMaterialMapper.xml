@@ -59,7 +59,7 @@
     from tr_material_access
     where name like #{pattern}
     and m_name like #{pattern1}
-    and wx_time between #{qianTime,jdbcType=TIMESTAMP} and #{houTime,jdbcType=TIMESTAMP}
+    and tr_time between #{qianTime,jdbcType=TIMESTAMP} and #{houTime,jdbcType=TIMESTAMP}
     and type = '0'
   </select>
   <select id="findPageAb" resultMap="BaseResultMap">
