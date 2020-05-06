@@ -11,6 +11,7 @@
         <result column="remarks" jdbcType="VARCHAR" property="remarks" />
         <result column="company" jdbcType="VARCHAR" property="company" />
         <result column="mould" jdbcType="VARCHAR" property="mould" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
         <result column="number" jdbcType="BIGINT" property="number" />
 
         <result column="price" jdbcType="DOUBLE" property="price"/>
@@ -19,6 +20,7 @@
     <select id="findPage1" resultMap="BaseResultMap">
        select b.mould_nm as mould,
             h.help_quan as number,
+            h.help_nm as name,
             b.company as company,
             h.price as price,
             h.start_date as start_date,
@@ -29,9 +31,11 @@
     </select>
     <select id="findPageByMould" parameterType="java.lang.String" resultMap="BaseResultMap">
         <bind name="pattern" value="'%' + _parameter.mould + '%'" />
+        <bind name="pattern1" value="'%' + _parameter.name + '%'" />
         select b.mould_nm as mould,
         h.help_quan as number,
         b.company as company,
+        h.help_nm as name,
         h.price as price,
         h.start_date as start_date,
         h.end_date as end_date,
@@ -39,5 +43,7 @@
         FROM b_ord_main b LEFT JOIN b_help h on b.id = h.f_id
         WHERE h.price is not NULL
         and b.mould_nm like #{pattern}
+        and h.help_nm like #{pattern1}
+        and h.start_date between #{qianTime,jdbcType=TIMESTAMP} and #{houTime,jdbcType=TIMESTAMP}
     </select>
 </mapper>

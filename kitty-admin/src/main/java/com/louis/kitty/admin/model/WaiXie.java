@@ -32,30 +32,42 @@ public class WaiXie extends BaseModel{
      * 备注
      */
     private String remarks;
-//    /**
-//     * 前时间
-//     */
-//    private Date qianTime;
-//    /**
-//     * 后时间
-//     */
-//    private Date houTime;
+    /**
+     * 外协单位
+     */
+    private String name;
+    /**
+     * 前时间
+     */
+    private Date qianTime;
+    /**
+     * 后时间
+     */
+    private Date houTime;
 
-//    public Date getQianTime() {
-//        return qianTime;
-//    }
-//
-//    public void setQianTime(Date qianTime) {
-//        this.qianTime = qianTime;
-//    }
-//
-//    public Date getHouTime() {
-//        return houTime;
-//    }
-//
-//    public void setHouTime(Date houTime) {
-//        this.houTime = houTime;
-//    }
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Date getQianTime() {
+        return qianTime;
+    }
+
+    public void setQianTime(Date qianTime) {
+        this.qianTime = qianTime;
+    }
+
+    public Date getHouTime() {
+        return houTime;
+    }
+
+    public void setHouTime(Date houTime) {
+        this.houTime = houTime;
+    }
 
     public String getMould() {
         return mould;
