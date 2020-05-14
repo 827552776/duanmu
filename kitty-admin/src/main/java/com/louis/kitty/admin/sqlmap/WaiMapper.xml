@@ -12,6 +12,7 @@
         <result column="company" jdbcType="VARCHAR" property="company" />
         <result column="mould" jdbcType="VARCHAR" property="mould" />
         <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="work" jdbcType="VARCHAR" property="work" />
         <result column="number" jdbcType="BIGINT" property="number" />
 
         <result column="price" jdbcType="DOUBLE" property="price"/>
@@ -23,6 +24,7 @@
             h.help_nm as name,
             b.company as company,
             h.price as price,
+            h.work as work,
             h.start_date as start_date,
             h.end_date as end_date,
             h.help_remarks as remarks
@@ -36,6 +38,7 @@
         h.help_quan as number,
         b.company as company,
         h.help_nm as name,
+        h.work as work,
         h.price as price,
         h.start_date as start_date,
         h.end_date as end_date,

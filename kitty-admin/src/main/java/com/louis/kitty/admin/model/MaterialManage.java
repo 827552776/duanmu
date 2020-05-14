@@ -19,6 +19,10 @@ public class MaterialManage extends BaseModel{
      */
     private String company;
     /**
+     * 来料单位
+     */
+    private String com;
+    /**
      * 材质
      */
     private String texture;
@@ -67,6 +71,13 @@ public class MaterialManage extends BaseModel{
      */
     private String remarks;
 
+    public String getCom() {
+        return com;
+    }
+
+    public void setCom(String com) {
+        this.com = com;
+    }
 
     @Override
     public String toString() {

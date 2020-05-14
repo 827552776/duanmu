@@ -124,6 +124,7 @@ ifnull(is_out, '') != '1'
     from b_ord_main
     where ifnull(flag,'') != 'N'
     and ifnull(is_out,'') != '1'
+    order by lot_no desc
 
   </select>
   <select id="findPageCom" resultMap="BaseResultMap">

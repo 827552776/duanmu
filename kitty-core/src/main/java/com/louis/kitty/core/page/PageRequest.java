@@ -16,7 +16,7 @@ public class PageRequest {
 	/**
 	 * 每页数量
 	 */
-	private int pageSize = 50;
+	private int pageSize = 200;
 	/**
 	 * 条件查询的值
 	 */

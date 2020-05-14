@@ -50,11 +50,12 @@ public class FareServiceImpl implements FareService{
     @Override
     public PageResult findPage(PageRequest pageRequest) {
         ColumnFilter columnFilter = pageRequest.getColumnFilter("mould");
+        ColumnFilter columnFilter3 = pageRequest.getColumnFilter("logis");
         ColumnFilter columnFilter1 = pageRequest.getColumnFilter("qianTime");
         ColumnFilter columnFilter2 = pageRequest.getColumnFilter("houTime");
 //        ColumnFilter columnFilter1 = pageRequest.getColumnFilter("mName");
-        if(columnFilter != null && columnFilter1 !=null) {
-            return MybatisPageHelper.findPage(pageRequest, yunMapper, "findPageByMouldAndTime", columnFilter.getValue(),columnFilter1.getValue(),columnFilter2.getValue());
+        if(columnFilter != null && columnFilter3 !=null) {
+            return MybatisPageHelper.findPage(pageRequest, yunMapper, "findPageByMouldAndTime", columnFilter.getValue(),columnFilter3.getValue(),columnFilter1.getValue(),columnFilter2.getValue());
         }
         return MybatisPageHelper.findPage(pageRequest, yunMapper);
     }

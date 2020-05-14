@@ -41,8 +41,7 @@
         and tr_subdivide like #{pattern2}
     </select>
     <select id="findPage" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List" />
+        select *
         from tr_stock_manage
     </select>
     <select id="findPageAb" resultMap="BaseResultMap">

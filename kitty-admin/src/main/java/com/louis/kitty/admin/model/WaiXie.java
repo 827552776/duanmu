@@ -9,6 +9,10 @@ public class WaiXie extends BaseModel{
      */
     private String mould;
     /**
+     * 业务
+     */
+    private String work;
+    /**
      * 数量
      */
     private BigInteger number;
@@ -44,6 +48,14 @@ public class WaiXie extends BaseModel{
      * 后时间
      */
     private Date houTime;
+
+    public String getWork() {
+        return work;
+    }
+
+    public void setWork(String work) {
+        this.work = work;
+    }
 
     public String getName() {
         return name;
