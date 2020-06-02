@@ -27,7 +27,7 @@
         a.logis as logis,
         a.material as material,
         a.remarks as remarks
-        from b_ord_main b left join b_fare a
+        from b_fare a left join b_ord_main b
         on b.id = a.f_id
         where a.price is not null
     </select>
@@ -43,11 +43,12 @@
         a.logis as logis,
         a.material as material,
         a.remarks as remarks
-        from b_ord_main b left join b_fare a
+        from b_fare a left join b_ord_main b
         on b.id = a.f_id
         where a.price is not null
         and b.mould_nm like #{pattern}
         and a.logis like #{pattern1}
-        and a.delv_date between #{qianTime,jdbcType=TIMESTAMP} and #{houTime,jdbcType=TIMESTAMP}
+        <if test="qianTime!=null and qianTime!=''"> and a.delv_date &gt;=#{qianTime,jdbcType=TIMESTAMP}</if>
+        <if test="houTime!=null and houTime!=''"> and a.delv_date &lt;=#{houTime,jdbcType=TIMESTAMP}</if>
     </select>
 </mapper>

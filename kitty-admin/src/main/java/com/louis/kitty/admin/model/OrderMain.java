@@ -13,6 +13,26 @@ public class OrderMain {
 
     private String createBy;
 
+    private Date qianTime;
+
+    private Date houTime;
+
+    public Date getQianTime() {
+        return qianTime;
+    }
+
+    public void setQianTime(Date qianTime) {
+        this.qianTime = qianTime;
+    }
+
+    public Date getHouTime() {
+        return houTime;
+    }
+
+    public void setHouTime(Date houTime) {
+        this.houTime = houTime;
+    }
+
     public String getCreateBy() {
         return createBy;
     }

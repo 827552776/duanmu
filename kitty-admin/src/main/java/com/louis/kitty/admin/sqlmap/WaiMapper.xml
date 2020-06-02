@@ -47,6 +47,7 @@
         WHERE h.price is not NULL
         and b.mould_nm like #{pattern}
         and h.help_nm like #{pattern1}
-        and h.start_date between #{qianTime,jdbcType=TIMESTAMP} and #{houTime,jdbcType=TIMESTAMP}
+        <if test="qianTime!=null and qianTime!=''"> and h.start_date &gt;=#{qianTime,jdbcType=TIMESTAMP}</if>
+        <if test="houTime!=null and houTime!=''"> and h.start_date &lt;=#{houTime,jdbcType=TIMESTAMP}</if>
     </select>
 </mapper>

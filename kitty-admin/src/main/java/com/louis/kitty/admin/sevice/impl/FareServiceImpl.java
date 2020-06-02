@@ -56,8 +56,12 @@ public class FareServiceImpl implements FareService{
 //        ColumnFilter columnFilter1 = pageRequest.getColumnFilter("mName");
         if(columnFilter != null && columnFilter3 !=null) {
             return MybatisPageHelper.findPage(pageRequest, yunMapper, "findPageByMouldAndTime", columnFilter.getValue(),columnFilter3.getValue(),columnFilter1.getValue(),columnFilter2.getValue());
+        } else{
+            if(columnFilter1 != null  && columnFilter2 !=null){
+                return MybatisPageHelper.findPage(pageRequest, yunMapper, "findPageByMouldAndTime", columnFilter.getValue(),columnFilter3.getValue(),columnFilter1.getValue(),columnFilter2.getValue());
+            }
+            return MybatisPageHelper.findPage(pageRequest, yunMapper);
         }
-        return MybatisPageHelper.findPage(pageRequest, yunMapper);
     }
     @Override
     public PageResult findPage1(PageRequest pageRequest) {

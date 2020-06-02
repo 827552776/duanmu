@@ -37,6 +37,7 @@ public class ShenHeController {
      */
     @PostMapping(value="/save")
     public HttpResult save(@RequestBody ShenHe record) {
+
         return HttpResult.ok(shenHeService.save(record));
     }
 }

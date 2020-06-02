@@ -57,10 +57,17 @@ public class OrderMainServiceImpl implements OrderMainService {
     public PageResult findPage(PageRequest pageRequest) {
         ColumnFilter columnFilter = pageRequest.getColumnFilter("cust");
         ColumnFilter columnFilter1 = pageRequest.getColumnFilter("mouldNm");
-        if(columnFilter != null&&columnFilter1 != null) {
-            return MybatisPageHelper.findPage(pageRequest,orderMainMapper,"findPageByLabel",columnFilter.getValue(),columnFilter1.getValue());
+        ColumnFilter columnFilter4 = pageRequest.getColumnFilter("lotNo");
+        ColumnFilter columnFilter2 = pageRequest.getColumnFilter("qianTime");
+        ColumnFilter columnFilter3 = pageRequest.getColumnFilter("houTime");
+        if(columnFilter != null&&columnFilter1 != null&&columnFilter4 != null) {
+            return MybatisPageHelper.findPage(pageRequest,orderMainMapper,"findPageByLabel",columnFilter.getValue(),columnFilter1.getValue(),columnFilter4.getValue(),columnFilter2.getValue(),columnFilter3.getValue());
+        } else {
+            if (columnFilter2 != null && columnFilter3 != null) {
+                return MybatisPageHelper.findPage(pageRequest, orderMainMapper, "findPageByLabel", columnFilter.getValue(), columnFilter1.getValue(), columnFilter4.getValue(), columnFilter2.getValue(), columnFilter3.getValue());
+            }
+            return MybatisPageHelper.findPage(pageRequest, orderMainMapper);
         }
-        return MybatisPageHelper.findPage(pageRequest,orderMainMapper);
     }
     @Override
     public int updateSts(OrderMain main) {
@@ -123,18 +130,21 @@ public class OrderMainServiceImpl implements OrderMainService {
     public PageResult findPageCom(PageRequest pageRequest) {
         ColumnFilter columnFilter = pageRequest.getColumnFilter("cust");
         ColumnFilter columnFilter1 = pageRequest.getColumnFilter("mouldNm");
-        if(columnFilter != null&&columnFilter1 != null) {
-            return MybatisPageHelper.findPage(pageRequest,orderMainMapper,"findPageByCom",columnFilter.getValue(),columnFilter1.getValue());
+        ColumnFilter columnFilter2 = pageRequest.getColumnFilter("qianTime");
+        ColumnFilter columnFilter3 = pageRequest.getColumnFilter("houTime");
+        if(columnFilter != null&&columnFilter1 != null&& columnFilter2 != null && columnFilter3 != null) {
+            return MybatisPageHelper.findPage(pageRequest,orderMainMapper,"findPageByCom",columnFilter.getValue(),columnFilter1.getValue(), columnFilter2.getValue(), columnFilter3.getValue());
         }
-        return MybatisPageHelper.findPageCom(pageRequest,orderMainMapper);
+            return MybatisPageHelper.findPage(pageRequest, orderMainMapper);
     }
 
     @Override
     public PageResult findPageZhu(PageRequest pageRequest) {
         ColumnFilter columnFilter = pageRequest.getColumnFilter("cust");
         ColumnFilter columnFilter1 = pageRequest.getColumnFilter("mouldNm");
+        ColumnFilter columnFilter2 = pageRequest.getColumnFilter("lotNo");
         if(columnFilter != null&&columnFilter1 != null) {
-            return MybatisPageHelper.findPage(pageRequest, orderMainMapper, "findPageZhuoo", columnFilter.getValue(),columnFilter1.getValue());
+            return MybatisPageHelper.findPage(pageRequest, orderMainMapper, "findPageZhuoo", columnFilter.getValue(),columnFilter1.getValue(),columnFilter2.getValue());
         }
         return MybatisPageHelper.findPageZhu(pageRequest, orderMainMapper);
     }
