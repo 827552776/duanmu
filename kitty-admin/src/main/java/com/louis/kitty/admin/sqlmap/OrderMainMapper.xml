@@ -212,11 +212,10 @@ ifnull(is_out, '') != '1'
     select
     *,(case when ord_sts='A' then '已录入'when ord_sts='A1' then '已入库' when ord_sts='B' then '已预估成本' when ord_sts='C' then '已拆单' end)  sts
     from b_ord_main
-    where ifnull(flag,'') != 'N'
-    and ord_sts = 'D'
+    where ord_sts = 'A1'
     and cust like #{pattern}
     and mould_nm like #{pattern1}
-    and  ifnull(flag,'') != 'N'
+
   </select>
 
   <select id="query" resultMap="BaseResultMap">
