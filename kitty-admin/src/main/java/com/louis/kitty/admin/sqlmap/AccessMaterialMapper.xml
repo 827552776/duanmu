@@ -49,7 +49,8 @@
     where name like #{pattern}
        and m_name like #{pattern1}
        and waixie like #{pattern2}
-       and wx_time between #{qianTime,jdbcType=TIMESTAMP} and #{houTime,jdbcType=TIMESTAMP}
+       <if test="qianTime!=null and qianTime!=''"> and wx_time &gt;=#{qianTime,jdbcType=TIMESTAMP}</if>
+       <if test="houTime!=null and houTime!=''"> and wx_time &lt;=#{houTime,jdbcType=TIMESTAMP}</if>
        and type = '1'
   </select>
   <select id="findPageByLabel" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -60,7 +61,8 @@
     from tr_material_access
     where name like #{pattern}
     and m_name like #{pattern1}
-    and tr_time between #{qianTime,jdbcType=TIMESTAMP} and #{houTime,jdbcType=TIMESTAMP}
+    <if test="qianTime!=null and qianTime!=''"> and tr_time &gt;=#{qianTime,jdbcType=TIMESTAMP}</if>
+    <if test="houTime!=null and houTime!=''"> and tr_time &lt;=#{houTime,jdbcType=TIMESTAMP}</if>
     and type = '0'
   </select>
   <select id="findPageAb" resultMap="BaseResultMap">

@@ -189,8 +189,6 @@ ifnull(is_out, '') != '1'
     from b_ord_main where
     cust like #{pattern}
     and mould_nm like #{pattern1}
-    <if test="qianTime!=null and qianTime!=''"> and ware_date &gt;=#{qianTime,jdbcType=TIMESTAMP}</if>
-    <if test="houTime!=null and houTime!=''"> and ware_date &lt;=#{houTime,jdbcType=TIMESTAMP}</if>
     and  ifnull(flag,'') != 'N'
     and is_out = '1'
 

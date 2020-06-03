@@ -26,6 +26,12 @@
         update b_fare set
         last_update_time = #{lastUpdateTime,jdbcType=DATE},
         last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+        fare_type = #{fareType,jdbcType=VARCHAR},
+        descri = #{descri,jdbcType=VARCHAR},
+        logis = #{logis,jdbcType=VARCHAR},
+        remarks= #{remarks,jdbcType=VARCHAR},
+        material = #{material,jdbcType=VARCHAR},
+        delv_date = #{delvDate,jdbcType=DATE},
         price = #{price,jdbcType=DECIMAL}
         where id = #{id,jdbcType=BIGINT}
     </update>
