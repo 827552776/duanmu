@@ -10,8 +10,8 @@
     <result column="price" jdbcType="DECIMAL" property="price" />
     <result column="mode_by" jdbcType="VARCHAR" property="modeBy" />
     <result column="mode" jdbcType="VARCHAR" property="mode" />
-    <result column="out_time" jdbcType="TIMESTAMP" property="outTime" />
-    <result column="int_time" jdbcType="TIMESTAMP" property="intTime" />
+    <result column="out_time" jdbcType="DATE" property="outTime" />
+    <result column="int_time" jdbcType="DATE" property="intTime" />
     <result column="out_number" jdbcType="VARCHAR" property="outNumber" />
     <result column="number" jdbcType="VARCHAR" property="number" />
     <result column="state" jdbcType="VARCHAR" property="state" />
