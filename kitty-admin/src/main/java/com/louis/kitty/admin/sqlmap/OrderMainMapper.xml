@@ -133,6 +133,7 @@ ifnull(is_out, '') != '1'
     from b_ord_main
     where ifnull(flag,'') != 'N'
     and is_out = '1'
+    and ord_sts = 'A1'
 
   </select>
   <select id="findPageZhu" resultMap="BaseResultMap">
@@ -191,6 +192,7 @@ ifnull(is_out, '') != '1'
     and mould_nm like #{pattern1}
     and  ifnull(flag,'') != 'N'
     and is_out = '1'
+    and ord_sts= 'A1'
 
   </select>
   <select id="findPageZhuoo" resultMap="BaseResultMap" parameterType="java.lang.String">

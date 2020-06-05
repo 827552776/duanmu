@@ -135,7 +135,7 @@ public class OrderMainServiceImpl implements OrderMainService {
         if(columnFilter != null&&columnFilter1 != null&& columnFilter2 != null && columnFilter3 != null) {
             return MybatisPageHelper.findPage(pageRequest,orderMainMapper,"findPageByCom",columnFilter.getValue(),columnFilter1.getValue(), columnFilter2.getValue(), columnFilter3.getValue());
         }
-            return MybatisPageHelper.findPage(pageRequest, orderMainMapper);
+            return MybatisPageHelper.findPageCom(pageRequest, orderMainMapper);
     }
 
     @Override
