@@ -7,8 +7,8 @@
         <result column="m_name" jdbcType="VARCHAR" property="mName" />
         <result column="number" jdbcType="BIGINT" property="number" />
         <result column="size" jdbcType="VARCHAR" property="size" />
-        <result column="company" jdbcType="VARCHAR" property="company" />
         <result column="com" jdbcType="VARCHAR" property="com" />
+        <result column="company" jdbcType="VARCHAR" property="company" />
         <result column="texture" jdbcType="VARCHAR" property="texture" />
         <result column="price" jdbcType="DECIMAL" property="price" />
         <result column="sum_price" jdbcType="DOUBLE" property="sumPrice" />
@@ -25,7 +25,7 @@
         <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
     </resultMap>
     <sql id="Base_Column_List">
-    id,name,m_name,number,size,price,company,com,texture,state,int_number,out_number,sum_price,type,type_number,invoice,remarks ,create_by, create_time, last_update_by,
+    id,name,m_name,number,size,price,com,company,texture,state,int_number,out_number,sum_price,type,type_number,invoice,remarks ,create_by, create_time, last_update_by,
     last_update_time
   </sql>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
@@ -46,22 +46,11 @@
     <select id="findPageByNameAndmName" parameterType="java.lang.String" resultMap="BaseResultMap">
         <bind name="pattern" value="'%' + _parameter.name + '%'" />
         <bind name="pattern1" value="'%' + _parameter.mName + '%'" />
-        <bind name="pattern2" value="'%' + _parameter.com + '%'" />
         select
         <include refid="Base_Column_List" />
         from tr_material_manage
         where name like #{pattern}
         and m_name like #{pattern1}
-        and com like #{pattern2}
-    </select>
-    <select id="findPageByName" parameterType="java.lang.String" resultMap="BaseResultMap">
-        <bind name="pattern" value="'%' + _parameter.name + '%'" />
-        <bind name="pattern1" value="'%' + _parameter.com + '%'" />
-        select
-        <include refid="Base_Column_List" />
-        from tr_material_manage
-        where name like #{pattern}
-        and com like #{pattern1}
     </select>
     <insert id="insertSelective" parameterType="com.louis.kitty.admin.model.TrStockManage">
         insert into tr_material_manage
@@ -83,6 +72,9 @@
             </if>
             <if test="texture != null">
                 texture,
+            </if>
+            <if test="com != null">
+                com,
             </if>
             <if test="company != null">
                 company,
@@ -146,6 +138,9 @@
             <if test="texture != null">
                 #{texture,jdbcType=VARCHAR},
             </if>
+            <if test="com != null">
+                #{com,jdbcType=VARCHAR},
+            </if>
             <if test="company != null">
                 #{company,jdbcType=VARCHAR},
             </if>
@@ -207,6 +202,9 @@
             </if>
             <if test="size != null">
                 size =  #{size,jdbcType=VARCHAR},
+            </if>
+            <if test="com != null">
+                com =  #{com,jdbcType=VARCHAR},
             </if>
             <if test="company != null">
                 company =  #{company,jdbcType=VARCHAR},

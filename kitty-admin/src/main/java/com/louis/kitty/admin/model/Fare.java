@@ -6,13 +6,46 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class Fare extends BaseModel{
+    /**
+     * 订单ID
+     */
     private String fId;
-
+    /**
+     * 运费类型
+     */
     private String fareType;
-
+    /**
+     * 材料名称
+     */
+    private String material;
+    /**
+     *  综合备注
+     */
+    private String remarks;
+    /**
+     * 运费产生过程
+     */
     private String descri;
-
+    /**
+     * 拉货人/采购人
+     */
     private String logis;
+
+    public String getMaterial() {
+        return material;
+    }
+
+    public void setMaterial(String material) {
+        this.material = material;
+    }
+
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
+    }
 
     public String getfId() {
         return fId;

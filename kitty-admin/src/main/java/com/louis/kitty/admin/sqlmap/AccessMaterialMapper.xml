@@ -9,8 +9,8 @@
     <result column="batch" jdbcType="VARCHAR" property="batch" />
     <result column="size" jdbcType="VARCHAR" property="size" />
     <result column="texture" jdbcType="VARCHAR" property="texture" />
-    <result column="company" jdbcType="VARCHAR" property="company" />
     <result column="com" jdbcType="VARCHAR" property="com" />
+    <result column="company" jdbcType="VARCHAR" property="company" />
     <result column="int_time" jdbcType="TIMESTAMP" property="intTime" />
     <result column="int_number" jdbcType="BIGINT" property="intNumber" />
     <result column="tr_time" jdbcType="TIMESTAMP" property="trTime" />
@@ -43,15 +43,14 @@
     <bind name="pattern" value="'%' + _parameter.name + '%'" />
     <bind name="pattern1" value="'%' + _parameter.mName + '%'" />
     <bind name="pattern2" value="'%' + _parameter.waixie + '%'" />
-    <bind name="pattern3" value="'%' + _parameter.com + '%'" />
     select
     <include refid="Base_Column_List" />
     from tr_material_access
     where name like #{pattern}
        and m_name like #{pattern1}
        and waixie like #{pattern2}
-       and com like #{pattern3}
-       and wx_time between #{qianTime,jdbcType=TIMESTAMP} and #{houTime,jdbcType=TIMESTAMP}
+       <if test="qianTime!=null and qianTime!=''"> and wx_time &gt;=#{qianTime,jdbcType=TIMESTAMP}</if>
+       <if test="houTime!=null and houTime!=''"> and wx_time &lt;=#{houTime,jdbcType=TIMESTAMP}</if>
        and type = '1'
   </select>
   <select id="findPageByLabel" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -62,7 +61,8 @@
     from tr_material_access
     where name like #{pattern}
     and m_name like #{pattern1}
-    and wx_time between #{qianTime,jdbcType=TIMESTAMP} and #{houTime,jdbcType=TIMESTAMP}
+    <if test="qianTime!=null and qianTime!=''"> and tr_time &gt;=#{qianTime,jdbcType=TIMESTAMP}</if>
+    <if test="houTime!=null and houTime!=''"> and tr_time &lt;=#{houTime,jdbcType=TIMESTAMP}</if>
     and type = '0'
   </select>
   <select id="findPageAb" resultMap="BaseResultMap">
@@ -98,6 +98,9 @@
       </if>
       <if test="texture != null">
         texture,
+      </if>
+      <if test="com != null">
+        com,
       </if>
       <if test="company != null">
         company,
@@ -175,6 +178,9 @@
       <if test="texture != null">
         #{texture,jdbcType=VARCHAR},
       </if>
+      <if test="com != null">
+        #{com,jdbcType=VARCHAR},
+      </if>
       <if test="company != null">
         #{company,jdbcType=VARCHAR},
       </if>
@@ -250,6 +256,9 @@
       </if>
       <if test="texture != null">
         texture = #{texture,jdbcType=VARCHAR},
+      </if>
+      <if test="com != null">
+        com = #{com,jdbcType=VARCHAR},
       </if>
       <if test="company != null">
         company = #{company,jdbcType=VARCHAR},

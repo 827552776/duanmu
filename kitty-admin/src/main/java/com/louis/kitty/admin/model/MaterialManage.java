@@ -19,7 +19,7 @@ public class MaterialManage extends BaseModel{
      */
     private String company;
     /**
-     * 材料来源
+     * 来料单位
      */
     private String com;
     /**
@@ -71,6 +71,13 @@ public class MaterialManage extends BaseModel{
      */
     private String remarks;
 
+    public String getCom() {
+        return com;
+    }
+
+    public void setCom(String com) {
+        this.com = com;
+    }
 
     @Override
     public String toString() {
@@ -78,7 +85,6 @@ public class MaterialManage extends BaseModel{
                 "name='" + name + '\'' +
                 ", mName='" + mName + '\'' +
                 ", company='" + company + '\'' +
-                ", com='" + com + '\'' +
                 ", texture='" + texture + '\'' +
                 ", number=" + number +
                 ", size='" + size + '\'' +
@@ -109,10 +115,6 @@ public class MaterialManage extends BaseModel{
     public void setCompany(String company) {
         this.company = company;
     }
-
-    public String getCom() { return com; }
-
-    public void setCom(String com) { this.com = com; }
 
     public String getTexture() {
         return texture;

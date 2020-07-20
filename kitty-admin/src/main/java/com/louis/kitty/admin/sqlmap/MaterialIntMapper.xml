@@ -9,8 +9,8 @@
     <result column="batch" jdbcType="VARCHAR" property="batch" />
     <result column="texture" jdbcType="VARCHAR" property="texture" />
     <result column="size" jdbcType="VARCHAR" property="size" />
-    <result column="company" jdbcType="VARCHAR" property="company" />
     <result column="com" jdbcType="VARCHAR" property="com" />
+    <result column="company" jdbcType="VARCHAR" property="company" />
     <result column="int_time" jdbcType="TIMESTAMP" property="intTime" />
     <result column="int_number" jdbcType="BIGINT" property="intNumber" />
     <result column="tr_time" jdbcType="TIMESTAMP" property="trTime" />
@@ -41,14 +41,15 @@
   <select id="findPageByNameAndMName" parameterType="java.lang.String" resultMap="BaseResultMap">
     <bind name="pattern" value="'%' + _parameter.name + '%'" />
     <bind name="pattern1" value="'%' + _parameter.mName + '%'" />
-    <bind name="pattern2" value="'%' + _parameter.com + '%'" />
+    <bind name="pattern2" value="'%' + _parameter.remarks + '%'" />
     select
     <include refid="Base_Column_List" />
     from tr_material_access
     where name like #{pattern}
-    and int_time between #{qianTime,jdbcType=TIMESTAMP} and #{houTime,jdbcType=TIMESTAMP}
+    <if test="qianTime!=null and qianTime!=''"> and int_time &gt;=#{qianTime,jdbcType=TIMESTAMP}</if>
+    <if test="houTime!=null and houTime!=''"> and int_time &lt;=#{houTime,jdbcType=TIMESTAMP}</if>
     and m_name like #{pattern1}
-    and com like #{pattern2}
+    and remarks like #{pattern2}
         and type = '2'
   </select>
 

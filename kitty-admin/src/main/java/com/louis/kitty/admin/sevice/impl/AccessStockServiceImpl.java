@@ -55,10 +55,10 @@ public class AccessStockServiceImpl implements AccessStockService {
 //        System.out.println(columnFilter2 .getValue());
 //        System.out.println(columnFilter3 .getValue());
 //        System.out.println(columnFilter4.getValue());
-        if(columnFilter != null && columnFilter1 != null) {
+        if(columnFilter != null && columnFilter1 != null && columnFilter2 != null) {
             return MybatisPageHelper.findPage(pageRequest, accessStockMapper, "findPageByName", columnFilter.getValue(),columnFilter1.getValue(),columnFilter2.getValue(),columnFilter3.getValue(),columnFilter4.getValue());
         }else {
-            if(columnFilter2 != null  ){
+            if(columnFilter3 != null && columnFilter4 != null){
                 return MybatisPageHelper.findPage(pageRequest, accessStockMapper, "findPageByName", columnFilter.getValue(),columnFilter1.getValue(),columnFilter2.getValue(),columnFilter3.getValue(),columnFilter4.getValue());
             }
             return MybatisPageHelper.findPage(pageRequest, accessStockMapper);
@@ -74,11 +74,11 @@ public class AccessStockServiceImpl implements AccessStockService {
         ColumnFilter columnFilter3 = pageRequest.getColumnFilter("modeBy");
         ColumnFilter columnFilter4 = pageRequest.getColumnFilter("qianTime");
         ColumnFilter columnFilter5 = pageRequest.getColumnFilter("houTime");
-        if(columnFilter != null && columnFilter1 != null) {
+        if(columnFilter != null && columnFilter1 != null && columnFilter2 !=null && columnFilter3 != null) {
             return MybatisPageHelper.findPageAb(pageRequest, accessStockMapper, "findPageByNameAndType", columnFilter.getValue(),columnFilter1.getValue(),columnFilter2.getValue(),
                     columnFilter3.getValue(),columnFilter4.getValue(),columnFilter5.getValue());
         } else {
-            if( columnFilter2 !=null && columnFilter3 != null){
+            if( columnFilter4 !=null && columnFilter5 != null){
                 return MybatisPageHelper.findPageAb(pageRequest, accessStockMapper, "findPageByNameAndType", columnFilter.getValue(),columnFilter1.getValue(),columnFilter2.getValue(),
                         columnFilter3.getValue(),columnFilter4.getValue(),columnFilter5.getValue());
             }

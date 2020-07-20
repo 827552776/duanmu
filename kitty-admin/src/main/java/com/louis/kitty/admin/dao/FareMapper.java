@@ -1,6 +1,8 @@
 package com.louis.kitty.admin.dao;
 
 import com.louis.kitty.admin.model.Fare;
+import com.louis.kitty.admin.model.YunFei;
+
 
 import java.util.List;
 

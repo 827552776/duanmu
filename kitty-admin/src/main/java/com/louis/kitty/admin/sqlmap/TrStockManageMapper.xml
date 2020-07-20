@@ -22,7 +22,7 @@
         <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
     </resultMap>
     <sql id="Base_Column_List">
-    id,tr_name,tr_type,tr_subdivide,tr_number,x_number,number,tr_price,in_number,out_number,type,type_number,tr_remarks ,create_by, create_time, last_update_by,
+    id,tr_name,tr_type,tr_subdivide,tr_number,x_number,sum_price,number,tr_price,in_number,out_number,type,type_number,tr_remarks ,create_by, create_time, last_update_by,
     last_update_time
   </sql>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
@@ -41,8 +41,7 @@
         and tr_subdivide like #{pattern2}
     </select>
     <select id="findPage" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List" />
+        select *
         from tr_stock_manage
     </select>
     <select id="findPageAb" resultMap="BaseResultMap">

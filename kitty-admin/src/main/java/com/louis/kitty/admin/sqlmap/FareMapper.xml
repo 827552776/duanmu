@@ -8,6 +8,8 @@
         <result column="last_update_by" jdbcType="VARCHAR" property="lastUpdateBy" />
         <result column="create_time" jdbcType="DATE" property="createTime" />
         <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+        <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+        <result column="material" jdbcType="VARCHAR" property="material" />
         <result column="fare_type" jdbcType="VARCHAR" property="fareType" />
         <result column="descri" jdbcType="VARCHAR" property="descri" />
         <result column="logis" jdbcType="VARCHAR" property="logis" />
@@ -15,15 +17,21 @@
         <result column="delv_date" jdbcType="DATE" property="delvDate"/>
     </resultMap>
     <insert id="save" parameterType="com.louis.kitty.admin.model.Fare">
-        insert into b_fare (id,f_id,create_time,create_by,fare_type,descri,price,delv_date,logis)
+        insert into b_fare (id,f_id,create_time,create_by,fare_type,descri,price,delv_date,logis,material,remarks)
         values (#{id,jdbcType=BIGINT},#{fId,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, #{createBy,jdbcType=VARCHAR},
         #{fareType,jdbcType=VARCHAR}, #{descri,jdbcType=VARCHAR},
-        #{price,jdbcType=DECIMAL},#{delvDate,jdbcType=DATE},#{logis,jdbcType=VARCHAR})
+        #{price,jdbcType=DECIMAL},#{delvDate,jdbcType=DATE},#{logis,jdbcType=VARCHAR},#{material,jdbcType=VARCHAR},#{remarks,jdbcType=VARCHAR})
     </insert>
     <update id="update" parameterType="com.louis.kitty.admin.model.Fare">
         update b_fare set
         last_update_time = #{lastUpdateTime,jdbcType=DATE},
         last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+        fare_type = #{fareType,jdbcType=VARCHAR},
+        descri = #{descri,jdbcType=VARCHAR},
+        logis = #{logis,jdbcType=VARCHAR},
+        remarks= #{remarks,jdbcType=VARCHAR},
+        material = #{material,jdbcType=VARCHAR},
+        delv_date = #{delvDate,jdbcType=DATE},
         price = #{price,jdbcType=DECIMAL}
         where id = #{id,jdbcType=BIGINT}
     </update>
@@ -33,4 +41,5 @@
         from b_fare
         where f_id = #{param1,jdbcType=VARCHAR}
     </select>
+
 </mapper>

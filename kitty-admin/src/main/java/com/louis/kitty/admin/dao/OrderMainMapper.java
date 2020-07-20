@@ -21,9 +21,18 @@ public interface OrderMainMapper {
     int updateA1(String id);
     int updateE(String id);
     int updateStsC(String id);
-    List<OrderMain> findPageByLabel(@Param(value="cust") String cust,@Param(value = "mouldNm") String mouldNm);
-    List<OrderMain> findPageByCom(@Param(value="cust") String cust,@Param(value = "mouldNm") String mouldNm);
-    List<OrderMain> findPageZhuoo(@Param(value="cust") String cust,@Param(value = "mouldNm") String mouldNm);
+    List<OrderMain> findPageByLabel(@Param(value="cust") String cust,
+                                    @Param(value = "mouldNm") String mouldNm,
+                                    @Param(value = "lotNo") String lotNo,
+                                    @Param(value = "qianTime") String qianTime,
+                                    @Param(value = "houTime") String houTime);
+    List<OrderMain> findPageByCom(@Param(value="cust") String cust,
+                                  @Param(value = "mouldNm") String mouldNm,
+                                  @Param(value = "qianTime") String qianTime,
+                                  @Param(value = "houTime") String houTime);
+    List<OrderMain> findPageZhuoo(@Param(value="cust") String cust,
+                                  @Param(value = "mouldNm") String mouldNm,
+                                  @Param(value = "lotNo") String lotNo);
     List<OrderMain> findPageQueryoo(@Param(value="cust") String cust,@Param(value = "mouldNm") String mouldNm);
     String selectPrimaryKey();
     int updateStsD(String id);
