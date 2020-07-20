@@ -25,6 +25,10 @@ public class AccessMaterial extends BaseModel{
      */
     private String texture;
     /**
+     * 材料来源
+     */
+    private String com;
+    /**
      * 单位
      */
     private String company;
@@ -98,6 +102,7 @@ public class AccessMaterial extends BaseModel{
                 ", batch='" + batch + '\'' +
                 ", dispatch='" + dispatch + '\'' +
                 ", texture='" + texture + '\'' +
+                ", com='" + com + '\'' +
                 ", company='" + company + '\'' +
                 ", intNumber=" + intNumber +
                 ", intTime=" + intTime +
@@ -172,6 +177,10 @@ public class AccessMaterial extends BaseModel{
     public void setTexture(String texture) {
         this.texture = texture;
     }
+
+    public String getCom() { return com; }
+
+    public void setCom(String com) { this.com = com; }
 
     public String getCompany() {
         return company;

@@ -14,6 +14,8 @@ public interface MaterialManageMapper {
     int insertSelective(MaterialManage record);
 
     int updateByPrimaryKeySelective(MaterialManage record);
-    List<MaterialManage> findPageByNameAndmName(@Param(value="name") String name,@Param(value="mName") String mName);
+    List<MaterialManage> findPageByNameAndmName(@Param(value="name") String name,@Param(value="mName") String mName,
+                                                @Param(value="com") String com);
+    List<MaterialManage> findPageByName(@Param(value="name") String name,@Param(value="com") String com);
     List<MaterialManage> queryTogeter(String id);
 }

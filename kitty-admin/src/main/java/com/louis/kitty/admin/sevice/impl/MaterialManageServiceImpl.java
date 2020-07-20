@@ -53,17 +53,21 @@ public class MaterialManageServiceImpl implements MaterialManageService {
     public PageResult findPage(PageRequest pageRequest) {
         ColumnFilter columnFilter = pageRequest.getColumnFilter("name");
         ColumnFilter columnFilter1 = pageRequest.getColumnFilter("mName");
-        if(columnFilter != null && columnFilter1 !=null) {
-            return MybatisPageHelper.findPage(pageRequest, materialManageMapper, "findPageByNameAndmName", columnFilter.getValue(),columnFilter1.getValue());
+        ColumnFilter columnFilter2 = pageRequest.getColumnFilter("com");
+        if(columnFilter != null && columnFilter1 !=null && columnFilter2 !=null) {
+            return MybatisPageHelper.findPage(pageRequest, materialManageMapper, "findPageByNameAndmName", columnFilter.getValue(),columnFilter1.getValue(),
+                    columnFilter2.getValue());
         }
         return MybatisPageHelper.findPage(pageRequest, materialManageMapper);
     }
 
     @Override
     public PageResult findPageAb(PageRequest pageRequest) {
-        ColumnFilter columnFilter = pageRequest.getColumnFilter("label");
-        if(columnFilter != null) {
-            return MybatisPageHelper.findPageAb(pageRequest, materialManageMapper, "findPageByLabel", columnFilter.getValue());
+        ColumnFilter columnFilter = pageRequest.getColumnFilter("name");
+        ColumnFilter columnFilter1 = pageRequest.getColumnFilter("com");
+        if(columnFilter != null && columnFilter1 !=null) {
+            return MybatisPageHelper.findPageAb(pageRequest, materialManageMapper, "findPageByName", columnFilter.getValue(),
+                                                columnFilter1.getValue());
         }
         return MybatisPageHelper.findPageAb(pageRequest, materialManageMapper);
     }

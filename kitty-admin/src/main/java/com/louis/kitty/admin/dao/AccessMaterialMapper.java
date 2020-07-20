@@ -11,7 +11,7 @@ public interface AccessMaterialMapper {
     int insertSelective(AccessMaterial record);
     List<AccessMaterial> findPageAb();
     List<AccessMaterial> findPageByName( @Param(value="name") String name,@Param(value="mName") String mName,@Param(value = "waixie") String waixie,
-                                         @Param(value="qianTime") String qianTime,@Param(value="houTime") String houTime);
+                                         @Param(value="com") String com,@Param(value="qianTime") String qianTime,@Param(value="houTime") String houTime);
     List<AccessMaterial> findPageByLabel( @Param(value="name") String name,@Param(value="mName") String mName,
                                           @Param(value="qianTime") String qianTime,@Param(value="houTime") String houTime);
     int updateByPrimaryKeySelective(AccessMaterial record);

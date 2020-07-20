@@ -10,6 +10,7 @@
     <result column="texture" jdbcType="VARCHAR" property="texture" />
     <result column="size" jdbcType="VARCHAR" property="size" />
     <result column="company" jdbcType="VARCHAR" property="company" />
+    <result column="com" jdbcType="VARCHAR" property="com" />
     <result column="int_time" jdbcType="TIMESTAMP" property="intTime" />
     <result column="int_number" jdbcType="BIGINT" property="intNumber" />
     <result column="tr_time" jdbcType="TIMESTAMP" property="trTime" />
@@ -27,7 +28,7 @@
     <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id,name,m_name,dispatch,size,batch,texture,company,int_time,int_number,tr_time,number,waixie,wx_time,wx_int,wx_number,wx_price,type,remarks, create_by, create_time, last_update_by,
+    id,name,m_name,dispatch,size,batch,texture,com,company,int_time,int_number,tr_time,number,waixie,wx_time,wx_int,wx_number,wx_price,type,remarks, create_by, create_time, last_update_by,
     last_update_time
   </sql>
 
@@ -40,12 +41,14 @@
   <select id="findPageByNameAndMName" parameterType="java.lang.String" resultMap="BaseResultMap">
     <bind name="pattern" value="'%' + _parameter.name + '%'" />
     <bind name="pattern1" value="'%' + _parameter.mName + '%'" />
+    <bind name="pattern2" value="'%' + _parameter.com + '%'" />
     select
     <include refid="Base_Column_List" />
     from tr_material_access
     where name like #{pattern}
     and int_time between #{qianTime,jdbcType=TIMESTAMP} and #{houTime,jdbcType=TIMESTAMP}
     and m_name like #{pattern1}
+    and com like #{pattern2}
         and type = '2'
   </select>
 
