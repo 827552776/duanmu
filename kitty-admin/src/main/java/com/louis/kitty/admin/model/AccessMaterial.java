@@ -17,10 +17,6 @@ public class AccessMaterial extends BaseModel{
      */
     private String batch;
     /**
-     * 来料单位
-     */
-    private String com;
-    /**
      * 派工号
      */
     private String dispatch;
@@ -96,14 +92,6 @@ public class AccessMaterial extends BaseModel{
      * 尺寸
      */
     private String size;
-
-    public String getCom() {
-        return com;
-    }
-
-    public void setCom(String com) {
-        this.com = com;
-    }
 
     @Override
     public String toString() {
