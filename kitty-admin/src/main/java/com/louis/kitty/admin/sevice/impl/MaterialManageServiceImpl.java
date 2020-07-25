@@ -62,6 +62,16 @@ public class MaterialManageServiceImpl implements MaterialManageService {
     }
 
     @Override
+    public PageResult findPageZI(PageRequest pageRequest){
+        ColumnFilter columnFilter = pageRequest.getColumnFilter("name");
+        ColumnFilter columnFilter1 = pageRequest.getColumnFilter("com");
+        if(columnFilter != null && columnFilter1 !=null) {
+            return MybatisPageHelper.findPageZI(pageRequest, materialManageMapper, "findPageByNameAndCom", columnFilter.getValue(),columnFilter1.getValue());
+        }
+        return MybatisPageHelper.findPageZI(pageRequest, materialManageMapper);
+    }
+
+    @Override
     public PageResult findPageAb(PageRequest pageRequest) {
         ColumnFilter columnFilter = pageRequest.getColumnFilter("name");
         ColumnFilter columnFilter1 = pageRequest.getColumnFilter("com");

@@ -12,6 +12,7 @@ import java.util.List;
 
 public interface MaterialManageService extends CurdService<MaterialManage> {
     PageResult findPageAb(PageRequest pageRequest);
+    PageResult findPageZI(PageRequest pageRequest);
     File createUserExcelFile (PageRequest pageRequest);
     List<MaterialManage> queryTogeter(OrderMain orderMain);
 }

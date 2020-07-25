@@ -33,6 +33,10 @@ public class MaterialManageController {
     public HttpResult findPage(@RequestBody PageRequest pageRequest) {
         return HttpResult.ok(materialManageService.findPage(pageRequest));
     }
+    @PostMapping(value = "/findZI")
+    public HttpResult findPageZI(@RequestBody PageRequest pageRequest) {
+        return HttpResult.ok(materialManageService.findPageZI(pageRequest));
+    }
     @PostMapping(value = "/findAb")
     public HttpResult findPageAb(@RequestBody PageRequest pageRequest) {
         return HttpResult.ok(materialManageService.findPageAb(pageRequest));
