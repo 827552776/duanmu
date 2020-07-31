@@ -9,13 +9,17 @@ public class WaiXie extends BaseModel{
      */
     private String mould;
     /**
+     * 外协单位
+     */
+    private String name;
+    /**
      * 业务
      */
     private String work;
     /**
      * 数量
      */
-    private BigInteger number;
+    private String number;
     /**
      * 单位
      */
@@ -36,10 +40,6 @@ public class WaiXie extends BaseModel{
      * 备注
      */
     private String remarks;
-    /**
-     * 外协单位
-     */
-    private String name;
     /**
      * 前时间
      */
@@ -89,13 +89,9 @@ public class WaiXie extends BaseModel{
         this.mould = mould;
     }
 
-    public BigInteger getNumber() {
-        return number;
-    }
+    public String getNumber() { return number; }
 
-    public void setNumber(BigInteger number) {
-        this.number = number;
-    }
+    public void setNumber(String number) { this.number = number; }
 
     public String getCompany() {
         return company;

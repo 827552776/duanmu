@@ -20,11 +20,11 @@
 
     <select id="findPage1" resultMap="BaseResultMap">
        select b.mould_nm as mould,
-            h.help_quan as number,
             h.help_nm as name,
+            h.work as work,
+            h.help_quan as number,
             b.company as company,
             h.price as price,
-            h.work as work,
             h.start_date as start_date,
             h.end_date as end_date,
             h.help_remarks as remarks
