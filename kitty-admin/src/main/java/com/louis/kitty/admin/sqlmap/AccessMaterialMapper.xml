@@ -43,12 +43,14 @@
     <bind name="pattern" value="'%' + _parameter.name + '%'" />
     <bind name="pattern1" value="'%' + _parameter.mName + '%'" />
     <bind name="pattern2" value="'%' + _parameter.waixie + '%'" />
+    <bind name="pattern3" value="'%' + _parameter.com + '%'" />
     select
     <include refid="Base_Column_List" />
     from tr_material_access
     where name like #{pattern}
        and m_name like #{pattern1}
        and waixie like #{pattern2}
+       and com like #{pattern3}
        <if test="qianTime!=null and qianTime!=''"> and wx_time &gt;=#{qianTime,jdbcType=TIMESTAMP}</if>
        <if test="houTime!=null and houTime!=''"> and wx_time &lt;=#{houTime,jdbcType=TIMESTAMP}</if>
        and type = '1'
