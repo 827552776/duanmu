@@ -70,6 +70,18 @@ public class MaterialManage extends BaseModel{
      * 备注信息
      */
     private String remarks;
+    /**
+     * 自用状态
+     */
+    private int perStatus;
+    /**
+     * 外协状态
+     */
+    private int outStatus;
+    /**
+     * 外协状态
+     */
+    private Long totalOut;
 
     public String getCom() {
         return com;
@@ -97,6 +109,9 @@ public class MaterialManage extends BaseModel{
                 ", typeNumber=" + typeNumber +
                 ", invoice='" + invoice + '\'' +
                 ", remarks='" + remarks + '\'' +
+                ", perStatus='" + perStatus +
+                ", outStatus='" + outStatus +
+                ", totalOut='" + totalOut +
                 '}';
     }
 
@@ -219,4 +234,16 @@ public class MaterialManage extends BaseModel{
     public void setRemarks(String remarks) {
         this.remarks = remarks;
     }
+
+    public int getPerStatus() { return perStatus; }
+
+    public void setPerStatus(int perStatus) { this.perStatus = perStatus; }
+
+    public int getOutStatus() { return outStatus; }
+
+    public void setOutStatus(int outStatus) { this.outStatus = outStatus; }
+
+    public Long getTotalOut() { return totalOut; }
+
+    public void setTotalOut(Long totalOut) { this.totalOut = totalOut; }
 }

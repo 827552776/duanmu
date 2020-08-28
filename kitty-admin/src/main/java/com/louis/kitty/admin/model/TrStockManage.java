@@ -19,6 +19,9 @@ public class TrStockManage extends BaseModel {
     private int outNumber;
     private int type;
     private int typeNumber;
+    private int perStatus;
+    private int outStatus;
+    private int totalOut;
     /**
      * 材料总价格
      */
@@ -39,6 +42,9 @@ public class TrStockManage extends BaseModel {
                 ", outNumber=" + outNumber +
                 ", type=" + type +
                 ", typeNumber=" + typeNumber +
+                ", perStatus=" + perStatus +
+                ", outStatus=" + outStatus +
+                ", totalOut=" + totalOut +
                 '}';
     }
 
@@ -145,4 +151,16 @@ public class TrStockManage extends BaseModel {
     public void setOutNumber(int outNumber) {
         this.outNumber = outNumber;
     }
+
+    public int getPerStatus() { return perStatus; }
+
+    public void setPerStatus(int perStatus) { this.perStatus = perStatus; }
+
+    public int getOutStatus() { return outStatus; }
+
+    public void setOutStatus(int outStatus) { this.outStatus = outStatus; }
+
+    public int getTotalOut() { return totalOut; }
+
+    public void setTotalOut(int totalOut) { this.totalOut = totalOut; }
 }

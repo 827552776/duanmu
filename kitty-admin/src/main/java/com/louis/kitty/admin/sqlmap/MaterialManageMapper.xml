@@ -23,10 +23,13 @@
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
         <result column="last_update_by" jdbcType="BIGINT" property="lastUpdateBy" />
         <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
+        <result column="per_status" jdbcType="BIGINT" property="perStatus" />
+        <result column="out_status" jdbcType="BIGINT" property="outStatus" />
+        <result column="total_out" jdbcType="BIGINT" property="totalOut" />
     </resultMap>
     <sql id="Base_Column_List">
     id,name,m_name,number,size,price,com,company,texture,state,int_number,out_number,sum_price,type,type_number,invoice,remarks ,create_by, create_time, last_update_by,
-    last_update_time
+    last_update_time,per_status,out_status,total_out
   </sql>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from tr_material_manage
@@ -59,7 +62,8 @@
         where name like #{pattern}
         and m_name like #{pattern1}
         and com like #{pattern2}
-        and number > 0
+        and number >= 0
+        and per_status != 1
     </select>
     <select id="findPageByNameAndCom" parameterType="java.lang.String" resultMap="BaseResultMap">
         <bind name="pattern" value="'%' + _parameter.name + '%'" />
@@ -146,6 +150,12 @@
             <if test="lastUpdateTime != null">
                 last_update_time,
             </if>
+            <if test="perStatus != null">
+                per_status,
+            </if>
+            <if test="outStatus != null">
+                out_status,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -172,7 +182,6 @@
             <if test="company != null">
                 #{company,jdbcType=VARCHAR},
             </if>
-
             <if test="price != null">
                 #{price,jdbcType=DECIMAL},
             </if>
@@ -212,8 +221,12 @@
             <if test="lastUpdateTime != null">
                 #{lastUpdateTime,jdbcType=TIMESTAMP},
             </if>
-
-
+            <if test="perStatus != null">
+                #{perStatus, jdbcType=BIGINT},
+            </if>
+            <if test="outStatus != null">
+                #{outStatus, jdbcType=BIGINT},
+            </if>
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.louis.kitty.admin.model.TrStockManage">
@@ -279,7 +292,15 @@
             <if test="lastUpdateTime != null">
                 last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
             </if>
-
+            <if test="perStatus != null">
+                per_status = #{perStatus,jdbcType=BIGINT},
+            </if>
+            <if test="outStatus != null">
+                out_status = #{outStatus,jdbcType=BIGINT},
+            </if>
+            <if test="totalOut != null">
+                total_out = #{totalOut,jdbcType=BIGINT},
+            </if>
         </set>
         where id = #{id,jdbcType=BIGINT}
     </update>

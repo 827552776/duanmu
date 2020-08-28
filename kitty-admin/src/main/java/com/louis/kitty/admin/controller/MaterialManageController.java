@@ -57,6 +57,21 @@ public class MaterialManageController {
         }else {
             record.setType(1);
         }
+        //无外协,全出库的状态为1
+        if(record.getOutStatus() == 0 && (record.getNumber()-b) == 0){
+            record.setPerStatus(1);
+        }else if(record.getOutStatus() == 0 && record.getNumber()>(record.getNumber()-b) && (record.getNumber()-b)> 0){
+            record.setPerStatus(2);//无外协,未完全出库状态为1
+        }else {
+            record.setPerStatus(0);//无出库
+        }
+        //外协回来
+        if(record.getOutStatus() == 1 && (record.getTotalOut()-a) == 0){
+            record.setOutStatus(0);
+            record.setTotalOut(record.getTotalOut()-a);
+        }else {
+            record.setTotalOut(record.getTotalOut()-a);
+        }
         record.setNumber(record.getNumber()+a-b);
         record.setIntNumber((long) 0);
         record.setOutNumber((long) 0);
