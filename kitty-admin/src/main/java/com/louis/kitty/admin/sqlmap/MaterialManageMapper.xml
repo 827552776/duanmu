@@ -45,6 +45,7 @@
         <include refid="Base_Column_List" />
         from tr_material_manage
         where number = '0'
+        and per_status = 1
     </select>
     <select id="findPageAb" resultMap="BaseResultMap">
         select
@@ -73,7 +74,8 @@
         from tr_material_manage
         where name like #{pattern}
         and com like #{pattern1}
-        and number = '0'
+        and number = 0
+        and per_status = 1
     </select>
     <select id="findPageByName" parameterType="java.lang.String" resultMap="BaseResultMap">
         <bind name="pattern" value="'%' + _parameter.name + '%'" />

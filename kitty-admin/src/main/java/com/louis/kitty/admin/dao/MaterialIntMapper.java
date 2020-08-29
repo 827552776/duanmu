@@ -10,6 +10,7 @@ public interface MaterialIntMapper {
     List<AccessMaterial> findPageByNameAndMName(@Param(value="name") String name,
                                                 @Param(value="mName") String mName,
                                                 @Param(value="remarks") String remarks,
+                                                @Param(value="com") String com,
                                                 @Param(value="qianTime") String qianTime,
                                                 @Param(value="houTime") String houTime);
 }

@@ -42,6 +42,7 @@
     <bind name="pattern" value="'%' + _parameter.name + '%'" />
     <bind name="pattern1" value="'%' + _parameter.mName + '%'" />
     <bind name="pattern2" value="'%' + _parameter.remarks + '%'" />
+    <bind name="pattern3" value="'%' + _parameter.com + '%'" />
     select
     <include refid="Base_Column_List" />
     from tr_material_access
@@ -50,6 +51,7 @@
     <if test="houTime!=null and houTime!=''"> and int_time &lt;=#{houTime,jdbcType=TIMESTAMP}</if>
     and m_name like #{pattern1}
     and remarks like #{pattern2}
+    and com like #{pattern3}
         and type = '2'
   </select>
 
