@@ -92,7 +92,10 @@ public class AccessMaterial extends BaseModel{
      * 尺寸
      */
     private String size;
-
+    /**
+     * 入库类型
+     */
+    private String intType;
     @Override
     public String toString() {
         return "AccessMaterial{" +
@@ -118,6 +121,7 @@ public class AccessMaterial extends BaseModel{
                 ", type='" + type + '\'' +
                 ", remarks='" + remarks + '\'' +
                 ", size='" + size + '\'' +
+                ", intType='" + intType + '\'' +
                 '}';
     }
 
@@ -292,4 +296,8 @@ public class AccessMaterial extends BaseModel{
     public void setRemarks(String remarks) {
         this.remarks = remarks;
     }
+
+    public String getIntType() { return intType; }
+
+    public void setIntType(String intType) { this.intType = intType; }
 }

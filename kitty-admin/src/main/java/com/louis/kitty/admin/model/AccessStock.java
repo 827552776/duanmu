@@ -69,6 +69,10 @@ public class AccessStock extends BaseModel {
      * 出库数量
      */
     private Long outNumber;
+    /**
+     * 入库类型
+     */
+    private String intType;
 
     @Override
     public String toString() {
@@ -88,6 +92,7 @@ public class AccessStock extends BaseModel {
                 ", houTime=" + houTime +
                 ", remarks='" + remarks + '\'' +
                 ", outNumber=" + outNumber +
+                ", intType='" + intType + '\'' +
                 '}';
     }
 
@@ -210,4 +215,8 @@ public class AccessStock extends BaseModel {
     public void setOutNumber(Long outNumber) {
         this.outNumber = outNumber;
     }
+
+    public String getIntType() { return intType; }
+
+    public void setIntType(String intType) { this.intType = intType; }
 }
