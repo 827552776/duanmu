@@ -127,6 +127,15 @@ ifnull(is_out, '') != '1'
     order by lot_no desc
 
   </select>
+  <select id="findPageY" resultMap="BaseResultMap">
+    select
+    *,(case when ord_sts='A' then '已录入'when ord_sts='A1' then '已入库' when ord_sts='B' then '已预估成本' when ord_sts='C' then '已拆单' end)  sts
+    from b_ord_main
+    where ifnull(flag,'') != 'N'
+    and ifnull(is_out,'') != '1'
+    order by lot_no desc
+
+  </select>
   <select id="findPageCom" resultMap="BaseResultMap">
     select
     *,(case when ord_sts='A' then '已录入'when ord_sts='A1' then '已入库' when ord_sts='B' then '已预估成本' when ord_sts='C' then '已拆单' end)  sts
@@ -181,7 +190,22 @@ ifnull(is_out, '') != '1'
     and ifnull(is_out,'') != '1'
 
   </select>
+  <select id="findPageByY" resultMap="BaseResultMap" parameterType="java.lang.String">
+    <bind name="pattern" value="'%' + _parameter.cust+ '%'" />
+    <bind name="pattern1" value="'%' + _parameter.mouldNm+ '%'" />
+    <bind name="pattern2" value="'%' + _parameter.lotNo+ '%'" />
+    select
+    *
+    from b_ord_main where
+    cust like #{pattern}
+    and mould_nm like #{pattern1}
+    and lot_no like #{pattern2}
+    <if test="qianTime!=null and qianTime!=''"> and ware_date &gt;=#{qianTime,jdbcType=TIMESTAMP}</if>
+    <if test="houTime!=null and houTime!=''"> and ware_date &lt;=#{houTime,jdbcType=TIMESTAMP}</if>
+    and  ifnull(flag,'') != 'N'
+    and ifnull(is_out,'') != '1'
 
+  </select>
   <select id="findPageByCom" resultMap="BaseResultMap" parameterType="java.lang.String">
     <bind name="pattern" value="'%' + _parameter.cust+ '%'" />
     <bind name="pattern1" value="'%' + _parameter.mouldNm+ '%'" />

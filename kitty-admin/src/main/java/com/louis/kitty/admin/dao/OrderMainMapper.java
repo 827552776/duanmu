@@ -12,6 +12,7 @@ public interface OrderMainMapper {
     int update(OrderMain record);
     int delete(String id);
     List<OrderMain> findPage();
+    List<OrderMain> findPageY();
     List<OrderMain> findPageCom();
     List<OrderMain> findPageQuery();
     List<OrderMain> findPageAb();
@@ -22,6 +23,11 @@ public interface OrderMainMapper {
     int updateE(String id);
     int updateStsC(String id);
     List<OrderMain> findPageByLabel(@Param(value="cust") String cust,
+                                    @Param(value = "mouldNm") String mouldNm,
+                                    @Param(value = "lotNo") String lotNo,
+                                    @Param(value = "qianTime") String qianTime,
+                                    @Param(value = "houTime") String houTime);
+    List<OrderMain> findPageByY(@Param(value="cust") String cust,
                                     @Param(value = "mouldNm") String mouldNm,
                                     @Param(value = "lotNo") String lotNo,
                                     @Param(value = "qianTime") String qianTime,

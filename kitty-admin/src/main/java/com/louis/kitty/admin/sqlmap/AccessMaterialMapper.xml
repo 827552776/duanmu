@@ -23,14 +23,14 @@
     <result column="sum_price" jdbcType="DOUBLE" property="sumPrice" />
     <result column="type" jdbcType="VARCHAR" property="type" />
     <result column="remarks" jdbcType="VARCHAR" property="remarks" />
-    <result column="int_type" jdbcType="VARCHAR" property="intType" />
+    <result column="rk_type" jdbcType="VARCHAR" property="rkType" />
     <result column="create_by" jdbcType="BIGINT" property="createBy" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="last_update_by" jdbcType="BIGINT" property="lastUpdateBy" />
     <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id,name,m_name,dispatch,size,batch,texture,com,company,int_time,int_number,tr_time,number,waixie,wx_time,wx_int,wx_number,wx_price,sum_price,type,remarks,int_type, create_by, create_time, last_update_by,
+    id,name,m_name,dispatch,size,batch,texture,com,company,int_time,int_number,tr_time,number,waixie,wx_time,wx_int,wx_number,wx_price,sum_price,type,remarks,rk_type, create_by, create_time, last_update_by,
     last_update_time
   </sql>
 
@@ -144,6 +144,9 @@
       <if test="remarks != null">
         remarks,
       </if>
+      <if test="rkType != null">
+        rk_type,
+      </if>
       <if test="createBy != null">
         create_by,
       </if>
@@ -222,6 +225,9 @@
       </if>
       <if test="remarks!= null">
         #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="rkType!= null">
+        #{rkType,jdbcType=VARCHAR},
       </if>
       <if test="createBy != null">
         #{createBy,jdbcType=BIGINT},
@@ -302,8 +308,8 @@
       <if test="remarks != null">
         remarks = #{remarks,jdbcType=VARCHAR},
       </if>
-      <if test="intType != null">
-        int_type = #{intType,jdbcType=VARCHAR},
+      <if test="rkType != null">
+        rk_type = #{rkType,jdbcType=VARCHAR},
       </if>
       <if test="createBy != null">
         create_by = #{createBy,jdbcType=BIGINT},

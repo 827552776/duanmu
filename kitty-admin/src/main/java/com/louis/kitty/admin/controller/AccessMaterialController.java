@@ -59,7 +59,6 @@ public class AccessMaterialController {
      */
     @PostMapping(value = "/save")
     public HttpResult save(@RequestBody AccessMaterial record) {
-        System.out.println(record.getIntType());
         return HttpResult.ok(accessMaterialService.save(record));
     }
     /**

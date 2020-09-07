@@ -95,7 +95,8 @@ public class AccessMaterial extends BaseModel{
     /**
      * 入库类型
      */
-    private String intType;
+    private String rkType;
+
     @Override
     public String toString() {
         return "AccessMaterial{" +
@@ -121,7 +122,7 @@ public class AccessMaterial extends BaseModel{
                 ", type='" + type + '\'' +
                 ", remarks='" + remarks + '\'' +
                 ", size='" + size + '\'' +
-                ", intType='" + intType + '\'' +
+                ", rkType='" + rkType +
                 '}';
     }
 
@@ -297,7 +298,7 @@ public class AccessMaterial extends BaseModel{
         this.remarks = remarks;
     }
 
-    public String getIntType() { return intType; }
+    public String getRkType() { return rkType; }
 
-    public void setIntType(String intType) { this.intType = intType; }
+    public void setRkType(String rkType) { this.rkType = rkType; }
 }

@@ -22,13 +22,14 @@
     <result column="wx_price" jdbcType="DECIMAL" property="wxPrice" />
     <result column="type" jdbcType="VARCHAR" property="type" />
     <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="rk_type" jdbcType="VARCHAR" property="rkType" />
     <result column="create_by" jdbcType="BIGINT" property="createBy" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="last_update_by" jdbcType="BIGINT" property="lastUpdateBy" />
     <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id,name,m_name,dispatch,size,batch,texture,com,company,int_time,int_number,tr_time,number,waixie,wx_time,wx_int,wx_number,wx_price,type,remarks, create_by, create_time, last_update_by,
+    id,name,m_name,dispatch,size,batch,texture,com,company,int_time,int_number,tr_time,number,waixie,wx_time,wx_int,wx_number,wx_price,type,remarks,rk_type, create_by, create_time, last_update_by,
     last_update_time
   </sql>
 
@@ -42,7 +43,8 @@
     <bind name="pattern" value="'%' + _parameter.name + '%'" />
     <bind name="pattern1" value="'%' + _parameter.mName + '%'" />
     <bind name="pattern2" value="'%' + _parameter.remarks + '%'" />
-    <bind name="pattern3" value="'%' + _parameter.com + '%'" />
+    <bind name="pattern3" value="'%' + _parameter.rkType + '%'" />
+    <bind name="pattern4" value="'%' + _parameter.com + '%'" />
     select
     <include refid="Base_Column_List" />
     from tr_material_access
@@ -51,7 +53,8 @@
     <if test="houTime!=null and houTime!=''"> and int_time &lt;=#{houTime,jdbcType=TIMESTAMP}</if>
     and m_name like #{pattern1}
     and remarks like #{pattern2}
-    and com like #{pattern3}
+    and rk_Type like #{pattern3}
+    and com like #{pattern4}
         and type = '2'
   </select>
 

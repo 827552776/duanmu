@@ -70,6 +70,22 @@ public class OrderMainServiceImpl implements OrderMainService {
         }
     }
     @Override
+    public PageResult findPageY(PageRequest pageRequest) {
+        ColumnFilter columnFilter = pageRequest.getColumnFilter("cust");
+        ColumnFilter columnFilter1 = pageRequest.getColumnFilter("mouldNm");
+        ColumnFilter columnFilter2 = pageRequest.getColumnFilter("lotNo");
+        ColumnFilter columnFilter3 = pageRequest.getColumnFilter("qianTime");
+        ColumnFilter columnFilter4 = pageRequest.getColumnFilter("houTime");
+        if(columnFilter != null&&columnFilter1 != null&&columnFilter2 != null) {
+            return MybatisPageHelper.findPage(pageRequest,orderMainMapper,"findPageByY",columnFilter.getValue(),columnFilter1.getValue(),columnFilter4.getValue(),columnFilter2.getValue(),columnFilter3.getValue());
+        } else {
+            if (columnFilter3 != null && columnFilter4 != null) {
+                return MybatisPageHelper.findPage(pageRequest, orderMainMapper, "findPageByY", columnFilter.getValue(), columnFilter1.getValue(), columnFilter4.getValue(), columnFilter2.getValue(), columnFilter3.getValue());
+            }
+            return MybatisPageHelper.findPageY(pageRequest, orderMainMapper);
+        }
+    }
+    @Override
     public int updateSts(OrderMain main) {
       String id = main.getId();
         return orderMainMapper.updateStsB(id);
