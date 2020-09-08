@@ -28,10 +28,7 @@ public interface OrderMainMapper {
                                     @Param(value = "qianTime") String qianTime,
                                     @Param(value = "houTime") String houTime);
     List<OrderMain> findPageByY(@Param(value="cust") String cust,
-                                    @Param(value = "mouldNm") String mouldNm,
-                                    @Param(value = "lotNo") String lotNo,
-                                    @Param(value = "qianTime") String qianTime,
-                                    @Param(value = "houTime") String houTime);
+                                    @Param(value = "mouldNm") String mouldNm);
     List<OrderMain> findPageByCom(@Param(value="cust") String cust,
                                   @Param(value = "mouldNm") String mouldNm,
                                   @Param(value = "qianTime") String qianTime,
