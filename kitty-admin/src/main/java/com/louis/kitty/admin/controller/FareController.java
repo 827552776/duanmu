@@ -1,7 +1,6 @@
 package com.louis.kitty.admin.controller;
 
 import com.louis.kitty.admin.model.Fare;
-import com.louis.kitty.admin.model.Help;
 import com.louis.kitty.admin.model.OrderMain;
 import com.louis.kitty.admin.sevice.FareService;
 import com.louis.kitty.core.http.HttpResult;
@@ -11,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("fare")
@@ -39,5 +40,9 @@ public class FareController {
     @PostMapping(value = "/find1")
     public HttpResult findPage1(@RequestBody PageRequest pageRequest) {
         return HttpResult.ok(fareService.findPage1(pageRequest));
+    }
+    @PostMapping(value="/delete")
+    public HttpResult delete(@RequestBody List<Fare> record) {
+        return HttpResult.ok(fareService.delete(record));
     }
 }

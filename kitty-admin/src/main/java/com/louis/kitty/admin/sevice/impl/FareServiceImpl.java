@@ -34,12 +34,15 @@ public class FareServiceImpl implements FareService{
 
     @Override
     public int delete(Fare record) {
-        return 0;
+        return fareMapper.deleteByPrimaryKey(record.getId());
     }
 
     @Override
     public int delete(List<Fare> records) {
-        return 0;
+        for (Fare record:records){
+            delete(record);
+        }
+        return 1;
     }
 
     @Override

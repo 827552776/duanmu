@@ -3,6 +3,7 @@
 <mapper namespace="com.louis.kitty.admin.dao.YunMapper">
     <resultMap id="BaseResultMap" type="com.louis.kitty.admin.model.YunFei">
         <id column="id" jdbcType="BIGINT" property="id" />
+        <id column="f_id" jdbcType="VARCHAR" property="fId" />
         <result column="a_time" jdbcType="DATE" property="aTime" />
 <!--        <result column="qian_time" jdbcType="DATE" property="qianTime" />-->
 <!--        <result column="hou_time" jdbcType="DATE" property="houTime" />-->
@@ -19,6 +20,7 @@
 
     <select id="findPage" resultMap="BaseResultMap">
         select
+        a.id as id,
         a.delv_date as a_time,
         a.descri as descri ,
         b.mould_nm as mould,
@@ -35,6 +37,7 @@
         <bind name="pattern" value="'%' + _parameter.mould + '%'" />
         <bind name="pattern1" value="'%' + _parameter.logis + '%'" />
         select
+        a.id as id,
         a.delv_date as a_time,
         a.descri as descri ,
         b.mould_nm as mould,

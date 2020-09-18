@@ -7,6 +7,10 @@ import java.util.Date;
 
 public class Fare extends BaseModel{
     /**
+     *  ID
+     */
+    private Long id;
+    /**
      * 订单ID
      */
     private String fId;
@@ -30,6 +34,12 @@ public class Fare extends BaseModel{
      * 拉货人/采购人
      */
     private String logis;
+
+    @Override
+    public Long getId() { return id; }
+
+    @Override
+    public void setId(Long id) { this.id = id; }
 
     public String getMaterial() {
         return material;

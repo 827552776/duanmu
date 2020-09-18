@@ -9,6 +9,7 @@ import java.util.List;
 public interface FareMapper {
     int save(Fare fare);
     int update(Fare fare);
+    int deleteByPrimaryKey(Long id);
     List<Fare> query(String fId);
 
 }

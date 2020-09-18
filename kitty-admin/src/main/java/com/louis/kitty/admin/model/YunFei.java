@@ -7,6 +7,14 @@ import java.util.Date;
  */
 public class YunFei extends  BaseModel {
     /**
+     * ID
+     */
+    private Long id;
+    /**
+     * 订单ID
+     */
+    private String fId;
+    /**
      * 时间
      */
     private Date aTime;
@@ -46,6 +54,16 @@ public class YunFei extends  BaseModel {
      * 后时间
      */
     private Date houTime;
+
+    @Override
+    public Long getId() {return id; }
+
+    @Override
+    public void setId(Long id) { this.id = id; }
+
+    public String getfId() { return fId; }
+
+    public void setfId(String fId) { this.fId = fId; }
 
     public Date getQianTime() {
         return qianTime;
