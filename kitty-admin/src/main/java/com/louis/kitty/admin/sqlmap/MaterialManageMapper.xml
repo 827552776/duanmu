@@ -158,6 +158,9 @@
             <if test="outStatus != null">
                 out_status,
             </if>
+            <if test="totalOut != null">
+                total_out,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -228,6 +231,9 @@
             </if>
             <if test="outStatus != null">
                 #{outStatus, jdbcType=BIGINT},
+            </if>
+            <if test="totalOut != null">
+                #{totalOut, jdbcType=BIGINT},
             </if>
         </trim>
     </insert>

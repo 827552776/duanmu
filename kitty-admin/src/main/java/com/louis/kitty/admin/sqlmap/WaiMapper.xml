@@ -19,7 +19,8 @@
     </resultMap>
 
     <select id="findPage1" resultMap="BaseResultMap">
-       select b.mould_nm as mould,
+       select h.id as id,
+            b.mould_nm as mould,
             h.help_nm as name,
             h.work as work,
             h.help_quan as number,
@@ -34,7 +35,8 @@
     <select id="findPageByMould" parameterType="java.lang.String" resultMap="BaseResultMap">
         <bind name="pattern" value="'%' + _parameter.mould + '%'" />
         <bind name="pattern1" value="'%' + _parameter.name + '%'" />
-        select b.mould_nm as mould,
+        select h.id as id,
+        b.mould_nm as mould,
         h.help_quan as number,
         b.company as company,
         h.help_nm as name,

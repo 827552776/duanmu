@@ -5,6 +5,10 @@ import java.util.Date;
 
 public class WaiXie extends BaseModel{
     /**
+     * ID
+     */
+    private Long id;
+    /**
      * 模具名称
      */
     private String mould;
@@ -48,6 +52,12 @@ public class WaiXie extends BaseModel{
      * 后时间
      */
     private Date houTime;
+
+    @Override
+    public Long getId() { return id; }
+
+    @Override
+    public void setId(Long id) { this.id = id; }
 
     public String getWork() {
         return work;
