@@ -40,6 +40,13 @@
         and tr_type like #{pattern1}
         and tr_subdivide like #{pattern2}
     </select>
+    <select id="findPageByTrName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <bind name="pattern" value="'%' + _parameter.trName + '%'" />
+        select
+        <include refid="Base_Column_List" />
+        from tr_stock_manage
+        where tr_name like #{pattern}
+    </select>
     <select id="findPage" resultMap="BaseResultMap">
         select *
         from tr_stock_manage

@@ -13,4 +13,5 @@ public interface TrStockManageMapper {
     int insertSelective(TrStockManage record);
     int updateByPrimaryKeySelective(TrStockManage record);
     List<TrStockManage> findPageByNameAndType(@Param(value="trName") String trName, @Param(value="trType") String trType, @Param(value="trSubdivide") String trSubdivide);
+    List<TrStockManage> findPageByTrName(@Param(value = "trName") String trName);
 }

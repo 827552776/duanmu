@@ -35,12 +35,12 @@
 
   <insert id="insert" parameterType="com.louis.kitty.admin.model.OrderMain">
     insert into b_ord_main (id, lot_no,cust,mould_nm,quantity,company,dispatch_no,
-    buy_material,remarks,flag,ord_sts,create_by,create_time,shuxing)
+    buy_material,remarks,flag,ord_sts,create_by,create_time,shuxing,out_num)
     values (#{id,jdbcType=VARCHAR}, #{lotNo,jdbcType=VARCHAR}, #{cust,jdbcType=VARCHAR},
       #{mouldNm,jdbcType=VARCHAR}, #{quantity,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR},
       #{dispatchNo,jdbcType=VARCHAR}, #{buyMaterial,jdbcType=VARCHAR},#{remarks,jdbcType=VARCHAR},
       #{flag,jdbcType=VARCHAR},'A',
-      #{createBy,jdbcType=VARCHAR},#{createTime,jdbcType=DATE},#{shuxing,jdbcType=VARCHAR})
+      #{createBy,jdbcType=VARCHAR},#{createTime,jdbcType=DATE},#{shuxing,jdbcType=VARCHAR},0)
   </insert>
   <select id="select" parameterType="java.lang.String" resultType="java.lang.String">
     select id from b_ord_main

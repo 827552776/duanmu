@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.louis.kitty.admin.dao.OrderOutMapper">
+    <resultMap id="BaseResultMap" type="com.louis.kitty.admin.model.OrderOut">
+        <id column="id" jdbcType="VARCHAR" property="id" />
+        <result column="last_update_time" jdbcType="DATE" property="lastUpdateTime" />
+        <result column="last_update_by" jdbcType="VARCHAR" property="lastUpdateBy" />
+        <result column="create_time" jdbcType="DATE" property="createTime" />
+        <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+        <result column="lot_no" jdbcType="VARCHAR" property="lotNo" />
+        <result column="cust" jdbcType="VARCHAR" property="cust" />
+        <result column="mould_nm" jdbcType="VARCHAR" property="mouldNm" />
+        <result column="quantity" jdbcType="BIGINT" property="quantity" />
+        <result column="company" jdbcType="VARCHAR" property="company" />
+        <result column="dispatch_no" jdbcType="VARCHAR" property="dispatchNo"/>
+        <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+        <result column="ware_num" jdbcType="BIGINT" property="wareNum" />
+        <result column="out_num" jdbcType="BIGINT" property="outNum" />
+        <result column="ware_no" jdbcType="VARCHAR" property="wareNo" />
+        <result column="out_no" jdbcType="VARCHAR" property="outNo" />
+        <result column="out_date" jdbcType="DATE" property="outDate" />
+    </resultMap>
+    <select id="findPageOut" resultMap="BaseResultMap">
+      select
+      *
+      from b_ord_out
+      order by lot_no desc
+    </select>
+    <select id="findPageByCustAndmName" resultMap="BaseResultMap">
+        <bind name="pattern" value="'%' + _parameter.cust+ '%'" />
+        <bind name="pattern1" value="'%' + _parameter.mouldNm+ '%'" />
+        select
+        *
+        from b_ord_out where
+        cust like #{pattern}
+        and mould_nm like #{pattern1}
+    </select>
+    <insert id="insertOut" parameterType="com.louis.kitty.admin.model.OrderOut">
+        insert into b_ord_out (id, lot_no, cust, mould_nm, quantity, company, dispatch_no,
+        remarks, ware_num, out_num, ware_no, out_no, out_date, create_time, create_by)
+        values (#{id,jdbcType=BIGINT},#{lotNo,jdbcType=VARCHAR},#{cust,jdbcType=VARCHAR},
+          #{mouldNm,jdbcType=VARCHAR}, #{quantity,jdbcType=BIGINT}, #{company,jdbcType=VARCHAR},
+          #{dispatchNo,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, #{wareNum,jdbcType=BIGINT},
+          #{outNum,jdbcType=BIGINT}, #{wareNo,jdbcType=VARCHAR}, #{outNo,jdbcType=VARCHAR},
+          #{outDate,jdbcType=DATE}, #{createTime,jdbcType=DATE}, #{createBy,jdbcType=VARCHAR})
+    </insert>
+</mapper>

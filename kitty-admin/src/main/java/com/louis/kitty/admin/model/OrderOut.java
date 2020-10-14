@@ -1,25 +1,20 @@
 package com.louis.kitty.admin.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
-public class Out {
+public class OrderOut{
+
     private String id;
-
-    private Date outDate;
-
-    private String outNo;
-
-    private Integer outNum;
-
-    private Integer number;
-
-    private Integer quantity;
 
     private String lotNo;
 
     private String cust;
 
     private String mouldNm;
+
+    private Integer quantity;
 
     private String company;
 
@@ -29,19 +24,22 @@ public class Out {
 
     private Integer wareNum;
 
+    private Integer outNum;
+
     private String wareNo;
+
+    private String outNo;
+
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
+    private Date outDate;
 
     private Date createTime;
 
     private String createBy;
 
-    public String getOutNo() {
-        return outNo;
-    }
+    private Date lastUpdateTime;
 
-    public void setOutNo(String outNo) {
-        this.outNo = outNo;
-    }
+    private String lastUpdateBy;
 
     public String getId() {
         return id;
@@ -49,38 +47,6 @@ public class Out {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public Date getOutDate() {
-        return outDate;
-    }
-
-    public void setOutDate(Date outDate) {
-        this.outDate = outDate;
-    }
-
-    public Integer getOutNum() {
-        return outNum;
-    }
-
-    public void setOutNum(Integer outNum) {
-        this.outNum = outNum;
-    }
-
-    public Integer getNumber() {
-        return number;
-    }
-
-    public void setNumber(Integer number) {
-        this.number = number;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
     }
 
     public String getLotNo() {
@@ -105,6 +71,14 @@ public class Out {
 
     public void setMouldNm(String mouldNm) {
         this.mouldNm = mouldNm;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
     public String getCompany() {
@@ -139,12 +113,28 @@ public class Out {
         this.wareNum = wareNum;
     }
 
+    public Integer getOutNum() {
+        return outNum;
+    }
+
+    public void setOutNum(Integer outNum) {
+        this.outNum = outNum;
+    }
+
     public String getWareNo() {
         return wareNo;
     }
 
     public void setWareNo(String wareNo) {
         this.wareNo = wareNo;
+    }
+
+    public String getOutNo() {
+        return outNo;
+    }
+
+    public void setOutNo(String outNo) {
+        this.outNo = outNo;
     }
 
     public Date getCreateTime() {
@@ -161,5 +151,29 @@ public class Out {
 
     public void setCreateBy(String createBy) {
         this.createBy = createBy;
+    }
+
+    public Date getLastUpdateTime() {
+        return lastUpdateTime;
+    }
+
+    public void setLastUpdateTime(Date lastUpdateTime) {
+        this.lastUpdateTime = lastUpdateTime;
+    }
+
+    public String getLastUpdateBy() {
+        return lastUpdateBy;
+    }
+
+    public void setLastUpdateBy(String lastUpdateBy) {
+        this.lastUpdateBy = lastUpdateBy;
+    }
+
+    public Date getOutDate() {
+        return outDate;
+    }
+
+    public void setOutDate(Date outDate) {
+        this.outDate = outDate;
     }
 }

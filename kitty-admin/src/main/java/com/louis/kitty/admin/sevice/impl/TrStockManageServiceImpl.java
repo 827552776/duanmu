@@ -62,11 +62,11 @@ public class TrStockManageServiceImpl implements TrSrockManageService {
 
     @Override
     public PageResult findPageAb(PageRequest pageRequest) {
-        ColumnFilter columnFilter = pageRequest.getColumnFilter("name");
+        ColumnFilter columnFilter = pageRequest.getColumnFilter("trName");
 //        ColumnFilter columnFilter1 = pageRequest.getColumnFilter("intTime");
 //        ColumnFilter columnFilter2 = pageRequest.getColumnFilter("endDate");
         if( columnFilter !=null) {
-            return MybatisPageHelper.findPageAb(pageRequest, trStockManageMapper, "findPageByName", columnFilter.getValue());
+            return MybatisPageHelper.findPageAb(pageRequest, trStockManageMapper, "findPageByTrName", columnFilter.getValue());
         }
         return MybatisPageHelper.findPageAb(pageRequest, trStockManageMapper);
     }

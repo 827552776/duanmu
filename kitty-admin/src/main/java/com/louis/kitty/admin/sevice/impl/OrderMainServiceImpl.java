@@ -1,10 +1,8 @@
 package com.louis.kitty.admin.sevice.impl;
 
 import com.louis.kitty.admin.dao.OrderMainMapper;
-import com.louis.kitty.admin.model.AccessMaterial;
-import com.louis.kitty.admin.model.OrderMain;
-import com.louis.kitty.admin.model.Out;
-import com.louis.kitty.admin.model.Ware;
+import com.louis.kitty.admin.dao.OrderOutMapper;
+import com.louis.kitty.admin.model.*;
 import com.louis.kitty.admin.sevice.OrderMainService;
 import com.louis.kitty.core.page.ColumnFilter;
 import com.louis.kitty.core.page.MybatisPageHelper;
@@ -19,6 +17,10 @@ import java.util.List;
 public class OrderMainServiceImpl implements OrderMainService {
     @Autowired
     private OrderMainMapper orderMainMapper;
+
+    @Autowired
+    private OrderOutMapper orderOutMapper;
+
     int num = 0;
     @Override
     public int save(OrderMain orderMain) {
@@ -101,15 +103,32 @@ public class OrderMainServiceImpl implements OrderMainService {
 
     @Override
     public int updateOut(Out out) {
+        Integer a = out.getNumber();
         OrderMain orderMain = new OrderMain();
         orderMain.setId(out.getId());
         orderMain.setOutDate(out.getOutDate());
-        orderMain.setOutNum(out.getOutNum());
+        orderMain.setOutNum(out.getOutNum()+a);
         orderMain.setOutNo(out.getOutNo());
         orderMainMapper.updateOut(orderMain);
-        if(orderMainMapper.selectQuan(out.getId()) == out.getOutNum()){
+        if(orderMainMapper.selectQuan(out.getId()) == out.getOutNum()+a){
             orderMainMapper.updateE(out.getId());
         }
+
+        String id = orderMainMapper.selectPrimaryKey();
+        out.setId(id);
+        out.setCompany(out.getCompany());
+        out.setCust(out.getCust());
+        out.setDispatchNo(out.getDispatchNo());
+        out.setLotNo(out.getLotNo());
+        out.setMouldNm(out.getMouldNm());
+        out.setOutDate(out.getOutDate());
+        out.setOutNo(out.getOutNo());
+        out.setOutNum(out.getNumber());
+        out.setQuantity(out.getQuantity());
+        out.setRemarks(out.getRemarks());
+        out.setWareNo(out.getWareNo());
+        out.setWareNum(out.getWareNum());
+        orderOutMapper.insertOut(out);
         return 0;
     }
 
