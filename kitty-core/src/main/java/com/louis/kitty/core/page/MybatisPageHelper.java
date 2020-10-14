@@ -35,7 +35,7 @@ public class MybatisPageHelper {
 
 	public static final String findPagePi = "findPagePi";
 	public static final String findPageT = "findPageT";
-//	public static final String findPageOut = "findPage";
+	public static final String findPageOut = "findPageOut";
 
 	/**
 	 * 分页查询, 约定查询方法名为 “findPage” 
@@ -65,9 +65,9 @@ public class MybatisPageHelper {
 	public static PageResult findPage1(PageRequest pageRequest, Object mapper) {
 		return findPage(pageRequest, mapper, findPage1);
 	}
-//	public static PageResult findPageOut(PageRequest pageRequest, Object mapper) {
-//		return findPageOut(pageRequest, mapper, findPageOut);
-//	}
+	public static PageResult findPageOut(PageRequest pageRequest, Object mapper) {
+		return findPageOut(pageRequest, mapper, findPageOut);
+	}
 	public static PageResult findPageAb(PageRequest pageRequest, Object mapper) {
 		return findPage(pageRequest, mapper, findPageAb);
 	}
@@ -94,6 +94,25 @@ public class MybatisPageHelper {
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static PageResult findPage(PageRequest pageRequest, Object mapper, String queryMethodName, Object... args) {
+		// 设置分页参数
+		int pageNum = pageRequest.getPageNum();
+		int pageSize = pageRequest.getPageSize();
+		PageHelper.startPage(pageNum, pageSize);
+		// 利用反射调用查询方法
+		Object result = ReflectionUtils.invoke(mapper, queryMethodName, args);
+		return getPageResult(pageRequest, new PageInfo((List) result));
+	}
+
+	/**
+	 * 调用分页插件进行分页查询
+	 * @param pageRequest 分页请求
+	 * @param mapper Dao对象，MyBatis的 Mapper
+	 * @param queryMethodName 要分页的查询方法名
+	 * @param args 方法参数
+	 * @return
+	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public static PageResult findPageOut(PageRequest pageRequest, Object mapper, String queryMethodName, Object... args) {
 		// 设置分页参数
 		int pageNum = pageRequest.getPageNum();
 		int pageSize = pageRequest.getPageSize();
