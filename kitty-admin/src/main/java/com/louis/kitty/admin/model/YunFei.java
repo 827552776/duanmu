@@ -1,5 +1,7 @@
 package com.louis.kitty.admin.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 /**
@@ -17,6 +19,7 @@ public class YunFei extends  BaseModel {
     /**
      * 时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date aTime;
     /**
      * 运货路径

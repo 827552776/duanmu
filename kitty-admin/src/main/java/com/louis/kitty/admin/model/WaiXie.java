@@ -1,5 +1,7 @@
 package com.louis.kitty.admin.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.math.BigInteger;
 import java.util.Date;
 
@@ -35,10 +37,12 @@ public class WaiXie extends BaseModel{
     /**
      * 开始时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date startDate;
     /**
      * 结束时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date endDate;
     /**
      * 备注
