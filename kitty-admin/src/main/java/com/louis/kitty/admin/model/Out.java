@@ -31,6 +31,8 @@ public class Out {
 
     private String wareNo;
 
+    private Integer reQuantity;
+
     private Date createTime;
 
     private String createBy;
@@ -162,4 +164,8 @@ public class Out {
     public void setCreateBy(String createBy) {
         this.createBy = createBy;
     }
+
+    public Integer getReQuantity() { return reQuantity; }
+
+    public void setReQuantity(Integer reQuantity) { this.reQuantity = reQuantity; }
 }

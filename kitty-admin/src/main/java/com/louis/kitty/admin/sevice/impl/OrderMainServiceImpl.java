@@ -109,6 +109,7 @@ public class OrderMainServiceImpl implements OrderMainService {
         orderMain.setOutDate(out.getOutDate());
         orderMain.setOutNum(out.getOutNum()+a);
         orderMain.setOutNo(out.getOutNo());
+        orderMain.setReQuantity(out.getReQuantity()-a);
         orderMainMapper.updateOut(orderMain);
         if(orderMainMapper.selectQuan(out.getId()) == out.getOutNum()+a){
             orderMainMapper.updateE(out.getId());

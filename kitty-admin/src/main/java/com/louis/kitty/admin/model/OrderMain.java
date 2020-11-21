@@ -275,6 +275,8 @@ public class OrderMain {
 
     private Integer outNum;
 
+    private Integer reQuantity;
+
     private Integer isWare;
 
     public Integer getIsOut() {
@@ -319,4 +321,8 @@ public class OrderMain {
     public void setShuxing(String shuxing) {
         this.shuxing = shuxing;
     }
+
+    public Integer getReQuantity() { return reQuantity; }
+
+    public void setReQuantity(Integer reQuantity) { this.reQuantity = reQuantity; }
 }
